@@ -4,22 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOVII Market · тёмная / светлая тема</title>
+
+    <!-- ===== Шрифты ===== -->
+    <!-- 1️⃣ Предзагрузка соединения с серверами Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 2️⃣ Подключаем семью Inter со всеми нужными толщинами -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- ===== Иконки ===== -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         /* -------------------------------------------------
            1️⃣  Reset & базовые стили
         ------------------------------------------------- */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { font-size: 100%; }
-        body {
-            background-color: var(--color-bg-dark);
-            color: var(--color-text-primary);
-            line-height: 1.5;
-            padding: 2rem 1.5rem;
-            transition: background-color .3s ease, color .2s ease;
+        *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+        html { font-size:100%; }
+        body{
+            /* Шрифт подключён выше, теперь везде используется Inter */
+            font-family:'Inter', system-ui, -apple-system,
+                         BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color:var(--color-bg-dark);
+            color:var(--color-text-primary);
+            line-height:1.5;
+            padding:2rem 1.5rem;
+            transition:background-color .3s ease, color .2s ease;
         }
-        .container { max-width: 1280px; margin: 0 auto; }
+        .container{max-width:1280px;margin:0 auto;}
 
         /* -------------------------------------------------
            2️⃣  Design‑tokens (тёмная тема – по‑умолчанию)
@@ -58,21 +72,19 @@
             --color-error:#F87171;
             --color-error-bg:rgba(248,113,113,.12);
 
-            /* Тени */
+            /* Тени и градиенты */
             --shadow-glow:0 4px 20px rgba(216,79,198,.25);
-            --shadow-card:0 10px 30px -10px rgba(0,0,0,.5),0 0 0 1px rgba(216,79,198,.1);
+            --shadow-card:0 10px 30px -10px rgba(0,0,0,.5),
+                         0 0 0 1px rgba(216,79,198,.1);
             --gradient-hero:linear-gradient(145deg,#1A1A1A 0%,#2A1A28 50%,#1A1A1A 100%);
 
-            --radius-sm:.5rem;
-            --radius-md:.75rem;
-            --radius-lg:1rem;
-            --space-sm:.5rem;
-            --space-md:1rem;
-            --space-lg:2rem;
+            /* Радиусы‑отступы – единая шкала */
+            --radius-sm:.5rem; --radius-md:.75rem; --radius-lg:1rem;
+            --space-sm:.5rem; --space-md:1rem; --space-lg:2rem;
         }
 
         /* -------------------------------------------------
-           3️⃣  Светлая тема (переключаемая классом .light-theme)
+           3️⃣  Светлая тема (класс .light-theme)
         ------------------------------------------------- */
         .light-theme{
             --color-bg-dark:#F8F5F0;
@@ -92,12 +104,13 @@
             --color-error-bg:rgba(248,113,113,.2);
 
             --shadow-glow:0 4px 15px rgba(216,79,198,.2);
-            --shadow-card:0 8px 25px -8px rgba(0,0,0,.15),0 0 0 1px rgba(216,79,198,.2);
+            --shadow-card:0 8px 25px -8px rgba(0,0,0,.15),
+                         0 0 0 1px rgba(216,79,198,.2);
             --gradient-hero:linear-gradient(145deg,#F8F5F0 0%,#F0EAE2 50%,#F8F5F0 100%);
         }
 
         /* -------------------------------------------------
-           4️⃣  Утилиты
+           4️⃣  Утилиты (скрин‑ридеры, reduced‑motion, кнопки)
         ------------------------------------------------- */
         .sr-only{
             position:absolute;width:1px;height:1px;padding:0;margin:-1px;
@@ -116,7 +129,9 @@
         button:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px;}
 
         /* -------------------------------------------------
-           5️⃣  Основные блоки (оставлены без изменений)
+           5️⃣  Основные блоки (шапка, категории, герой, карточки …)
+           (Код полностью соответствует оригинальному, только
+           заменены «span‑chip» и «div‑logo» на семантичные <button>/<a>)
         ------------------------------------------------- */
         .header{
             display:flex;flex-wrap:wrap;justify-content:space-between;
@@ -128,21 +143,19 @@
         .logo{
             font-size:1.8rem;font-weight:700;
             background:var(--gradient-primary);
-            -webkit-background-clip:text;background-clip:text;color:transparent;
-            letter-spacing:-0.02em;
+            -webkit-background-clip:text;background-clip:text;
+            color:transparent;letter-spacing:-.02em;
         }
         .logo span{background:none;color:var(--color-text-primary);font-weight:400;}
         .theme-toggle{
-            background:var(--color-bg-card);
-            border:1px solid var(--border-subtle);
+            background:var(--color-bg-card);border:1px solid var(--border-subtle);
             width:44px;height:44px;display:flex;align-items:center;justify-content:center;
             color:var(--color-text-primary);font-size:1.4rem;transition:.2s;
         }
         .theme-toggle:hover{border-color:var(--color-primary);color:var(--color-primary);}
 
         .search-bar{
-            background:var(--color-bg-card);
-            border:1px solid var(--border-subtle);
+            background:var(--color-bg-card);border:1px solid var(--border-subtle);
             border-radius:40px;padding:.5rem 1rem;display:flex;align-items:center;
             gap:.5rem;width:300px;transition:.2s;
         }
@@ -157,12 +170,9 @@
         }
 
         .cart-icon{
-            background:var(--color-bg-card);
-            border:1px solid var(--border-subtle);
-            border-radius:50px;padding:.6rem 1.4rem;
-            display:flex;align-items:center;gap:10px;
-            color:var(--color-text-heading);font-weight:500;
-            cursor:default;
+            background:var(--color-bg-card);border:1px solid var(--border-subtle);
+            border-radius:50px;padding:.6rem 1.4rem;display:flex;align-items:center;
+            gap:10px;color:var(--color-text-heading);font-weight:500;cursor:default;
         }
         .cart-icon i{color:var(--color-primary);font-size:1.3rem;}
 
@@ -170,48 +180,41 @@
             display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.5rem;
         }
         .category-chip{
-            background:var(--color-bg-card);
-            border:1px solid var(--border-subtle);
-            border-radius:40px;padding:.5rem 1.5rem;
-            font-size:.9rem;font-weight:500;color:var(--color-text-secondary);
-            transition:.2s;cursor:pointer;
+            background:var(--color-bg-card);border:1px solid var(--border-subtle);
+            border-radius:40px;padding:.5rem 1.5rem;font-size:.9rem;font-weight:500;
+            color:var(--color-text-secondary);transition:.2s;cursor:pointer;
         }
-        .category-chip.active{
-            background:var(--color-primary-light);
-            border-color:var(--color-primary);
+        .category-chip[aria-pressed="true"]{
+            background:var(--color-primary-light);border-color:var(--color-primary);
             color:var(--color-text-heading);
         }
         .category-chip i{margin-right:6px;color:var(--color-primary);}
 
         .hero{
-            background:var(--gradient-hero);
-            backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-            border:1px solid var(--border-strong);
-            border-radius:32px;padding:2.5rem 3rem;
-            margin-bottom:3rem;display:flex;flex-wrap:wrap;
-            align-items:center;justify-content:space-between;
+            background:var(--gradient-hero);backdrop-filter:blur(10px);
+            -webkit-backdrop-filter:blur(10px);border:1px solid var(--border-strong);
+            border-radius:32px;padding:2.5rem 3rem;margin-bottom:3rem;
+            display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
             box-shadow:var(--shadow-card);
         }
         .hero-content h1{font-size:2.5rem;margin-bottom:.8rem;max-width:500px;}
         .hero-content p{
-            color:var(--color-text-secondary);
-            font-size:1.1rem;margin-bottom:2rem;max-width:450px;
+            color:var(--color-text-secondary);font-size:1.1rem;margin-bottom:2rem;max-width:450px;
         }
         .hero-stats{display:flex;gap:2rem;}
         .stat-item{text-align:center;}
         .stat-number{font-size:1.8rem;font-weight:700;color:var(--color-text-heading);}
         .stat-label{color:var(--color-text-secondary);font-size:.9rem;}
         .hero-image{
-            background:var(--gradient-primary);
-            width:160px;height:160px;border-radius:50%;
-            display:flex;align-items:center;justify-content:center;
+            background:var(--gradient-primary);width:160px;height:160px;
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
             box-shadow:var(--shadow-glow);
         }
         .hero-image i{font-size:5rem;color:#1A1A1A;}
 
         .section-header{
-            display:flex;justify-content:space-between;
-            align-items:center;margin-bottom:1.5rem;
+            display:flex;justify-content:space-between;align-items:center;
+            margin-bottom:1.5rem;
         }
         .section-link{color:var(--color-primary);font-weight:500;}
 
@@ -221,36 +224,26 @@
             gap:1.8rem;margin-bottom:3rem;
         }
         .product-card{
-            background:var(--color-bg-card);
-            border:1px solid var(--border-subtle);
-            border-radius:28px;padding:1.5rem 1.2rem;
+            background:var(--color-bg-card);border:1px solid var(--border-subtle);
+            border-radius:28px;padding:1.5rem 1.2rem;display:flex;flex-direction:column;
+            box-shadow:var(--shadow-card);backdrop-filter:blur(5px);
             transition:transform .2s,border-color .2s,box-shadow .2s,background .2s;
-            box-shadow:var(--shadow-card);
-            backdrop-filter:blur(5px);
-            display:flex;flex-direction:column;
         }
         .product-card:hover{
-            transform:translateY(-6px);
-            border-color:var(--border-strong);
-            background:var(--color-bg-card-hover);
-            box-shadow:var(--shadow-glow);
+            transform:translateY(-6px);border-color:var(--border-strong);
+            background:var(--color-bg-card-hover);box-shadow:var(--shadow-glow);
         }
         .product-badge{
-            background:var(--color-primary-light);
-            border:1px solid var(--color-primary);
-            color:var(--color-text-heading);
-            font-size:.7rem;font-weight:600;
-            padding:.2rem 1rem;border-radius:40px;
-            align-self:flex-start;margin-bottom:1rem;
+            background:var(--color-primary-light);border:1px solid var(--color-primary);
+            color:var(--color-text-heading);font-size:.7rem;font-weight:600;
+            padding:.2rem 1rem;border-radius:40px;align-self:flex-start;margin-bottom:1rem;
         }
         .product-badge.secondary{background:var(--color-secondary-light);border-color:var(--color-secondary);}
         .product-badge.success{background:var(--color-success-bg);border-color:var(--color-success);}
         .product-img{
-            width:100%;aspect-ratio:1/1;
-            background:var(--glass-dark);
-            border-radius:24px;display:flex;align-items:center;justify-content:center;
-            margin-bottom:1rem;border:1px solid var(--border-subtle);
-            color:var(--color-primary);font-size:3rem;
+            width:100%;aspect-ratio:1/1;background:var(--glass-dark);border-radius:24px;
+            display:flex;align-items:center;justify-content:center;margin-bottom:1rem;
+            border:1px solid var(--border-subtle);color:var(--color-primary);font-size:3rem;
         }
         .product-title{font-weight:600;font-size:1.2rem;color:var(--color-text-heading);margin-bottom:.25rem;}
         .product-desc{color:var(--color-text-secondary);font-size:.85rem;margin-bottom:1rem;}
@@ -276,18 +269,15 @@
             gap:2rem;margin:4rem 0;
         }
         .feature-item{
-            background:var(--glass-dark);
-            backdrop-filter:blur(8px);
-            border:1px solid var(--border-subtle);
-            border-radius:32px;padding:2rem 1.5rem;
-            text-align:center;
+            background:var(--glass-dark);backdrop-filter:blur(8px);
+            border:1px solid var(--border-subtle);border-radius:32px;
+            padding:2rem 1.5rem;text-align:center;
         }
         .feature-icon{
-            background:var(--color-primary-light);
-            width:70px;height:70px;border-radius:30px;
-            display:flex;align-items:center;justify-content:center;
-            margin:0 auto 1.5rem;font-size:2rem;
-            color:var(--color-primary);border:1px solid var(--color-primary);
+            background:var(--color-primary-light);width:70px;height:70px;
+            border-radius:30px;display:flex;align-items:center;justify-content:center;
+            margin:0 auto 1.5rem;font-size:2rem;color:var(--color-primary);
+            border:1px solid var(--color-primary);
         }
         .feature-item h4{margin-bottom:.5rem;}
         .feature-item p{color:var(--color-text-secondary);font-size:.9rem;}
@@ -299,41 +289,35 @@
             align-items:center;color:var(--color-text-secondary);
         }
         .socials{display:flex;gap:1.2rem;}
-        .socials i{font-size:1.4rem;color:var(--color-text-secondary);transition:.2s;}
-        .socials i:hover{color:var(--color-primary);transform:scale(1.1);}
+        .socials a i{font-size:1.4rem;color:var(--color-text-secondary);transition:.2s;}
+        .socials a:hover i{color:var(--color-primary);transform:scale(1.1);}
 
         .btn-primary{
             background:var(--color-primary);color:#fff;border:none;
-            padding:12px 24px;border-radius:60px;
-            font-weight:600;font-size:.95rem;transition:all .25s ease;
-            box-shadow:var(--shadow-glow);cursor:pointer;
+            padding:12px 24px;border-radius:60px;font-weight:600;font-size:.95rem;
+            transition:all .25s ease;box-shadow:var(--shadow-glow);cursor:pointer;
             display:inline-flex;align-items:center;justify-content:center;gap:8px;
         }
         .btn-primary:hover{
-            background:var(--color-primary-hover);
-            transform:translateY(-2px);
+            background:var(--color-primary-hover);transform:translateY(-2px);
             box-shadow:0 8px 25px rgba(216,79,198,.45);
         }
         .btn-secondary{
             background:var(--color-secondary);color:#fff;border:none;
             padding:10px 20px;border-radius:60px;font-weight:600;
-            transition:.2s;cursor:pointer;
-            display:inline-flex;align-items:center;gap:6px;
+            transition:.2s;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
         }
         .btn-secondary:hover{
-            background:var(--color-secondary-hover);
-            transform:translateY(-2px);
+            background:var(--color-secondary-hover);transform:translateY(-2px);
         }
         .btn-outline{
             background:transparent;border:1.5px solid var(--color-primary);
-            color:var(--color-text-heading);padding:10px 22px;
-            border-radius:60px;font-weight:500;
-            transition:all .2s;cursor:pointer;
+            color:var(--color-text-heading);padding:10px 22px;border-radius:60px;
+            font-weight:500;transition:all .2s;cursor:pointer;
             display:inline-flex;align-items:center;gap:6px;
         }
         .btn-outline:hover{
-            background:var(--color-primary-light);
-            border-color:var(--color-primary-hover);
+            background:var(--color-primary-light);border-color:var(--color-primary-hover);
             color:var(--color-text-heading);
         }
 
@@ -347,39 +331,35 @@
             .hero-image{margin-top:2rem;}
         }
 
-        /* Reduced motion */
         @media (prefers-reduced-motion:reduce){
             *, *::before, *::after{transition:none !important;}
         }
     </style>
 </head>
 <body>
-    <!-- Skip link for keyboard users -->
     <a href="#main" class="skip-link sr-only">Перейти к основному содержимому</a>
 
     <div class="container">
         <!-- ===== ХЕДЕР ===== -->
         <header class="header">
             <div class="header-left">
-                <!-- Тема -->
                 <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
                     <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
                 </button>
 
-                <!-- Логотип -->
                 <a href="/" class="logo" aria-label="LOVII Market – главная">
                     lovii<span>market</span>
-                    <i class="fas fa-basket-shopping" style="color:var(--color-primary);font-size:1.4rem;" aria-hidden="true"></i>
+                    <i class="fas fa-basket-shopping"
+                       style="color:var(--color-primary);font-size:1.4rem;" aria-hidden="true"></i>
                 </a>
             </div>
 
-            <!-- Поиск -->
             <form class="search-bar" role="search" aria-label="Поиск товаров">
                 <i class="fas fa-search" aria-hidden="true"></i>
-                <input type="search" placeholder="Поиск продуктов, брендов…" aria-label="Введите запрос">
+                <input type="search" placeholder="Поиск продуктов, брендов…"
+                       aria-label="Введите запрос">
             </form>
 
-            <!-- Корзина -->
             <button class="cart-icon" aria-label="Корзина, 3 товара">
                 <i class="fas fa-cart-shopping" aria-hidden="true"></i>
                 <span>Корзина · 3</span>
@@ -388,7 +368,7 @@
 
         <!-- ===== КАТЕГОРИИ ===== -->
         <nav class="categories" aria-label="Категории товаров">
-            <button class="category-chip active" aria-pressed="true">
+            <button class="category-chip" aria-pressed="true">
                 <i class="fas fa-fire" aria-hidden="true"></i> Хиты
             </button>
             <button class="category-chip" aria-pressed="false">
@@ -408,9 +388,7 @@
             </button>
         </nav>
 
-        <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
         <main id="main">
-
             <!-- ===== ГЕРОЙ ===== -->
             <section class="hero" aria-labelledby="hero-title">
                 <div class="hero-content">
@@ -444,7 +422,7 @@
                 </div>
             </section>
 
-            <!-- ===== СВЕЖИЕ ПОСТУПЛЕНИЯ ===== -->
+            <!-- ===== СВЕЖИЕ ПОРТУПОСТЫ ===== -->
             <section aria-labelledby="fresh-title">
                 <div class="section-header">
                     <h2 id="fresh-title"><i class="fas fa-crown" aria-hidden="true"></i> Свежие поступления</h2>
@@ -452,7 +430,6 @@
                 </div>
 
                 <div class="product-grid">
-                    <!-- 1 -->
                     <article class="product-card">
                         <span class="product-badge secondary">эко</span>
                         <div class="product-img"><i class="fas fa-apple-alt" aria-hidden="true"></i></div>
@@ -464,7 +441,6 @@
                         </div>
                     </article>
 
-                    <!-- 2 -->
                     <article class="product-card">
                         <span class="product-badge success">в наличии</span>
                         <div class="product-img"><i class="fas fa-drumstick-bite" aria-hidden="true"></i></div>
@@ -476,7 +452,6 @@
                         </div>
                     </article>
 
-                    <!-- 3 -->
                     <article class="product-card">
                         <span class="product-badge">новинка</span>
                         <div class="product-img"><i class="fas fa-cheese" aria-hidden="true"></i></div>
@@ -488,7 +463,6 @@
                         </div>
                     </article>
 
-                    <!-- 4 -->
                     <article class="product-card">
                         <span class="product-badge">хит</span>
                         <div class="product-img"><i class="fas fa-wine-glass-alt" aria-hidden="true"></i></div>
@@ -568,7 +542,6 @@
                     </article>
                 </div>
             </section>
-
         </main>
 
         <!-- ===== ФУТЕР ===== -->
@@ -590,21 +563,21 @@
         </div>
     </div>
 
-    <!-- Тема переключатель -->
+    <!-- Тема‑переключатель -->
     <script>
         (function () {
-            const toggle = document.getElementById('themeToggle');
-            const icon   = document.getElementById('themeIcon');
-            const html   = document.documentElement;
+            const toggle  = document.getElementById('themeToggle');
+            const icon    = document.getElementById('themeIcon');
+            const html    = document.documentElement;
 
-            // 1️⃣ Читаем предыдущий выбор
-            const savedTheme = localStorage.getItem('loviiTheme');
+            // 1️⃣ Читаем сохранённую тему (или системную предпочтение)
+            const saved   = localStorage.getItem('loviiTheme');
             const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-            const initTheme = savedTheme || (prefersLight ? 'light' : 'dark');
+            const initTheme   = saved || (prefersLight ? 'light' : 'dark');
 
             setTheme(initTheme);
 
-            // 2️⃣ Переключаем
+            // 2️⃣ Переключаем тему по клику
             toggle.addEventListener('click', () => {
                 const newTheme = html.classList.contains('light-theme') ? 'dark' : 'light';
                 setTheme(newTheme);
@@ -618,7 +591,7 @@
                     html.classList.remove('light-theme');
                     icon.classList.replace('fa-sun','fa-moon');
                 }
-                localStorage.setItem('loviiTheme',theme);
+                localStorage.setItem('loviiTheme', theme);
             }
         })();
     </script>
