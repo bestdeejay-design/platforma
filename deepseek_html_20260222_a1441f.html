@@ -293,9 +293,89 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.8rem;
             margin-bottom: 3rem;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero {
+                padding: 1.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+            
+            .hero-stats {
+                gap: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 1.4rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+            
+            .hero-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .hero-image i {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .header-left {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .search-bar {
+                width: 100%;
+                order: 3;
+                margin-top: 0.5rem;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-stats {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
         .product-card {
