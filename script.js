@@ -58,16 +58,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('contact')
     ].filter(section => section !== null); // Убираем null значения
 
-    // Проверяем, когда показывать кнопки (после секции продукты и решения)
-    const productsSection = document.getElementById('products');
-    
+    // Проверяем, когда показывать кнопки (когда пользователь начинает прокручивать ко второй секции)
     function checkButtonsVisibility() {
-        if (!productsSection) return;
+        // Проверяем, если пользователь прокрутил дальше первой секции (героя)
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
         
-        const rect = productsSection.getBoundingClientRect();
-        const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
+        const heroRect = heroSection.getBoundingClientRect();
+        // Кнопки появляются, когда нижняя часть героя исчезает сверху экрана
+        const shouldShow = heroRect.bottom < 0;
         
-        if (isVisible) {
+        if (shouldShow) {
             navButtons.style.display = 'flex';
         } else {
             navButtons.style.display = 'none';
