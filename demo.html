@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АО Платформа · цифровая экосистема</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== СБРОС И БАЗОВЫЕ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+            transition: background-color 0.3s, color 0.2s;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== ТЁМНАЯ ТЕМА (по умолчанию, эталон) ===== */
+        :root {
+            --color-primary: #D84FC6;
+            --color-primary-hover: #B836A8;
+            --color-primary-active: #9A268F;
+            --color-primary-light: rgba(216, 79, 198, 0.1);
+            --gradient-primary: linear-gradient(135deg, #D84FC6 0%, #B836A8 100%);
+
+            /* Вторичный акцент (мятный) — теперь единый для success и secondary */
+            --color-secondary: #3ABE9A;
+            --color-secondary-hover: #2E9F80;
+            --color-secondary-light: rgba(58, 190, 154, 0.15);
+
+            /* Третичный акцент (оранжевый) для акций и особых предложений */
+            --color-tertiary: #FFB347;
+            --color-tertiary-hover: #E5942E;
+            --color-tertiary-light: rgba(255, 179, 71, 0.15);
+
+            /* success теперь ссылается на secondary */
+            --color-success: var(--color-secondary);
+            --color-success-bg: var(--color-secondary-light);
+
+            --color-warning: #FBBF24;
+            --color-warning-bg: rgba(251, 191, 36, 0.12);
+            --color-error: #F87171;
+            --color-error-bg: rgba(248, 113, 113, 0.12);
+
+            --color-bg-dark: #1A1A1A;
+            --color-bg-card: #242424;
+            --color-bg-card-hover: #2C2C2C;
+            --glass-dark: rgba(36, 36, 36, 0.7);
+            --border-subtle: #2A2A2A;
+            --border-strong: #404040;
+
+            --color-text-primary: #E8D5C4;
+            --color-text-secondary: #DDCBB8;
+            --color-text-heading: #F5EBE0;
+            --color-text-inverse: #1A1A1A;
+
+            --shadow-glow: 0 4px 20px rgba(216, 79, 198, 0.25);
+            --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(216, 79, 198, 0.1);
+            --shadow-card-hover: 0 25px 40px -15px rgba(216, 79, 198, 0.35), 0 0 0 1px rgba(216, 79, 198, 0.2);
+            --gradient-hero: linear-gradient(145deg, #1A1A1A 0%, #2A1A28 50%, #1A1A1A 100%);
+        }
+
+        /* ===== СВЕТЛАЯ ТЕМА (глубокая, трендовая) ===== */
+        [data-theme="light"] {
+            --color-bg-dark: #FCF8F3;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(216, 79, 198, 0.02) 0%, transparent 30%),
+                radial-gradient(circle at 90% 70%, rgba(58, 190, 154, 0.02) 0%, transparent 40%),
+                repeating-linear-gradient(45deg, rgba(0,0,0,0.01) 0px, rgba(0,0,0,0.01) 2px, transparent 2px, transparent 6px);
+            background-blend-mode: overlay;
+
+            --color-bg-card: rgba(255, 255, 255, 0.85);
+            --color-bg-card-hover: rgba(255, 255, 255, 0.95);
+            --glass-dark: rgba(255, 255, 255, 0.6);
+
+            --border-subtle: rgba(216, 79, 198, 0.15);
+            --border-strong: rgba(216, 79, 198, 0.3);
+
+            --color-text-primary: #2E2A27;
+            --color-text-secondary: #5F5A57;
+            --color-text-heading: #1F1B18;
+            --color-text-inverse: #FFFFFF;
+
+            --color-primary-light: rgba(216, 79, 198, 0.2);
+            --color-secondary-light: rgba(58, 190, 154, 0.2);
+            --color-tertiary-light: rgba(255, 179, 71, 0.2);
+            --color-success-bg: var(--color-secondary-light);
+            --color-warning-bg: rgba(251, 191, 36, 0.2);
+            --color-error-bg: rgba(248, 113, 113, 0.2);
+
+            --shadow-glow: 0 8px 25px rgba(216, 79, 198, 0.25);
+            --shadow-card: 0 15px 35px -12px rgba(0, 0, 0, 0.1),
+                           0 0 0 1px rgba(216, 79, 198, 0.1),
+                           inset 0 1px 0 rgba(255,255,255,0.6);
+            --shadow-card-hover: 0 25px 40px -15px rgba(216, 79, 198, 0.35),
+                                 0 0 0 1px rgba(216, 79, 198, 0.3),
+                                 inset 0 1px 0 rgba(255,255,255,0.8);
+            --gradient-hero: linear-gradient(125deg, 
+                rgba(255,255,255,0.9) 0%, 
+                rgba(255,245,250,0.9) 40%, 
+                rgba(255,255,255,0.9) 100%);
+        }
+
+        /* ===== ХЕДЕР ===== */
+        .header {
+            background: var(--color-bg-card);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        .nav a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav a:hover {
+            color: var(--color-primary);
+        }
+
+        .theme-toggle {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 40px;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: var(--color-text-primary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-card);
+            transition: 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: scale(1.02);
+        }
+
+        /* ===== ГЕРОЙ ===== */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--gradient-hero);
+            margin: 40px 0;
+            border-radius: 48px;
+            border: 1px solid var(--border-strong);
+            box-shadow: var(--shadow-card);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-text-heading);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: var(--color-primary);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-glow);
+            transition: 0.2s;
+            margin: 8px;
+        }
+
+        .btn:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(216, 79, 198, 0.45);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--color-primary);
+            color: var(--color-text-heading);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary-light);
+            border-color: var(--color-primary-hover);
+            color: var(--color-text-heading);
+        }
+
+        .btn-secondary {
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-secondary:hover {
+            background: var(--color-secondary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(58, 190, 154, 0.3);
+        }
+
+        /* ===== СТАТИСТИКА ===== */
+        .stats {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 48px;
+            padding: 48px 24px;
+            margin: 60px 0;
+            box-shadow: var(--shadow-card);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--color-text-heading);
+            margin-bottom: 48px;
+        }
+
+        .section-title span {
+            color: var(--color-primary);
+        }
+
+        /* ===== КАРТОЧКИ ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 28px;
+            padding: 28px;
+            position: relative;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.2s;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        /* микроанимации внутри карточки */
+        .card:hover .card-price {
+            color: var(--color-primary);
+            transition: color 0.2s;
+        }
+
+        .card:hover .card-badge {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--color-primary);
+            color: white;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(216, 79, 198, 0.3);
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .badge-hit {
+            background: var(--color-warning);
+            color: #1A1A1A;
+        }
+        .badge-new {
+            background: var(--color-secondary);
+        }
+        .badge-promo {
+            background: var(--color-tertiary);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-text-heading);
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .card-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-text-heading);
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+
+        .card-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--color-text-secondary);
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 16px;
+            color: var(--color-text-secondary);
+        }
+
+        .card li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card li::before {
+            content: "✓";
+            color: var(--color-primary);
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .card:hover li::before {
+            color: var(--color-secondary);
+        }
+
+        /* ===== ПАРТНЁРЫ ===== */
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .partner-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 24px 32px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            box-shadow: var(--shadow-card);
+            transition: 0.2s;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .partner-card:hover {
+            border-color: var(--color-primary);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ===== КОНТАКТЫ ===== */
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 48px;
+            padding: 48px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin: 16px 0;
+            color: var(--color-text-secondary);
+        }
+
+        .contact-info strong {
+            color: var(--color-text-heading);
+        }
+
+        /* ===== ФУТЕР ===== */
+        .footer {
+            background: var(--color-bg-card);
+            border-top: 1px solid var(--border-subtle);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            color: var(--color-text-heading);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== АДАПТАЦИЯ ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .header-content {
+                flex-direction: column;
+            }
+            .nav ul {
+                gap: 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ХЕДЕР -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">АО Платформа</a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#products">Продукты</a></li>
+                    <li><a href="#partners">Партнёрам</a></li>
+                    <li><a href="#franchise">Франшиза</a></li>
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon" id="themeIcon"></i> Тема
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- ГЕРОЙ -->
+        <section class="hero">
+            <h1>Цифровая инфраструктура<br> <span class="highlight">локальной экономики</span></h1>
+            <p>АО «Платформа» — технологический оператор SaaS-решений, программ лояльности и платёжных интеграций для малого бизнеса</p>
+            <div>
+                <a href="#franchise" class="btn">Стать франчайзи</a>
+                <a href="#products" class="btn btn-outline">Продукты</a>
+            </div>
+        </section>
+
+        <!-- СТАТИСТИКА -->
+        <section class="stats">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Партнёров</div>
+                </div>
+                <div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Городов</div>
+                </div>
+                <div>
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Точек бизнеса</div>
+                </div>
+                <div>
+                    <div class="stat-number">3 млрд ₽</div>
+                    <div class="stat-label">Целевая оценка</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПРОДУКТЫ -->
+        <section id="products" class="section">
+            <h2 class="section-title">Продукты <span>и решения</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-badge badge-hit">Хит</span>
+                    <h3>SaaS «Лови»</h3>
+                    <p>Оператор лояльности для микробизнеса. Обмен баллов, вывод через СБП, каталог услуг.</p>
+                    <div class="card-price">от 2 990 ₽ <span>/ мес</span></div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-new">Новинка</span>
+                    <h3>Цифровая витрина</h3>
+                    <p>Виртуальная полка для локальных производителей. Геозависимая доступность товаров.</p>
+                    <div class="card-price">от 4 990 ₽ <span>/ мес</span></div>
+                </div>
+
+                <div class="card">
+                    <h3>City Franchise</h3>
+                    <p>Запуск локальной экосистемы в вашем городе. Готовая ИТ-платформа + методология.</p>
+                    <div class="card-price">Индивидуально</div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-promo">Акция</span>
+                    <h3>API для партнёров</h3>
+                    <p>Интеграция с платформой «Лови». Передача статусов, заказов, логистики.</p>
+                    <div class="card-price">от 10 000 ₽ <span>/ мес</span></div>
+                </div>
+
+                <div class="card">
+                    <h3>Финансовая инфраструктура</h3>
+                    <p>Интеграция с банковскими платёжными агентами. Автоматизация документооборота.</p>
+                    <div class="card-price">По запросу</div>
+                </div>
+
+                <div class="card">
+                    <h3>White Label</h3>
+                    <p>Лицензирование технологии для регионов и сетей. Запуск под вашим брендом.</p>
+                    <div class="card-price">от 500 000 ₽ <span>/ год</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПАРТНЁРЫ -->
+        <section id="partners" class="section">
+            <h2 class="section-title">Наши <span>партнёры</span></h2>
+            <div class="partners-grid">
+                <div class="partner-card">Билайн</div>
+                <div class="partner-card">Яндекс.Go</div>
+                <div class="partner-card">СДЭК</div>
+                <div class="partner-card">Тинькофф</div>
+                <div class="partner-card">1С</div>
+                <div class="partner-card">Фонд МСП</div>
+            </div>
+        </section>
+
+        <!-- ФРАНШИЗА -->
+        <section id="franchise" class="section">
+            <h2 class="section-title">Франшиза <span>City Franchise</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Старт</h3>
+                    <p>Для городов от 10 000 жителей. Базовый пакет поддержки.</p>
+                    <div class="card-price">500 000 ₽</div>
+                    <ul>
+                        <li>Доступ к SaaS-платформе</li>
+                        <li>Методология запуска</li>
+                        <li>Базовая поддержка</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-hit">Популярный</span>
+                    <h3>Бизнес</h3>
+                    <p>Для городов от 50 000 жителей. Расширенный пакет.</p>
+                    <div class="card-price">1 500 000 ₽</div>
+                    <ul>
+                        <li>Всё из тарифа Старт</li>
+                        <li>Выделенный менеджер</li>
+                        <li>Маркетинговая поддержка</li>
+                        <li>Приоритет в поиске</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Премиум</h3>
+                    <p>Для городов-миллионников. Полный пакет.</p>
+                    <div class="card-price">Индивидуально</div>
+                    <ul>
+                        <li>Всё из тарифа Бизнес</li>
+                        <li>Персональный менеджер 24/7</li>
+                        <li>Эксклюзивные условия</li>
+                        <li>Доля в рекламном доходе</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- О КОМПАНИИ -->
+        <section id="about" class="section">
+            <h2 class="section-title">О <span>компании</span></h2>
+            <div style="max-width: 900px; margin: 0 auto 48px; text-align: center; color: var(--color-text-secondary); font-size: 1.2rem;">
+                <p>АО «Платформа» — операционный центр цифровой экономики для малого и микробизнеса. Мы создаём масштабируемую, управляемую из центра экосистему с устойчивой экономикой роста.</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>АО «Точка»</h3>
+                    <p>Владелец КИП, ИТ-аккредитованная компания. Доход: роялти от франчайзи, НТД, ИТ-услуги.</p>
+                </div>
+                <div class="card">
+                    <h3>ООО «Атмосфера»</h3>
+                    <p>Операционный партнёр: развивает локации, логистику, ПВЗ, берёт технику в лизинг.</p>
+                </div>
+                <div class="card">
+                    <h3>АО «Аксиома»</h3>
+                    <p>ИТ-разработчик, получает вознаграждение от «Точки» за создание и поддержку SaaS.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТЫ -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-info">
+                <p><strong>Адрес:</strong> г. Санкт-Петербург, Измайловский проспект, 4</p>
+                <p><strong>Телефон:</strong> +7 812 928-74-78</p>
+                <p><strong>Email:</strong> hello@axiiom.ru</p>
+                <p><strong>Сайт:</strong> axiiom.ru</p>
+                <a href="mailto:hello@axiiom.ru" class="btn" style="margin-top: 24px;">Написать нам</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Продукты</h4>
+                    <ul>
+                        <li><a href="#">SaaS «Лови»</a></li>
+                        <li><a href="#">Цифровая витрина</a></li>
+                        <li><a href="#">City Franchise</a></li>
+                        <li><a href="#">API для партнёров</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Команда</a></li>
+                        <li><a href="#">Карьера</a></li>
+                        <li><a href="#">Новости</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Партнёрам</h4>
+                    <ul>
+                        <li><a href="#">Франчайзи</a></li>
+                        <li><a href="#">Поставщики</a></li>
+                        <li><a href="#">Интеграторы</a></li>
+                        <li><a href="#">Инвесторам</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Документы</h4>
+                    <ul>
+                        <li><a href="#">Публичная оферта</a></li>
+                        <li><a href="#">Политика ПДн</a></li>
+                        <li><a href="#">Договор франшизы</a></li>
+                        <li><a href="#">Реквизиты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 АО Платформа. Все права защищены.</p>
+                <p>АО «Точка» | ООО «Атмосфера» | АО «Аксиома» | ООО «Мобиап»</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const toggleBtn = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            const html = document.documentElement;
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+
+            function updateIcon(theme) {
+                if (theme === 'dark') {
+                    icon.className = 'fas fa-moon';
+                    toggleBtn.innerHTML = '<i class="fas fa-moon"></i> Тема';
+                } else {
+                    icon.className = 'fas fa-sun';
+                    toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Тема';
+                }
+            }
+
+            toggleBtn.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme');
+                const newTheme = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateIcon(newTheme);
+            });
+        })();
+    </script>
+</body>
+</html>
