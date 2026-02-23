@@ -132,6 +132,46 @@
             gap: 16px;
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-bar {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 40px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 280px;
+            transition: 0.2s;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(4px);
+        }
+        .search-bar:focus-within {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-light), var(--shadow-card);
+        }
+        .search-bar i {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--color-text-primary);
+            width: 100%;
+            outline: none;
+            font-size: 0.95rem;
+        }
+        .search-bar input::placeholder {
+            color: var(--color-text-secondary);
+            opacity: 0.7;
+        }
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -163,36 +203,49 @@
             background: var(--color-bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: 40px;
-            padding: 10px 20px;
-            cursor: pointer;
-            color: var(--color-text-primary);
-            font-weight: 500;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: var(--shadow-card);
+            justify-content: center;
+            cursor: pointer;
+            color: var(--color-text-primary);
+            font-size: 1.4rem;
             transition: 0.2s;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(4px);
         }
-
         .theme-toggle:hover {
             border-color: var(--color-primary);
             color: var(--color-primary);
-            transform: scale(1.02);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow);
         }
 
         /* ===== ГЕРОЙ ===== */
         .hero {
-            padding: 80px 0;
-            text-align: center;
             background: var(--gradient-hero);
-            margin: 40px 0;
-            border-radius: 48px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-strong);
+            border-radius: 48px;
+            padding: 60px;
+            margin: 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
             box-shadow: var(--shadow-card);
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: var(--color-text-heading);
             margin-bottom: 24px;
@@ -204,12 +257,47 @@
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--color-text-secondary);
-            max-width: 800px;
-            margin: 0 auto 40px;
+            max-width: 600px;
+            margin-bottom: 32px;
         }
 
+        .hero-image {
+            background: var(--gradient-primary);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-glow);
+            flex-shrink: 0;
+        }
+        .hero-image i {
+            font-size: 5rem;
+            color: white;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .hero-stat-item {
+            text-align: center;
+        }
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-text-heading);
+        }
+        .hero-stat-label {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== КНОПКИ ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -217,14 +305,14 @@
             background: var(--color-primary);
             color: white;
             border: none;
-            padding: 14px 36px;
+            padding: 14px 32px;
             border-radius: 60px;
             font-weight: 600;
             font-size: 1rem;
             text-decoration: none;
             box-shadow: var(--shadow-glow);
-            transition: 0.2s;
-            margin: 8px;
+            transition: all 0.25s ease;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -238,27 +326,97 @@
             border: 1.5px solid var(--color-primary);
             color: var(--color-text-heading);
             box-shadow: none;
+            backdrop-filter: blur(2px);
         }
 
         .btn-outline:hover {
             background: var(--color-primary-light);
             border-color: var(--color-primary-hover);
             color: var(--color-text-heading);
+            box-shadow: var(--shadow-glow);
         }
 
         .btn-secondary {
             background: var(--color-secondary);
             color: white;
             border: none;
-            padding: 14px 36px;
+            padding: 14px 32px;
             border-radius: 60px;
             font-weight: 600;
             transition: 0.2s;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         .btn-secondary:hover {
             background: var(--color-secondary-hover);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(58, 190, 154, 0.3);
+        }
+
+        .btn-small {
+            background: transparent;
+            border: 1.5px solid var(--color-primary);
+            color: var(--color-text-heading);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            cursor: pointer;
+            backdrop-filter: blur(2px);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-small:hover {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: #fff;
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.02);
+        }
+
+        /* ===== КАТЕГОРИИ (чипсы) ===== */
+        .categories {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+        .category-chip {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 40px;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            transition: 0.2s;
+            cursor: pointer;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(4px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .category-chip.active {
+            background: var(--gradient-primary);
+            border-color: var(--color-primary);
+            color: #FFFFFF;
+            box-shadow: var(--shadow-glow);
+        }
+        .category-chip i {
+            color: var(--color-primary);
+        }
+        .category-chip.active i {
+            color: #FFFFFF;
+        }
+        .category-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
         }
 
         /* ===== СТАТИСТИКА ===== */
@@ -295,6 +453,15 @@
             padding: 60px 0;
         }
 
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .section-title {
             text-align: center;
             font-size: 2.8rem;
@@ -305,6 +472,20 @@
 
         .section-title span {
             color: var(--color-primary);
+        }
+
+        .section-link {
+            color: var(--color-primary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .section-link:hover {
+            transform: translateX(4px);
+            filter: brightness(1.1);
         }
 
         /* ===== КАРТОЧКИ ===== */
@@ -441,12 +622,61 @@
             transition: 0.2s;
             min-width: 140px;
             text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .partner-card:hover {
             border-color: var(--color-primary);
             transform: scale(1.02);
             box-shadow: var(--shadow-glow);
+        }
+
+        /* ===== ФИЧИ ===== */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .feature-item {
+            background: var(--glass-dark);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 32px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            transition: 0.2s;
+        }
+        .feature-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--color-primary);
+        }
+        .feature-icon {
+            background: var(--color-primary-light);
+            width: 70px;
+            height: 70px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+            box-shadow: 0 4px 12px rgba(216,79,198,0.2);
+        }
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--color-text-heading);
+            font-size: 1.2rem;
+        }
+        .feature-item p {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
         }
 
         /* ===== КОНТАКТЫ ===== */
@@ -518,13 +748,41 @@
             font-size: 0.9rem;
         }
 
+        .socials {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .socials a {
+            font-size: 1.5rem;
+            color: var(--color-text-secondary);
+            transition: 0.2s;
+        }
+        .socials a:hover {
+            color: var(--color-primary);
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 6px var(--color-primary));
+        }
+
         /* ===== АДАПТАЦИЯ ===== */
         @media (max-width: 768px) {
+            .hero {
+                padding: 40px 24px;
+                text-align: center;
+            }
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+            .hero-image {
+                margin: 0 auto;
             }
             .header-content {
                 flex-direction: column;
+            }
+            .search-bar {
+                width: 100%;
+                order: 3;
             }
             .nav ul {
                 gap: 16px;
@@ -537,6 +795,9 @@
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .hero-stats {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -544,7 +805,11 @@
                 grid-template-columns: 1fr;
             }
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 1.5rem;
             }
         }
     </style>
@@ -553,186 +818,255 @@
     <!-- ХЕДЕР -->
     <header class="header">
         <div class="container header-content">
-            <a href="#" class="logo">АО Платформа</a>
+            <div class="header-left">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <a href="#" class="logo"><i class="fas fa-cube"></i> АО Платформа</a>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Поиск продуктов, услуг...">
+            </div>
             <nav class="nav">
                 <ul>
-                    <li><a href="#products">Продукты</a></li>
-                    <li><a href="#partners">Партнёрам</a></li>
-                    <li><a href="#franchise">Франшиза</a></li>
-                    <li><a href="#about">О компании</a></li>
-                    <li><a href="#contact">Контакты</a></li>
+                    <li><a href="#products"><i class="fas fa-box-open"></i> Продукты</a></li>
+                    <li><a href="#partners"><i class="fas fa-handshake"></i> Партнёрам</a></li>
+                    <li><a href="#franchise"><i class="fas fa-rocket"></i> Франшиза</a></li>
+                    <li><a href="#about"><i class="fas fa-building"></i> О компании</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Контакты</a></li>
                 </ul>
             </nav>
-            <button class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon" id="themeIcon"></i> Тема
-            </button>
         </div>
     </header>
 
     <main class="container">
+        <!-- КАТЕГОРИИ -->
+        <div class="categories">
+            <span class="category-chip active"><i class="fas fa-fire"></i> Популярное</span>
+            <span class="category-chip"><i class="fas fa-crown"></i> SaaS решения</span>
+            <span class="category-chip"><i class="fas fa-store"></i> Для бизнеса</span>
+            <span class="category-chip"><i class="fas fa-city"></i> Франшиза</span>
+            <span class="category-chip"><i class="fas fa-plug"></i> Интеграции</span>
+            <span class="category-chip"><i class="fas fa-percent"></i> Акции</span>
+        </div>
+
         <!-- ГЕРОЙ -->
         <section class="hero">
-            <h1>Цифровая инфраструктура<br> <span class="highlight">локальной экономики</span></h1>
-            <p>АО «Платформа» — технологический оператор SaaS-решений, программ лояльности и платёжных интеграций для малого бизнеса</p>
-            <div>
-                <a href="#franchise" class="btn">Стать франчайзи</a>
-                <a href="#products" class="btn btn-outline">Продукты</a>
+            <div class="hero-content">
+                <h1>Цифровая инфраструктура <span class="highlight">локальной экономики</span></h1>
+                <p>АО «Платформа» — технологический оператор SaaS-решений, программ лояльности и платёжных интеграций для малого бизнеса</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#franchise" class="btn"><i class="fas fa-rocket"></i> Стать франчайзи</a>
+                    <a href="#products" class="btn btn-outline"><i class="fas fa-box-open"></i> Продукты</a>
+                    <a href="#contact" class="btn btn-secondary"><i class="fas fa-phone"></i> Связаться</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-number">500+</div>
+                        <div class="hero-stat-label">партнёров</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-number">50+</div>
+                        <div class="hero-stat-label">городов</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-number">10K+</div>
+                        <div class="hero-stat-label">точек</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-number">3 млрд ₽</div>
+                        <div class="hero-stat-label">оценка</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-network-wired"></i>
             </div>
         </section>
 
-        <!-- СТАТИСТИКА -->
-        <section class="stats">
-            <div class="stats-grid">
-                <div>
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Партнёров</div>
+        <!-- ПРЕИМУЩЕСТВА -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-star"></i> Почему выбирают <span>нас</span></h2>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Быстрый запуск</h4>
+                    <p>Запуск франшизы за 30 дней с полной поддержкой</p>
                 </div>
-                <div>
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Городов</div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Надёжность</h4>
+                    <p>ИТ-аккредитованная компания, защита данных</p>
                 </div>
-                <div>
-                    <div class="stat-number">10K+</div>
-                    <div class="stat-label">Точек бизнеса</div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h4>Интеграции</h4>
+                    <p>Готовые решения для 1С, банков, доставки</p>
                 </div>
-                <div>
-                    <div class="stat-number">3 млрд ₽</div>
-                    <div class="stat-label">Целевая оценка</div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h4>Поддержка 24/7</h4>
+                    <p>Техническая и консультационная помощь</p>
                 </div>
             </div>
         </section>
 
         <!-- ПРОДУКТЫ -->
         <section id="products" class="section">
-            <h2 class="section-title">Продукты <span>и решения</span></h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin: 0; text-align: left;"><i class="fas fa-crown"></i> Продукты <span>и решения</span></h2>
+                <a href="#" class="section-link">Все продукты <i class="fas fa-arrow-right"></i></a>
+            </div>
             <div class="grid">
                 <div class="card">
-                    <span class="card-badge badge-hit">Хит</span>
-                    <h3>SaaS «Лови»</h3>
+                    <span class="card-badge badge-hit"><i class="fas fa-fire"></i> Хит</span>
+                    <h3><i class="fas fa-mobile-alt"></i> SaaS «Лови»</h3>
                     <p>Оператор лояльности для микробизнеса. Обмен баллов, вывод через СБП, каталог услуг.</p>
                     <div class="card-price">от 2 990 ₽ <span>/ мес</span></div>
+                    <button class="btn-small"><i class="fas fa-info-circle"></i> Подробнее</button>
                 </div>
 
                 <div class="card">
-                    <span class="card-badge badge-new">Новинка</span>
-                    <h3>Цифровая витрина</h3>
+                    <span class="card-badge badge-new"><i class="fas fa-star"></i> Новинка</span>
+                    <h3><i class="fas fa-store"></i> Цифровая витрина</h3>
                     <p>Виртуальная полка для локальных производителей. Геозависимая доступность товаров.</p>
                     <div class="card-price">от 4 990 ₽ <span>/ мес</span></div>
+                    <button class="btn-small"><i class="fas fa-info-circle"></i> Подробнее</button>
                 </div>
 
                 <div class="card">
-                    <h3>City Franchise</h3>
+                    <h3><i class="fas fa-city"></i> City Franchise</h3>
                     <p>Запуск локальной экосистемы в вашем городе. Готовая ИТ-платформа + методология.</p>
                     <div class="card-price">Индивидуально</div>
+                    <button class="btn-small"><i class="fas fa-phone"></i> Консультация</button>
                 </div>
 
                 <div class="card">
-                    <span class="card-badge badge-promo">Акция</span>
-                    <h3>API для партнёров</h3>
+                    <span class="card-badge badge-promo"><i class="fas fa-percent"></i> Акция</span>
+                    <h3><i class="fas fa-plug"></i> API для партнёров</h3>
                     <p>Интеграция с платформой «Лови». Передача статусов, заказов, логистики.</p>
                     <div class="card-price">от 10 000 ₽ <span>/ мес</span></div>
+                    <button class="btn-small"><i class="fas fa-info-circle"></i> Подробнее</button>
                 </div>
 
                 <div class="card">
-                    <h3>Финансовая инфраструктура</h3>
+                    <h3><i class="fas fa-university"></i> Финансовая инфраструктура</h3>
                     <p>Интеграция с банковскими платёжными агентами. Автоматизация документооборота.</p>
                     <div class="card-price">По запросу</div>
+                    <button class="btn-small"><i class="fas fa-phone"></i> Консультация</button>
                 </div>
 
                 <div class="card">
-                    <h3>White Label</h3>
+                    <h3><i class="fas fa-tag"></i> White Label</h3>
                     <p>Лицензирование технологии для регионов и сетей. Запуск под вашим брендом.</p>
                     <div class="card-price">от 500 000 ₽ <span>/ год</span></div>
+                    <button class="btn-small"><i class="fas fa-info-circle"></i> Подробнее</button>
                 </div>
             </div>
         </section>
 
         <!-- ПАРТНЁРЫ -->
         <section id="partners" class="section">
-            <h2 class="section-title">Наши <span>партнёры</span></h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin: 0; text-align: left;"><i class="fas fa-handshake"></i> Наши <span>партнёры</span></h2>
+                <a href="#" class="section-link">Стать партнёром <i class="fas fa-arrow-right"></i></a>
+            </div>
             <div class="partners-grid">
-                <div class="partner-card">Билайн</div>
-                <div class="partner-card">Яндекс.Go</div>
-                <div class="partner-card">СДЭК</div>
-                <div class="partner-card">Тинькофф</div>
-                <div class="partner-card">1С</div>
-                <div class="partner-card">Фонд МСП</div>
+                <div class="partner-card"><i class="fas fa-signal" style="color: var(--color-primary);"></i> Билайн</div>
+                <div class="partner-card"><i class="fas fa-taxi" style="color: var(--color-primary);"></i> Яндекс.Go</div>
+                <div class="partner-card"><i class="fas fa-truck" style="color: var(--color-primary);"></i> СДЭК</div>
+                <div class="partner-card"><i class="fas fa-credit-card" style="color: var(--color-primary);"></i> Тинькофф</div>
+                <div class="partner-card"><i class="fas fa-laptop-code" style="color: var(--color-primary);"></i> 1С</div>
+                <div class="partner-card"><i class="fas fa-landmark" style="color: var(--color-primary);"></i> Фонд МСП</div>
             </div>
         </section>
 
         <!-- ФРАНШИЗА -->
         <section id="franchise" class="section">
-            <h2 class="section-title">Франшиза <span>City Franchise</span></h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin: 0; text-align: left;"><i class="fas fa-rocket"></i> Франшиза <span>City Franchise</span></h2>
+                <a href="#" class="section-link">Сравнить тарифы <i class="fas fa-arrow-right"></i></a>
+            </div>
             <div class="grid">
                 <div class="card">
-                    <h3>Старт</h3>
+                    <h3><i class="fas fa-seedling"></i> Старт</h3>
                     <p>Для городов от 10 000 жителей. Базовый пакет поддержки.</p>
                     <div class="card-price">500 000 ₽</div>
                     <ul>
-                        <li>Доступ к SaaS-платформе</li>
-                        <li>Методология запуска</li>
-                        <li>Базовая поддержка</li>
+                        <li><i class="fas fa-check"></i> Доступ к SaaS-платформе</li>
+                        <li><i class="fas fa-check"></i> Методология запуска</li>
+                        <li><i class="fas fa-check"></i> Базовая поддержка</li>
                     </ul>
+                    <button class="btn-small" style="margin-top: 1rem;"><i class="fas fa-arrow-right"></i> Выбрать</button>
                 </div>
 
                 <div class="card">
-                    <span class="card-badge badge-hit">Популярный</span>
-                    <h3>Бизнес</h3>
+                    <span class="card-badge badge-hit"><i class="fas fa-fire"></i> Популярный</span>
+                    <h3><i class="fas fa-briefcase"></i> Бизнес</h3>
                     <p>Для городов от 50 000 жителей. Расширенный пакет.</p>
                     <div class="card-price">1 500 000 ₽</div>
                     <ul>
-                        <li>Всё из тарифа Старт</li>
-                        <li>Выделенный менеджер</li>
-                        <li>Маркетинговая поддержка</li>
-                        <li>Приоритет в поиске</li>
+                        <li><i class="fas fa-check"></i> Всё из тарифа Старт</li>
+                        <li><i class="fas fa-check"></i> Выделенный менеджер</li>
+                        <li><i class="fas fa-check"></i> Маркетинговая поддержка</li>
+                        <li><i class="fas fa-check"></i> Приоритет в поиске</li>
                     </ul>
+                    <button class="btn-small" style="margin-top: 1rem;"><i class="fas fa-arrow-right"></i> Выбрать</button>
                 </div>
 
                 <div class="card">
-                    <h3>Премиум</h3>
+                    <h3><i class="fas fa-crown"></i> Премиум</h3>
                     <p>Для городов-миллионников. Полный пакет.</p>
                     <div class="card-price">Индивидуально</div>
                     <ul>
-                        <li>Всё из тарифа Бизнес</li>
-                        <li>Персональный менеджер 24/7</li>
-                        <li>Эксклюзивные условия</li>
-                        <li>Доля в рекламном доходе</li>
+                        <li><i class="fas fa-check"></i> Всё из тарифа Бизнес</li>
+                        <li><i class="fas fa-check"></i> Персональный менеджер 24/7</li>
+                        <li><i class="fas fa-check"></i> Эксклюзивные условия</li>
+                        <li><i class="fas fa-check"></i> Доля в рекламном доходе</li>
                     </ul>
+                    <button class="btn-small" style="margin-top: 1rem;"><i class="fas fa-phone"></i> Консультация</button>
                 </div>
             </div>
         </section>
 
         <!-- О КОМПАНИИ -->
         <section id="about" class="section">
-            <h2 class="section-title">О <span>компании</span></h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin: 0; text-align: left;"><i class="fas fa-building"></i> О <span>компании</span></h2>
+                <a href="#" class="section-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
             <div style="max-width: 900px; margin: 0 auto 48px; text-align: center; color: var(--color-text-secondary); font-size: 1.2rem;">
                 <p>АО «Платформа» — операционный центр цифровой экономики для малого и микробизнеса. Мы создаём масштабируемую, управляемую из центра экосистему с устойчивой экономикой роста.</p>
             </div>
             <div class="grid">
                 <div class="card">
-                    <h3>АО «Точка»</h3>
+                    <h3><i class="fas fa-bullseye"></i> АО «Точка»</h3>
                     <p>Владелец КИП, ИТ-аккредитованная компания. Доход: роялти от франчайзи, НТД, ИТ-услуги.</p>
+                    <button class="btn-small"><i class="fas fa-info-circle"></i> Подробнее</button>
                 </div>
                 <div class="card">
-                    <h3>ООО «Атмосфера»</h3>
+                    <h3><i class="fas fa-cloud"></i> ООО «Атмосфера»</h3>
                     <p>Операционный партнёр: развивает локации, логистику, ПВЗ, берёт технику в лизинг.</p>
+                    <button class="btn-small"><i class="fas fa-info-circle"></i> Подробнее</button>
                 </div>
                 <div class="card">
-                    <h3>АО «Аксиома»</h3>
+                    <h3><i class="fas fa-code"></i> АО «Аксиома»</h3>
                     <p>ИТ-разработчик, получает вознаграждение от «Точки» за создание и поддержку SaaS.</p>
+                    <button class="btn-small"><i class="fas fa-info-circle"></i> Подробнее</button>
                 </div>
             </div>
         </section>
 
         <!-- КОНТАКТЫ -->
         <section id="contact" class="section">
-            <h2 class="section-title">Контакты</h2>
+            <h2 class="section-title"><i class="fas fa-envelope"></i> Контакты</h2>
             <div class="contact-info">
-                <p><strong>Адрес:</strong> г. Санкт-Петербург, Измайловский проспект, 4</p>
-                <p><strong>Телефон:</strong> +7 812 928-74-78</p>
-                <p><strong>Email:</strong> hello@axiiom.ru</p>
-                <p><strong>Сайт:</strong> axiiom.ru</p>
-                <a href="mailto:hello@axiiom.ru" class="btn" style="margin-top: 24px;">Написать нам</a>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--color-primary);"></i> <strong>Адрес:</strong> г. Санкт-Петербург, Измайловский проспект, 4</p>
+                <p><i class="fas fa-phone" style="color: var(--color-primary);"></i> <strong>Телефон:</strong> +7 812 928-74-78</p>
+                <p><i class="fas fa-envelope" style="color: var(--color-primary);"></i> <strong>Email:</strong> hello@axiiom.ru</p>
+                <p><i class="fas fa-globe" style="color: var(--color-primary);"></i> <strong>Сайт:</strong> axiiom.ru</p>
+                <a href="mailto:hello@axiiom.ru" class="btn" style="margin-top: 24px;"><i class="fas fa-paper-plane"></i> Написать нам</a>
             </div>
         </section>
     </main>
@@ -781,6 +1115,12 @@
             <div class="footer-bottom">
                 <p>© 2026 АО Платформа. Все права защищены.</p>
                 <p>АО «Точка» | ООО «Атмосфера» | АО «Аксиома» | ООО «Мобиап»</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
         </div>
     </footer>
@@ -791,6 +1131,7 @@
             const icon = document.getElementById('themeIcon');
             const html = document.documentElement;
 
+            // Check saved theme
             const savedTheme = localStorage.getItem('theme') || 'dark';
             html.setAttribute('data-theme', savedTheme);
             updateIcon(savedTheme);
@@ -798,10 +1139,8 @@
             function updateIcon(theme) {
                 if (theme === 'dark') {
                     icon.className = 'fas fa-moon';
-                    toggleBtn.innerHTML = '<i class="fas fa-moon"></i> Тема';
                 } else {
                     icon.className = 'fas fa-sun';
-                    toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Тема';
                 }
             }
 
@@ -811,6 +1150,15 @@
                 html.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
                 updateIcon(newTheme);
+            });
+
+            // Category chips interaction
+            const categoryChips = document.querySelectorAll('.category-chip');
+            categoryChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    categoryChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                });
             });
         })();
     </script>
