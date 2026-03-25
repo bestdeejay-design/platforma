@@ -246,6 +246,13 @@ body {
         font-size: 1.3rem;
     }
     
+    .theme-toggle {
+        order: 3;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
     .header-content {
         flex-direction: row;
         align-items: center;
@@ -283,38 +290,6 @@ body {
     .nav a {
         font-size: 1.5rem;
         font-weight: 600;
-    }
-    
-    /* Переключатель темы в мобильном меню */
-    .theme-toggle-mobile {
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid var(--border-subtle);
-        width: 100%;
-    }
-    
-    .theme-toggle-btn {
-        background: var(--color-bg-card);
-        border: 1px solid var(--border-subtle);
-        border-radius: 40px;
-        padding: 14px 28px;
-        cursor: pointer;
-        color: var(--color-text-primary);
-        font-weight: 500;
-        font-size: 1.1rem;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        box-shadow: var(--shadow-card);
-        transition: 0.2s;
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .theme-toggle-btn:hover {
-        border-color: var(--color-primary);
-        color: var(--color-primary);
-        transform: scale(1.02);
     }
     
     .slide {
