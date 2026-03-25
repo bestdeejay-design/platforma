@@ -247,7 +247,7 @@ body {
     }
     
     /* Скрываем кнопку смены темы в шапке на мобильном */
-    .theme-toggle {
+    .header .theme-toggle {
         display: none !important;
     }
     
