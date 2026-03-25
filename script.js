@@ -33,11 +33,23 @@ let currentSlide = 0;
 let slides = [];
 let paginationContainer = null;
 let progressBar = null;
+let isMobileMode = false;
+
+// Проверка мобильного устройства
+function checkMobile() {
+    return window.innerWidth <= 768;
+}
 
 // Инициализация после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
-    initPresentationMode();
-    initNavigationButtons();
+    // Отключаем презентационный режим на мобильных
+    if (!checkMobile()) {
+        initPresentationMode();
+        initNavigationButtons();
+    } else {
+        isMobileMode = true;
+        // На мобильных только скролл - ничего не инициализируем
+    }
 });
 
 function initPresentationMode() {
@@ -77,8 +89,8 @@ function initPresentationMode() {
     // Обработка клавиатуры
     document.addEventListener('keydown', handleKeyboard);
 
-    // Обработка swipe для мобильных
-    initSwipeHandling();
+    // Обработка swipe для мобильных - ОТКЛЮЧАЕМ!
+    // Свайпы работают только на десктопе
 }
 
 function handleKeyboard(e) {
@@ -88,6 +100,24 @@ function handleKeyboard(e) {
     } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         e.preventDefault();
         prevSlide();
+    }
+}
+
+// Функция удаления элементов презентации при ресайзе
+function cleanupPresentationMode() {
+    if (progressBar) {
+        progressBar.remove();
+        progressBar = null;
+    }
+    if (paginationContainer) {
+        paginationContainer.remove();
+        paginationContainer = null;
+    }
+    
+    // Удаляем навигационные кнопки
+    const navButtons = document.querySelector('.navigation-buttons');
+    if (navButtons) {
+        navButtons.remove();
     }
 }
 
@@ -220,3 +250,69 @@ function initNavigationButtons() {
         nextSlide();
     });
 }
+
+// Обработчик изменения размера окна для переключения режимов
+let resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        const wasMobile = isMobileMode;
+        isMobileMode = checkMobile();
+        
+        // Если перешли с десктопа на мобильный
+        if (isMobileMode && !wasMobile) {
+            cleanupPresentationMode();
+        }
+        // Если перешли с мобильного на десктоп
+        else if (!isMobileMode && wasMobile) {
+            location.reload(); // Перезагружаем страницу для инициализации
+        }
+    }, 250);
+});
+
+// Мобильное меню
+function initMobileMenu() {
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    const nav = document.querySelector('.nav');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const navLinks = document.querySelectorAll('.nav a');
+    
+    if (!menuToggle || !nav || !overlay) return;
+    
+    // Открытие/закрытие меню
+    menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        
+        // Блокируем скролл body когда меню открыто
+        if (nav.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Закрытие при клике на overlay
+    overlay.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+    
+    // Закрытие при клике на ссылку
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            menuToggle.classList.remove('active');
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+}
+
+// Инициализация мобильного меню
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileMenu();
+});

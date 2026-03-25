@@ -12,6 +12,14 @@
     <header class="header">
         <div class="container header-content">
             <a href="#" class="logo">АО Платформа</a>
+            
+            <!-- Бургер кнопка для мобильных -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
             <nav class="nav">
                 <ul>
                     <li><a href="#products">Продукты</a></li>
@@ -26,6 +34,9 @@
             </button>
         </div>
     </header>
+
+    <!-- Затемнение фона для мобильного меню -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
     <main class="container">
         <!-- ПЕРВЫЙ СЛАЙД: Герой + Статистика (две секции на одном экране) -->
