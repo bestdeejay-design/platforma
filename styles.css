@@ -324,7 +324,11 @@ body {
         }
     }
     
-    /* Скрываем мобильную кнопку на десктопе */
+    /* Скрываем мобильную кнопку на десктопе - ВЫНОСИМ ЗА ПРЕДЕЛЫ MEDIA QUERY */
+    .theme-toggle-mobile {
+        display: none !important;
+    }
+    
     @media (min-width: 769px) {
         .theme-toggle-mobile {
             display: none !important;
