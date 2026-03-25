@@ -282,19 +282,21 @@ window.addEventListener('resize', function() {
 function initMobileMenu() {
     const menuToggle = document.getElementById('mobileMenuToggle');
     const nav = document.querySelector('.nav');
+    const mobileNav = document.querySelector('.mobile-nav');
     const overlay = document.getElementById('mobileMenuOverlay');
-    const navLinks = document.querySelectorAll('.nav a');
+    const navLinks = document.querySelectorAll('.nav a, .mobile-nav a');
     
-    if (!menuToggle || !nav || !overlay) return;
+    if (!menuToggle) return;
     
     // Открытие/закрытие меню
     menuToggle.addEventListener('click', function() {
         this.classList.toggle('active');
-        nav.classList.toggle('active');
-        overlay.classList.toggle('active');
+        if (nav) nav.classList.toggle('active');
+        if (mobileNav) mobileNav.classList.toggle('active');
+        if (overlay) overlay.classList.toggle('active');
         
         // Блокируем скролл body когда меню открыто
-        if (nav.classList.contains('active')) {
+        if (overlay && overlay.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
@@ -302,19 +304,23 @@ function initMobileMenu() {
     });
     
     // Закрытие при клике на overlay
-    overlay.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        nav.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    });
+    if (overlay) {
+        overlay.addEventListener('click', function() {
+            menuToggle.classList.remove('active');
+            if (nav) nav.classList.remove('active');
+            if (mobileNav) mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
     
     // Закрытие при клике на ссылку
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             menuToggle.classList.remove('active');
-            nav.classList.remove('active');
-            overlay.classList.remove('active');
+            if (nav) nav.classList.remove('active');
+            if (mobileNav) mobileNav.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
             document.body.style.overflow = '';
         });
     });
