@@ -291,13 +291,13 @@ body {
     }
     
     /* Скрываем кнопку в меню на десктопе */
-    .theme-toggle-mobile {
+    .theme-toggle-mobile-wrapper {
         display: none !important;
     }
     
     /* Переключатель темы в мобильном меню - показываем ТОЛЬКО на мобильном */
     @media (max-width: 768px) {
-        .theme-toggle-mobile {
+        .theme-toggle-mobile-wrapper {
             display: block !important; /* Показываем на мобильном */
             margin-top: 20px;
             padding-top: 20px;
