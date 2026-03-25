@@ -364,11 +364,6 @@ body {
         font-weight: 600;
     }
     
-    /* Кнопка смены темы - скрыта на десктопе */
-    .mobile-theme-btn {
-        display: none !important;
-    }
-    
     .slide {
         padding: 60px 16px 80px;
         justify-content: flex-start;
