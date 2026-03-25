@@ -528,6 +528,7 @@ body {
 }
 
 .mobile-menu-overlay.active {
+    display: block;
     opacity: 1;
 }
 
