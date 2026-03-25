@@ -312,7 +312,45 @@ function initMobileMenu() {
     });
 }
 
+// Переключатель темы в мобильном меню
+function initMobileThemeToggle() {
+    const themeToggleMobile = document.getElementById('themeToggleMobile');
+    const themeIconMobile = document.getElementById('themeIconMobile');
+    
+    if (!themeToggleMobile || !themeIconMobile) return;
+    
+    themeToggleMobile.addEventListener('click', function() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Обновляем иконку
+        updateThemeIcon(newTheme, themeIconMobile);
+        
+        // Обновляем основной переключатель если есть
+        const mainThemeIcon = document.getElementById('themeIcon');
+        if (mainThemeIcon) {
+            updateThemeIcon(newTheme, mainThemeIcon);
+        }
+    });
+}
+
+function updateThemeIcon(theme, iconElement) {
+    if (!iconElement) return;
+    
+    if (theme === 'dark') {
+        iconElement.className = 'fas fa-sun';
+    } else {
+        iconElement.className = 'fas fa-moon';
+    }
+}
+
 // Инициализация мобильного меню
+// Инициализация переключателя темы в мобильном меню
 document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
+    initMobileThemeToggle();
 });
