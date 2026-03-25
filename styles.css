@@ -284,9 +284,10 @@ body {
         transition: left 0.3s ease;
         z-index: 1000;
         display: none;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: 80px 20px 40px;
     }
     
     .mobile-nav.active {
@@ -298,7 +299,7 @@ body {
         gap: 32px;
         text-align: center;
         padding: 0;
-        margin-bottom: 40px;
+        margin-bottom: 60px;
     }
     
     .mobile-nav a {
@@ -452,7 +453,7 @@ body {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001;
+    z-index: 1002;
 }
 
 .mobile-menu-toggle span {
