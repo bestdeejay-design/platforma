@@ -28,20 +28,22 @@
                     <li><a href="#about">О компании</a></li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
+                <!-- Кнопка смены темы только для мобильных -->
+                <button class="theme-toggle-btn mobile-theme-btn" id="themeToggleMobile" style="display: none;">
+                    <i class="fas fa-sun" id="themeIconMobile"></i>
+                    <span>Сменить тему</span>
+                </button>
             </nav>
-            <button class="theme-toggle" id="themeToggle">
+            
+            <!-- Кнопка смены темы только для десктопа -->
+            <button class="theme-toggle" id="themeToggle" style="display: block;">
                 <i class="fas fa-sun" id="themeIcon"></i> Тема
             </button>
         </div>
     </header>
 
     <!-- Затемнение фона для мобильного меню -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-        <button class="theme-toggle-btn mobile-theme-btn" id="themeToggleMobile">
-            <i class="fas fa-sun" id="themeIconMobile"></i>
-            <span>Сменить тему</span>
-        </button>
-    </div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
     <main class="container">
         <!-- ПЕРВЫЙ СЛАЙД: Герой + Статистика (две секции на одном экране) -->
