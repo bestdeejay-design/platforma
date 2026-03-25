@@ -7,9 +7,15 @@
     // Сохранённая тема или тёмная по умолчанию
     const savedTheme = localStorage.getItem('theme') || 'dark';
     html.setAttribute('data-theme', savedTheme);
-    updateIcon(savedTheme);
+    
+    // Обновляем иконку только если элементы существуют
+    if (toggleBtn && icon) {
+        updateIcon(savedTheme);
+    }
 
     function updateIcon(theme) {
+        if (!icon || !toggleBtn) return;
+        
         if (theme === 'dark') {
             icon.className = 'fas fa-moon';
             toggleBtn.innerHTML = '<i class="fas fa-moon"></i> Тема';
@@ -19,13 +25,15 @@
         }
     }
 
-    toggleBtn.addEventListener('click', () => {
-        const current = html.getAttribute('data-theme');
-        const newTheme = current === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateIcon(newTheme);
-    });
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+    }
 })();
 
 // Презентационный режим с навигацией
