@@ -290,9 +290,10 @@ body {
         font-weight: 600;
     }
     
-    /* Переключатель темы в мобильном меню - показываем только на мобильном */
+    /* Переключатель темы в мобильном меню - показываем ТОЛЬКО на мобильном */
     @media (max-width: 768px) {
         .theme-toggle-mobile {
+            display: block; /* Показываем на мобильном */
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid var(--border-subtle);
@@ -321,17 +322,6 @@ body {
             border-color: var(--color-primary);
             color: var(--color-primary);
             transform: scale(1.02);
-        }
-    }
-    
-    /* Скрываем мобильную кнопку на десктопе - ВЫНОСИМ ЗА ПРЕДЕЛЫ MEDIA QUERY */
-    .theme-toggle-mobile {
-        display: none !important;
-    }
-    
-    @media (min-width: 769px) {
-        .theme-toggle-mobile {
-            display: none !important;
         }
     }
     
