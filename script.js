@@ -28,8 +28,172 @@
     });
 })();
 
-// Функция для навигационных кнопок
+// Презентационный режим с навигацией
+let currentSlide = 0;
+let slides = [];
+let paginationContainer = null;
+let progressBar = null;
+
+// Инициализация после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
+    initPresentationMode();
+    initNavigationButtons();
+});
+
+function initPresentationMode() {
+    // Находим все слайды
+    slides = Array.from(document.querySelectorAll('.slide'));
+    if (slides.length === 0) return;
+
+    // Восстанавливаем сохранённый слайд
+    const savedSlide = localStorage.getItem('currentSlide');
+    if (savedSlide !== null && parseInt(savedSlide) < slides.length) {
+        currentSlide = parseInt(savedSlide);
+    }
+
+    // Создаем прогресс бар
+    progressBar = document.createElement('div');
+    progressBar.className = 'progress-bar';
+    progressBar.style.width = '0%';
+    document.body.appendChild(progressBar);
+
+    // Создаем пагинацию (dots)
+    paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination';
+    
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'pagination-dot';
+        dot.addEventListener('click', () => goToSlide(index));
+        paginationContainer.appendChild(dot);
+    });
+    
+    document.body.appendChild(paginationContainer);
+
+    // Обновляем состояние
+    updatePagination();
+    updateProgressBar();
+
+    // Обработка клавиатуры
+    document.addEventListener('keydown', handleKeyboard);
+
+    // Обработка swipe для мобильных
+    initSwipeHandling();
+}
+
+function handleKeyboard(e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+    }
+}
+
+function initSwipeHandling() {
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    document.addEventListener('touchend', (e) => {
+        touchEndY = e.changedTouches[0].clientY;
+        handleSwipe();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartY - touchEndY;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Свайп вверх - следующий слайд
+                nextSlide();
+            } else {
+                // Свайп вниз - предыдущий слайд
+                prevSlide();
+            }
+        }
+    }
+}
+
+function goToSlide(index) {
+    if (index < 0 || index >= slides.length) return;
+    
+    const exitingSlide = slides[currentSlide];
+    const enteringSlide = slides[index];
+    
+    // Анимация выхода текущего слайда
+    exitingSlide.classList.add('slide-exiting');
+    
+    // Анимация входа нового слайда
+    setTimeout(() => {
+        exitingSlide.classList.remove('slide-exiting');
+        enteringSlide.classList.add('slide-entering');
+        
+        setTimeout(() => {
+            enteringSlide.classList.remove('slide-entering');
+        }, 600);
+    }, 100);
+    
+    currentSlide = index;
+    
+    // Сохраняем текущий слайд
+    localStorage.setItem('currentSlide', currentSlide.toString());
+    
+    // Прокрутка к целевой секции
+    if (slides[currentSlide]) {
+        // Если это первый слайд, прокручиваем к самому верху страницы
+        if (currentSlide === 0) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            slides[currentSlide].scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+    
+    updatePagination();
+    updateProgressBar();
+}
+
+function nextSlide() {
+    if (currentSlide < slides.length - 1) {
+        goToSlide(currentSlide + 1);
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+    }
+}
+
+function updatePagination() {
+    if (!paginationContainer) return;
+    
+    const dots = paginationContainer.querySelectorAll('.pagination-dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function updateProgressBar() {
+    if (!progressBar) return;
+    
+    const progress = ((currentSlide + 1) / slides.length) * 100;
+    progressBar.style.width = `${progress}%`;
+}
+
+// Навигационные кнопки
+function initNavigationButtons() {
     // Создаем навигационные кнопки
     const navButtons = document.createElement('div');
     navButtons.className = 'navigation-buttons';
@@ -47,94 +211,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const upButton = document.getElementById('upButton');
     const downButton = document.getElementById('downButton');
 
-    // Находим все секции
-    const sections = [
-        document.querySelector('.hero'),
-        document.querySelector('.stats'),
-        document.getElementById('products'),
-        document.getElementById('partners'),
-        document.getElementById('franchise'),
-        document.getElementById('about'),
-        document.getElementById('contact')
-    ].filter(section => section !== null); // Убираем null значения
-
-    // Проверяем, когда показывать кнопки (когда пользователь начинает прокручивать ко второй секции)
-    function checkButtonsVisibility() {
-        // Проверяем, если пользователь прокрутил дальше первой секции (героя)
-        const heroSection = document.querySelector('.hero');
-        if (!heroSection) return;
-        
-        const heroRect = heroSection.getBoundingClientRect();
-        // Кнопки появляются, когда нижняя часть героя исчезает сверху экрана
-        const shouldShow = heroRect.bottom < 0;
-        
-        if (shouldShow) {
-            navButtons.style.display = 'flex';
-        } else {
-            navButtons.style.display = 'none';
-        }
-    }
-
-    // Функция прокрутки к следующей секции
-    function scrollToNextSection(direction) {
-        if (!sections.length) return;
-        
-        const currentScroll = window.scrollY;
-        let targetIndex = -1;
-        
-        // Находим текущую видимую секцию
-        for (let i = 0; i < sections.length; i++) {
-            const rect = sections[i].getBoundingClientRect();
-            const sectionTop = sections[i].offsetTop;
-            const sectionBottom = sectionTop + sections[i].offsetHeight;
-            
-            if (currentScroll >= sectionTop - 100 && currentScroll <= sectionBottom - 100) {
-                targetIndex = i;
-                break;
-            }
-        }
-        
-        // Если не нашли текущую секцию, определяем по положению скролла
-        if (targetIndex === -1) {
-            for (let i = 0; i < sections.length; i++) {
-                if (currentScroll < sections[i].offsetTop) {
-                    targetIndex = i - 1;
-                    break;
-                }
-            }
-            if (targetIndex === -1 && currentScroll >= sections[sections.length - 1].offsetTop) {
-                targetIndex = sections.length - 1;
-            }
-        }
-        
-        let nextIndex;
-        if (direction === 'up') {
-            nextIndex = Math.max(0, targetIndex - 1);
-        } else { // direction === 'down'
-            nextIndex = Math.min(sections.length - 1, targetIndex + 1);
-        }
-        
-        // Прокручиваем к целевой секции
-        if (nextIndex !== targetIndex && sections[nextIndex]) {
-            sections[nextIndex].scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    }
-
     // Обработчики кликов
     upButton.addEventListener('click', () => {
-        scrollToNextSection('up');
+        prevSlide();
     });
 
     downButton.addEventListener('click', () => {
-        scrollToNextSection('down');
+        nextSlide();
     });
-
-    // Показываем/скрываем кнопки при скролле
-    window.addEventListener('scroll', checkButtonsVisibility);
-    
-    // Проверяем видимость при загрузке
-    checkButtonsVisibility();
-});
+}

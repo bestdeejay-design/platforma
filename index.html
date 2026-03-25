@@ -28,54 +28,67 @@
     </header>
 
     <main class="container">
-        <!-- ГЕРОЙ -->
-        <section class="hero">
-            <h1>Цифровая инфраструктура<br> <span class="highlight">локальной экономики</span></h1>
-            <p>АО «Платформа» — технологический оператор SaaS-решений, программ лояльности и платёжных интеграций для малого бизнеса</p>
-            <div>
-                <a href="#franchise" class="btn">Стать франчайзи</a>
-                <a href="#products" class="btn btn-outline">Продукты</a>
-            </div>
-        </section>
+        <!-- ПЕРВЫЙ СЛАЙД: Герой + Статистика (две секции на одном экране) -->
+        <div class="slide-wrapper slide" id="first-slide">
+            <!-- Секция 1: Герой -->
+            <section class="hero slide-part">
+                <h1>Цифровая инфраструктура<br> <span class="highlight">локальной экономики</span></h1>
+                <p>АО «Платформа» — технологический оператор SaaS-решений, программ лояльности и платёжных интеграций для малого бизнеса</p>
+                <div>
+                    <a href="#franchise" class="btn">Стать франчайзи</a>
+                    <a href="#products" class="btn btn-outline">Продукты</a>
+                </div>
+            </section>
 
-        <!-- СТАТИСТИКА -->
-        <section class="stats">
-            <div class="stats-grid">
-                <div>
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Партнёров</div>
+            <!-- Секция 2: Статистика -->
+            <section class="stats slide-part">
+                <div class="stats-grid">
+                    <div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Партнёров</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Городов</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Точек бизнеса</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Городов</div>
-                </div>
-                <div>
-                    <div class="stat-number">10K+</div>
-                    <div class="stat-label">Точек бизнеса</div>
-                </div>
-                <div>
-                    <div class="stat-number">100 млрд ₽</div>
-                    <div class="stat-label">Целевая оценка</div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <!-- ПРОДУКТЫ -->
-        <section id="products" class="section">
+        <section id="products" class="section slide">
             <h2 class="section-title">Продукты <span>и решения</span></h2>
             <div class="grid">
                 <div class="card">
                     <span class="card-badge badge-hit">Хит</span>
                     <h3>SaaS «Лови»</h3>
                     <p>Оператор лояльности для микробизнеса. Обмен баллов, вывод через СБП, каталог услуг.</p>
-                    <div class="card-price">от 2 990 ₽ <span>/ мес</span></div>
+                    <div class="card-price">от 2 990 ₽ <span>/ мес</span><br><span>+ эквайринг</span></div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-new">Новинка</span>
+                    <h3>Тариф 8%</h3>
+                    <p>Комиссия 8% с чека без абонентской платы. Платите только за результат. Идеально для старта.</p>
+                    <div class="card-price">8% <span>/ чек</span><br><span>без абон. платы</span></div>
                 </div>
 
                 <div class="card">
                     <span class="card-badge badge-new">Новинка</span>
                     <h3>Цифровая витрина</h3>
                     <p>Виртуальная полка для локальных производителей. Геозависимая доступность товаров.</p>
-                    <div class="card-price">от 4 990 ₽ <span>/ мес</span></div>
+                    <div class="card-price">от 4 990 ₽ <span>/ мес</span><br><span>+ эквайринг</span></div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-hit">Партнёрам</span>
+                    <h3>Инфраструктура под ключ</h3>
+                    <p>Для партнёров с выручкой более 10 млн. Полная инфраструктура и поддержка.</p>
+                    <div class="card-price">от 30 000 ₽ <span>/ точка / мес</span><br><span>+ эквайринг</span></div>
                 </div>
 
                 <div class="card">
@@ -106,7 +119,7 @@
         </section>
 
         <!-- ПАРТНЁРЫ -->
-        <section id="partners" class="section">
+        <section id="partners" class="section slide">
             <h2 class="section-title">Наши <span>партнёры</span></h2>
             <div class="partners-grid">
                 <div class="partner-card">Билайн</div>
@@ -119,7 +132,7 @@
         </section>
 
         <!-- ФРАНШИЗА -->
-        <section id="franchise" class="section">
+        <section id="franchise" class="section slide">
             <h2 class="section-title">Франшиза <span>City Franchise</span></h2>
             <div class="grid">
                 <div class="card">
@@ -161,16 +174,35 @@
         </section>
 
         <!-- О КОМПАНИИ -->
-        <section id="about" class="section">
+        <section id="about" class="section slide">
             <h2 class="section-title">О <span>компании</span></h2>
-            <div style="max-width: 900px; margin: 0 auto 48px; text-align: center; color: var(--color-text-secondary); font-size: 1.2rem;">
-                <p>АО «Платформа» — операционный центр цифровой экономики для малого и микробизнеса. Мы создаём масштабируемую, управляемую из центра экосистему с устойчивой экономикой роста.</p>
+            <div style="max-width: 900px; margin: 0 auto 48px; text-align: center; color: var(--color-text-secondary); font-size: 1.1rem; line-height: 1.6;">
+                <p style="margin-bottom: 32px; font-size: 1.2rem; color: var(--color-text-heading);">
+                    Создаём цифровую инфраструктуру для тысяч предприятий малого и микробизнеса. Клиенты делают заказы онлайн через нашу Платформу.
+                </p>
+                
+                <h3 style="font-size: 1.5rem; color: var(--color-text-heading); margin-bottom: 24px;">Почему мы быстро растём</h3>
+                <p style="margin-bottom: 24px;">
+                    Предоставляем готовую цифровую инфраструктуру максимально дёшево для тех, у кого уже есть клиентская база.
+                </p>
+                
+                <div style="display: grid; gap: 20px; text-align: left; margin-top: 32px;">
+                    <div style="background: var(--color-bg-card); padding: 24px; border-radius: 20px; border: 1px solid var(--border-subtle);">
+                        <strong style="color: var(--color-primary); display: block; margin-bottom: 8px; font-size: 1.1rem;">✓ Без холодного привлечения</strong>
+                        <span style="color: var(--color-text-secondary);">ТСП сами заходят — это выгоднее, чем собирать свою инфраструктуру (приложение, сайт, онлайн-кассу, ОФД, интеграции с лидогенераторами).</span>
+                    </div>
+                    
+                    <div style="background: var(--color-bg-card); padding: 24px; border-radius: 20px; border: 1px solid var(--border-subtle);">
+                        <strong style="color: var(--color-primary); display: block; margin-bottom: 8px; font-size: 1.1rem;">✓ Низкий CAC и высокая скорость</strong>
+                        <span style="color: var(--color-text-secondary);">От интереса до первого заказа — несколько минут.</span>
+                    </div>
+                </div>
             </div>
             
         </section>
 
         <!-- КОНТАКТЫ -->
-        <section id="contact" class="section">
+        <section id="contact" class="section slide">
             <h2 class="section-title">Контакты</h2>
             <div class="contact-info">
                 <p><strong>Адрес:</strong> г. Санкт-Петербург, Таврическая улица, 7</p>
