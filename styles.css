@@ -226,7 +226,7 @@ body {
 /* Улучшенная адаптация для мобильных */
 @media (max-width: 768px) {
     .mobile-menu-toggle {
-        display: flex;
+        display: flex !important;
         order: 2;
     }
     
@@ -733,15 +733,6 @@ body {
     border-top: 1px solid var(--border-subtle);
     padding: 60px 0 30px;
     margin-top: 60px;
-}
-
-.footer.slide {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 24px 60px;
-    position: relative;
 }
 
 .footer-grid {
