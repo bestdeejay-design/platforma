@@ -106,10 +106,11 @@ body {
     position: relative;
 }
 
+/* Первый слайд: обёртка для двух секций */
 .slide-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 40px 0;
+    width: 100%;
 }
 
 .slide-part {
