@@ -232,10 +232,21 @@ body {
     
     .logo {
         order: 1;
+        font-size: 1.3rem;
     }
     
     .theme-toggle {
         order: 3;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .header-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
     }
     
     .nav {
@@ -294,6 +305,33 @@ body {
     
     .progress-bar {
         display: none;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .partner-card {
+        padding: 16px 12px;
+        font-size: 0.9rem;
+        min-height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .partner-card i {
+        font-size: 1.5rem;
     }
     
     .hero h1 {
