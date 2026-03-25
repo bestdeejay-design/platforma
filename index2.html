@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АО Платформа · цифровая инфраструктура</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ХЕДЕР -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">АО Платформа</a>
+            
+            <!-- Бургер кнопка для мобильных -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav class="nav">
+                <ul>
+                    <li><a href="#products">Продукты</a></li>
+                    <li><a href="#partners">Партнёрам</a></li>
+                    <li><a href="#franchise">Франшиза</a></li>
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun" id="themeIcon"></i> Тема
+            </button>
+        </div>
+    </header>
+
+    <!-- Затемнение фона для мобильного меню -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <main class="container">
+        <!-- ПЕРВЫЙ СЛАЙД: Герой + Статистика (две секции на одном экране) -->
+        <section class="hero" style="margin-bottom: 0; border-radius: 48px 48px 0 0;">
+            <h1><i class="fas fa-rocket" style="color: var(--color-primary);"></i> Цифровая инфраструктура<br> <span class="highlight">локальной экономики</span></h1>
+            <p>АО «Платформа» — технологический оператор SaaS-решений, программ лояльности и платёжных интеграций для малого бизнеса</p>
+            <div>
+                <a href="#franchise" class="btn">Стать франчайзи</a>
+                <a href="#products" class="btn btn-outline">Продукты</a>
+            </div>
+        </section>
+
+        <!-- Секция 2: Статистика -->
+        <section class="stats" style="margin-top: 0; border-radius: 0 0 48px 48px;">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number"><i class="fas fa-handshake"></i> 500+</div>
+                    <div class="stat-label">Партнёров</div>
+                </div>
+                <div>
+                    <div class="stat-number"><i class="fas fa-map-marked-alt"></i> 50+</div>
+                    <div class="stat-label">Городов</div>
+                </div>
+                <div>
+                    <div class="stat-number"><i class="fas fa-store"></i> 10K+</div>
+                    <div class="stat-label">Точек бизнеса</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПРОДУКТЫ -->
+        <section id="products" class="section slide">
+            <h2 class="section-title"><i class="fas fa-box-open"></i> Продукты <span>и решения</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-badge badge-hit">Хит</span>
+                    <h3><i class="fas fa-cloud" style="color: var(--color-primary);"></i> SaaS «Лови»</h3>
+                    <p>Оператор лояльности для микробизнеса. Обмен баллов, вывод через СБП, каталог услуг.</p>
+                    <div class="card-price">от 2 990 ₽ <span>/ мес</span><br><span>+ эквайринг</span></div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-new">Новинка</span>
+                    <h3><i class="fas fa-percent" style="color: var(--color-primary);"></i> Тариф 8%</h3>
+                    <p>Комиссия 8% с чека без абонентской платы. Платите только за результат. Идеально для старта.</p>
+                    <div class="card-price">8% <span>/ чек</span><br><span>без абон. платы</span></div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-new">Новинка</span>
+                    <h3><i class="fas fa-laptop-code" style="color: var(--color-primary);"></i> Цифровая витрина</h3>
+                    <p>Виртуальная полка для локальных производителей. Геозависимая доступность товаров.</p>
+                    <div class="card-price">от 4 990 ₽ <span>/ мес</span><br><span>+ эквайринг</span></div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-hit">Партнёрам</span>
+                    <h3><i class="fas fa-tools" style="color: var(--color-primary);"></i> Инфраструктура под ключ</h3>
+                    <p>Для партнёров с выручкой более 10 млн. Полная инфраструктура и поддержка.</p>
+                    <div class="card-price">от 30 000 ₽ <span>/ точка / мес</span><br><span>+ эквайринг</span></div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-city" style="color: var(--color-primary);"></i> City Franchise</h3>
+                    <p>Запуск локальной экосистемы в вашем городе. Готовая ИТ-платформа + методология.</p>
+                    <div class="card-price">Индивидуально</div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-promo">Акция</span>
+                    <h3><i class="fas fa-plug" style="color: var(--color-primary);"></i> API для партнёров</h3>
+                    <p>Интеграция с платформой «Лови». Передача статусов, заказов, логистики.</p>
+                    <div class="card-price">от 10 000 ₽ <span>/ мес</span></div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-coins" style="color: var(--color-primary);"></i> Финансовая инфраструктура</h3>
+                    <p>Интеграция с банковскими платёжными агентами. Автоматизация документооборота.</p>
+                    <div class="card-price">По запросу</div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-tag" style="color: var(--color-primary);"></i> White Label</h3>
+                    <p>Лицензирование технологии для регионов и сетей. Запуск под вашим брендом.</p>
+                    <div class="card-price">от 500 000 ₽ <span>/ год</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПАРТНЁРЫ -->
+        <section id="partners" class="section slide">
+            <h2 class="section-title"><i class="fas fa-handshake"></i> Мы <span>интегрировались</span></h2>
+            <div class="partners-grid">
+                <div class="partner-card"><i class="fas fa-signal" style="color: var(--color-primary);"></i> Билайн</div>
+                <div class="partner-card"><i class="fas fa-taxi" style="color: var(--color-primary);"></i> Яндекс.Go</div>
+                <div class="partner-card"><i class="fas fa-truck" style="color: var(--color-primary);"></i> СДЭК</div>
+                <div class="partner-card"><i class="fas fa-credit-card" style="color: var(--color-primary);"></i> Тинькофф</div>
+                <div class="partner-card"><i class="fas fa-laptop-code" style="color: var(--color-primary);"></i> 1С</div>
+                <div class="partner-card"><i class="fas fa-landmark" style="color: var(--color-primary);"></i> Фонд МСП</div>
+                <div class="partner-card"><i class="fas fa-university" style="color: var(--color-primary);"></i> Сбербанк</div>
+                <div class="partner-card"><i class="fas fa-rocket" style="color: var(--color-primary);"></i> Альфа-Банк</div>
+                <div class="partner-card"><i class="fas fa-wallet" style="color: var(--color-primary);"></i> ЮMoney</div>
+                <div class="partner-card"><i class="fas fa-mobile-alt" style="color: var(--color-primary);"></i> МТС</div>
+                <div class="partner-card"><i class="fas fa-plane" style="color: var(--color-primary);"></i> Aviasales</div>
+                <div class="partner-card"><i class="fas fa-search" style="color: var(--color-primary);"></i> Яндекс</div>
+                <div class="partner-card"><i class="fas fa-hotel" style="color: var(--color-primary);"></i> Ostrovok.ru</div>
+                <div class="partner-card"><i class="fas fa-chart-line" style="color: var(--color-primary);"></i> Сравни.ру</div>
+                <div class="partner-card"><i class="fas fa-handshake" style="color: var(--color-primary);"></i> Admitad</div>
+                <div class="partner-card"><i class="fas fa-gift" style="color: var(--color-primary);"></i> Giftery</div>
+                <div class="partner-card"><i class="fas fa-tower-broadcast" style="color: var(--color-primary);"></i> Ростелеком</div>
+                <div class="partner-card"><i class="fas fa-bullhorn" style="color: var(--color-primary);"></i> adv.cake</div>
+                <div class="partner-card"><i class="fas fa-users" style="color: var(--color-primary);"></i> XPartners</div>
+                <div class="partner-card"><i class="fas fa-camera" style="color: var(--color-primary);"></i> Фотострана</div>
+                <div class="partner-card"><i class="fas fa-newspaper" style="color: var(--color-primary);"></i> Пикабу</div>
+                <div class="partner-card"><i class="fas fa-shopping-cart" style="color: var(--color-primary);"></i> Магнит</div>
+                <div class="partner-card"><i class="fas fa-store" style="color: var(--color-primary);"></i> Лента</div>
+                <div class="partner-card"><i class="fas fa-shopping-bag" style="color: var(--color-primary);"></i> Ашан</div>
+                <div class="partner-card"><i class="fas fa-warehouse" style="color: var(--color-primary);"></i> Метро</div>
+            </div>
+        </section>
+
+        <!-- ФРАНШИЗА -->
+        <section id="franchise" class="section slide">
+            <h2 class="section-title"><i class="fas fa-crown"></i> Франшиза <span>City Franchise</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Старт</h3>
+                    <p>Для городов от 10 000 жителей. Базовый пакет поддержки.</p>
+                    <div class="card-price">500 000 ₽</div>
+                    <ul>
+                        <li>Доступ к SaaS-платформе</li>
+                        <li>Методология запуска</li>
+                        <li>Базовая поддержка</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge badge-hit">Популярный</span>
+                    <h3>Бизнес</h3>
+                    <p>Для городов от 50 000 жителей. Расширенный пакет.</p>
+                    <div class="card-price">1 500 000 ₽</div>
+                    <ul>
+                        <li>Всё из тарифа Старт</li>
+                        <li>Выделенный менеджер</li>
+                        <li>Маркетинговая поддержка</li>
+                        <li>Приоритет в поиске</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Премиум</h3>
+                    <p>Для городов-миллионников. Полный пакет.</p>
+                    <div class="card-price">Индивидуально</div>
+                    <ul>
+                        <li>Всё из тарифа Бизнес</li>
+                        <li>Персональный менеджер 24/7</li>
+                        <li>Эксклюзивные условия</li>
+                        <li>Доля в рекламном доходе</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- О КОМПАНИИ -->
+        <section id="about" class="section slide">
+            <h2 class="section-title"><i class="fas fa-building"></i> О <span>компании</span></h2>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center; color: var(--color-text-secondary); font-size: 1rem; line-height: 1.5;">
+                <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--color-text-heading);">
+                    Создаём цифровую инфраструктуру для тысяч предприятий малого и микробизнеса. Клиенты делают заказы онлайн через нашу Платформу.
+                </p>
+                
+                <h3 style="font-size: 1.3rem; color: var(--color-text-heading); margin-bottom: 16px;">Почему мы быстро растём</h3>
+                <p style="margin-bottom: 20px; font-size: 0.95rem;">
+                    Предоставляем готовую цифровую инфраструктуру максимально доступно для тех, у кого уже есть клиентская база.
+                </p>
+                
+                <div style="display: grid; gap: 12px; text-align: left; margin-top: 20px;">
+                    <div style="background: var(--color-bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+                        <strong style="color: var(--color-primary); display: block; margin-bottom: 6px; font-size: 1rem;">✓ Готовая инфраструктура без вложений</strong>
+                        <span style="color: var(--color-text-secondary); font-size: 0.85rem;">ТСП подключаются сами — им выгоднее использовать нашу платформу, чем разрабатывать свою (приложение, сайт, онлайн-кассу, ОФД, интеграции).</span>
+                    </div>
+                    
+                    <div style="background: var(--color-bg-card); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+                        <strong style="color: var(--color-primary); display: block; margin-bottom: 6px; font-size: 1rem;">✓ Низкий CAC и высокая скорость</strong>
+                        <span style="color: var(--color-text-secondary); font-size: 0.85rem;">От интереса до первого заказа — несколько минут.</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 24px; padding: 20px; background: var(--gradient-hero); border-radius: 20px; border: 1px solid var(--border-subtle);">
+                    <h3 style="font-size: 1.2rem; color: var(--color-text-heading); margin-bottom: 12px;">Наш опыт</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 16px; font-size: 0.9rem;">
+                        Более 50 успешных внедрений в ритейле, HoReCa и финтехе. Используем технологические решения и банковские интеграции уровня enterprise.
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;">
+                        <div style="padding: 12px; background: var(--color-bg-card); border-radius: 12px;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 4px;">50+</div>
+                            <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Внедрений</div>
+                        </div>
+                        <div style="padding: 12px; background: var(--color-bg-card); border-radius: 12px;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 4px;">24/7</div>
+                            <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Поддержка</div>
+                        </div>
+                        <div style="padding: 12px; background: var(--color-bg-card); border-radius: 12px;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 4px;">PCI DSS</div>
+                            <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Безопасность</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- КОНТАКТЫ -->
+        <section id="contact" class="section slide">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> Контакты</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt" style="color: var(--color-primary);"></i> <strong>Адрес:</strong> г. Санкт-Петербург, Таврическая улица, 7</p>
+                <p><i class="fas fa-phone" style="color: var(--color-primary);"></i> <strong>Телефон:</strong> +7 812 928-74-78</p>
+                <p><i class="fas fa-envelope" style="color: var(--color-primary);"></i> <strong>Email:</strong> hello@axiiom.ru</p>
+                <p><i class="fas fa-globe" style="color: var(--color-primary);"></i> <strong>Сайт:</strong> axiiom.ru</p>
+                <a href="mailto:hello@axiiom.ru" class="btn" style="margin-top: 24px;"><i class="fas fa-paper-plane"></i> Написать нам</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Продукты</h4>
+                        <ul>
+                            <li><a href="#">SaaS «Лови»</a></li>
+                            <li><a href="#">Цифровая витрина</a></li>
+                            <li><a href="#">City Franchise</a></li>
+                            <li><a href="#">API для партнёров</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Компания</h4>
+                        <ul>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">Команда</a></li>
+                            <li><a href="#">Карьера</a></li>
+                            <li><a href="#">Новости</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Партнёрам</h4>
+                        <ul>
+                            <li><a href="#">Франчайзи</a></li>
+                            <li><a href="#">Поставщики</a></li>
+                            <li><a href="#">Интеграторы</a></li>
+                            <li><a href="#">Инвесторам</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Документы</h4>
+                        <ul>
+                            <li><a href="#">Публичная оферта</a></li>
+                            <li><a href="#">Политика ПДн</a></li>
+                            <li><a href="#">Договор франшизы</a></li>
+                            <li><a href="#">Реквизиты</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 АО Платформа. Все права защищены.</p>
+                    <p>АО «Точка» | ООО «Атмосфера» | АО «Аксиома» | ООО «Мобиап»</p>
+                </div>
+            </div>
+        </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
