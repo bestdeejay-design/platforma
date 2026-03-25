@@ -290,40 +290,33 @@ body {
         font-weight: 600;
     }
     
-    /* Скрываем кнопку в меню на десктопе */
-    .theme-toggle-mobile-wrapper {
+    /* Кнопка смены темы в мобильном меню - скрыта на десктопе */
+    .mobile-theme-btn {
         display: none !important;
+        background: var(--color-bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: 40px;
+        padding: 14px 28px;
+        cursor: pointer;
+        color: var(--color-text-primary);
+        font-weight: 500;
+        font-size: 1.1rem;
+        align-items: center;
+        gap: 12px;
+        box-shadow: var(--shadow-card);
+        transition: 0.2s;
+        width: 100%;
+        justify-content: center;
+        margin-top: 20px;
     }
     
-    /* Переключатель темы в мобильном меню - показываем ТОЛЬКО на мобильном */
     @media (max-width: 768px) {
-        .theme-toggle-mobile-wrapper {
-            display: block !important; /* Показываем на мобильном */
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-subtle);
-            width: 100%;
+        /* Показываем кнопку ТОЛЬКО на мобильном */
+        .mobile-theme-btn {
+            display: flex !important;
         }
         
-        .theme-toggle-btn {
-            background: var(--color-bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 40px;
-            padding: 14px 28px;
-            cursor: pointer;
-            color: var(--color-text-primary);
-            font-weight: 500;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: var(--shadow-card);
-            transition: 0.2s;
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .theme-toggle-btn:hover {
+        .mobile-theme-btn:hover {
             border-color: var(--color-primary);
             color: var(--color-primary);
             transform: scale(1.02);

@@ -29,15 +29,6 @@
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
             </nav>
-            
-            <!-- Кнопка смены темы в меню (только для мобильных) -->
-            <div class="theme-toggle-mobile-wrapper">
-                <button class="theme-toggle-btn" id="themeToggleMobile">
-                    <i class="fas fa-sun" id="themeIconMobile"></i>
-                    <span>Сменить тему</span>
-                </button>
-            </div>
-            
             <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-sun" id="themeIcon"></i> Тема
             </button>
@@ -45,7 +36,12 @@
     </header>
 
     <!-- Затемнение фона для мобильного меню -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <button class="theme-toggle-btn mobile-theme-btn" id="themeToggleMobile">
+            <i class="fas fa-sun" id="themeIconMobile"></i>
+            <span>Сменить тему</span>
+        </button>
+    </div>
 
     <main class="container">
         <!-- ПЕРВЫЙ СЛАЙД: Герой + Статистика (две секции на одном экране) -->
