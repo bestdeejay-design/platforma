@@ -290,10 +290,15 @@ body {
         font-weight: 600;
     }
     
+    /* Скрываем кнопку в меню на десктопе */
+    .theme-toggle-mobile {
+        display: none !important;
+    }
+    
     /* Переключатель темы в мобильном меню - показываем ТОЛЬКО на мобильном */
     @media (max-width: 768px) {
         .theme-toggle-mobile {
-            display: block; /* Показываем на мобильном */
+            display: block !important; /* Показываем на мобильном */
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid var(--border-subtle);
