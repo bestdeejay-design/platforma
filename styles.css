@@ -875,3 +875,118 @@ body {
         font-size: 1rem;
     }
 }
+
+/* ===== САМЫЕ УЗКИЕ ЭКРАНЫ (320px) ===== */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .header-content {
+        gap: 8px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .theme-toggle {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .mobile-menu-toggle {
+        width: 26px;
+        height: 20px;
+    }
+    
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        margin: 6px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 32px;
+    }
+    
+    .card {
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+    
+    .card h3 {
+        font-size: 1.4rem;
+    }
+    
+    .card p {
+        font-size: 0.9rem;
+    }
+    
+    .card-price {
+        font-size: 1.4rem;
+    }
+    
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .partner-card {
+        padding: 12px 8px;
+        font-size: 0.75rem;
+        min-height: 70px;
+    }
+    
+    .partner-card i {
+        font-size: 1.2rem;
+    }
+    
+    .stats-grid {
+        gap: 12px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+    
+    .mobile-nav {
+        padding: 100px 16px 32px;
+    }
+    
+    .mobile-nav ul {
+        gap: 24px;
+        margin-bottom: 48px;
+    }
+    
+    .mobile-nav a {
+        font-size: 1.3rem;
+    }
+    
+    .mobile-theme-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
