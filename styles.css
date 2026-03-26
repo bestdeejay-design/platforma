@@ -1351,6 +1351,8 @@ body {
     box-shadow: var(--shadow-card);
     height: 100%;
     display: flex;
+    background: var(--color-bg-card);
+    border: 1px solid var(--border-subtle);
 }
 
 .contact-map {
