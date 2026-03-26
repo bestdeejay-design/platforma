@@ -615,6 +615,200 @@ body {
     font-size: 1.1rem;
 }
 
+/* ===== LOVII - ТАРИФ МЕЧТЫ ===== */
+.lovii-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.lovii-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.lovii-logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 24px;
+    object-fit: contain;
+}
+
+.lovii-subtitle {
+    font-size: 1.3rem;
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 16px auto 0;
+}
+
+/* Преимущества */
+.lovii-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.lovii-feature-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: var(--shadow-card);
+}
+
+.lovii-feature-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.lovii-feature-card i {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+.lovii-feature-card h3 {
+    font-size: 1.4rem;
+    color: var(--color-text-heading);
+    margin-bottom: 12px;
+}
+
+.lovii-feature-card p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Тарифы */
+.lovii-pricing {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.lovii-tariff-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 28px;
+    padding: 40px 32px;
+    position: relative;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.lovii-tariff-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.tariff-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--color-secondary);
+    color: white;
+    padding: 5px 14px;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(58, 190, 154, 0.3);
+}
+
+.tariff-badge.badge-hit {
+    background: var(--color-warning);
+    color: #1A1A1A;
+    box-shadow: 0 4px 8px rgba(251, 191, 36, 0.3);
+}
+
+.lovii-tariff-card h3 {
+    font-size: 2rem;
+    color: var(--color-text-heading);
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.tariff-price {
+    margin-bottom: 32px;
+}
+
+.price-main {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.price-desc {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-top: 8px;
+}
+
+.tariff-features {
+    list-style: none;
+    margin-bottom: 32px;
+    flex-grow: 1;
+}
+
+.tariff-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+}
+
+.tariff-features li i {
+    color: var(--color-success);
+    font-size: 1.2rem;
+}
+
+.tariff-saas {
+    border: 2px solid var(--color-primary);
+    background: linear-gradient(135deg, rgba(216, 79, 198, 0.05) 0%, rgba(168, 54, 168, 0.02) 100%);
+}
+
+.tariff-saas .price-main {
+    color: var(--color-primary);
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .lovii-logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .lovii-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .lovii-pricing {
+        grid-template-columns: 1fr;
+    }
+    
+    .lovii-tariff-card {
+        padding: 32px 20px;
+    }
+    
+    .price-main {
+        font-size: 2.8rem;
+    }
+}
+
 /* ===== СЕКЦИИ ===== */
 .section {
     padding: 40px 0;
