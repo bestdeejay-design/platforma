@@ -319,14 +319,43 @@ function initMobileMenu() {
         });
     }
     
-    // Закрытие при клике на ссылку
+    // Закрытие при клике на ссылку + плавная прокрутка с offset
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            menuToggle.classList.remove('active');
-            if (nav) nav.classList.remove('active');
-            if (mobileNav) mobileNav.classList.remove('active');
-            if (overlay) overlay.classList.remove('active');
-            document.body.style.overflow = '';
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Если это якорная ссылка
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Закрываем меню
+                    menuToggle.classList.remove('active');
+                    if (nav) nav.classList.remove('active');
+                    if (mobileNav) mobileNav.classList.remove('active');
+                    if (overlay) overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Прокрутка с учетом хедера
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            } else {
+                // Обычная ссылка - просто закрываем меню
+                menuToggle.classList.remove('active');
+                if (nav) nav.classList.remove('active');
+                if (mobileNav) mobileNav.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     });
 }
