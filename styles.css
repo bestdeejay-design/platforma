@@ -1348,9 +1348,82 @@ body {
     cursor: pointer;
 }
 
+/* Дополнительная информация - компактная версия */
+.contact-extra-compact {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.extra-card-compact {
+    background: var(--color-bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.extra-card-compact:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.extra-card-compact i {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 12px;
+}
+
+.extra-card-compact h4 {
+    font-size: 1.1rem;
+    color: var(--color-text-heading);
+    margin-bottom: 10px;
+}
+
+.extra-card-compact p {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.social-links-compact {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.social-link-compact {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-hero);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.social-link-compact:hover {
+    transform: scale(1.1);
+    background: var(--color-primary);
+}
+
+.social-link-compact i {
+    color: white;
+    font-size: 1.2rem;
+}
+
 /* Адаптация */
 @media (max-width: 1024px) {
     .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-extra-compact {
         grid-template-columns: 1fr;
     }
 }
@@ -1378,6 +1451,10 @@ body {
     
     .contact-map {
         min-height: 280px;
+    }
+    
+    .extra-card-compact {
+        padding: 16px;
     }
 }
 .contact-info {
