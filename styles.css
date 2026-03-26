@@ -392,6 +392,7 @@ body {
     
     .partner-card i {
         font-size: 1.5rem;
+        color: var(--color-primary);
     }
 }
 .header {
@@ -579,6 +580,10 @@ body {
     background: var(--color-primary-light);
     border-color: var(--color-primary-hover);
     color: var(--color-text-heading);
+}
+
+.btn {
+    margin-top: 24px;
 }
 
 /* ===== СТАТИСТИКА ===== */
@@ -779,7 +784,7 @@ body {
     background: var(--color-bg-card);
     border-top: 1px solid var(--border-subtle);
     padding: 60px 0 30px;
-    margin-top: 60px;
+    margin-top: 100px;
 }
 
 .footer-grid {
