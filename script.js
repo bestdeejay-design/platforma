@@ -338,15 +338,25 @@ function initMobileMenu() {
                     if (overlay) overlay.classList.remove('active');
                     document.body.style.overflow = '';
                     
-                    // Прокрутка с учетом хедера
-                    const headerOffset = 80;
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerOffset;
+                    // Находим индекс слайда
+                    const slideIndex = slides.findIndex(slide => 
+                        slide.id === targetId || slide.contains(targetElement)
+                    );
                     
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+                    // Если нашли слайд - переключаем через презентацию
+                    if (slideIndex !== -1 && !isMobileMode) {
+                        goToSlide(slideIndex);
+                    } else {
+                        // Иначе просто скроллим
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             } else {
                 // Обычная ссылка - просто закрываем меню
