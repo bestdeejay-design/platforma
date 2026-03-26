@@ -500,16 +500,142 @@
         <!-- КОНТАКТЫ -->
         <section id="contact" class="section slide">
             <h2 class="section-title"><i class="fas fa-envelope"></i> Контакты</h2>
-            <div class="contact-info">
-                <p><i class="fas fa-map-marker-alt"
-></i> <strong>Адрес:</strong> г. Санкт-Петербург, Таврическая улица, 7</p>
-                <p><i class="fas fa-phone"
-></i> <strong>Телефон:</strong> +7 812 928-74-78</p>
-                <p><i class="fas fa-envelope"
-></i> <strong>Email:</strong> hello@axiiom.ru</p>
-                <p><i class="fas fa-globe"
-></i> <strong>Сайт:</strong> axiiom.ru</p>
-                <a href="mailto:hello@axiiom.ru" class="btn"><i class="fas fa-paper-plane"></i> Написать нам</a>
+            
+            <div class="contact-wrapper">
+                <!-- Основная карточка -->
+                <div class="contact-main-card">
+                    <div class="contact-header">
+                        <i class="fas fa-building contact-logo"></i>
+                        <h3>АО Платформа</h3>
+                        <p>Цифровая инфраструктура локальной экономики</p>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-info">
+                                <strong>Адрес</strong>
+                                <span>г. Санкт-Петербург, Таврическая улица, 7</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-info">
+                                <strong>Телефон</strong>
+                                <a href="tel:+78129287478">+7 812 928-74-78</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info">
+                                <strong>Email</strong>
+                                <a href="mailto:hello@axiiom.ru">hello@axiiom.ru</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="contact-info">
+                                <strong>Сайт</strong>
+                                <a href="https://axiiom.ru" target="_blank">axiiom.ru</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-actions">
+                        <a href="mailto:hello@axiiom.ru" class="btn">
+                            <i class="fas fa-paper-plane"></i> Написать нам
+                        </a>
+                        <a href="tel:+78129287478" class="btn btn-outline">
+                            <i class="fas fa-phone"></i> Позвонить
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Карта -->
+                <div class="contact-map-container">
+                    <svg class="contact-map" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Фон карты -->
+                        <rect width="600" height="400" fill="var(--color-bg-card)" rx="20"/>
+                        
+                        <!-- Стилизованные улицы -->
+                        <path d="M50 100 L550 100" stroke="var(--border-subtle)" stroke-width="2"/>
+                        <path d="M50 200 L550 200" stroke="var(--border-subtle)" stroke-width="2"/>
+                        <path d="M50 300 L550 300" stroke="var(--border-subtle)" stroke-width="2"/>
+                        <path d="M150 50 L150 350" stroke="var(--border-subtle)" stroke-width="2"/>
+                        <path d="M300 50 L300 350" stroke="var(--border-subtle)" stroke-width="2"/>
+                        <path d="M450 50 L450 350" stroke="var(--border-subtle)" stroke-width="2"/>
+                        
+                        <!-- Река Нева (схематично) -->
+                        <path d="M0 150 Q150 130, 300 150 T600 150" 
+                              stroke="var(--color-primary)" 
+                              stroke-width="3" 
+                              fill="none" 
+                              opacity="0.3"/>
+                        
+                        <!-- Здания (схематично) -->
+                        <rect x="100" y="60" width="40" height="30" fill="var(--color-primary)" opacity="0.2" rx="4"/>
+                        <rect x="200" y="220" width="50" height="35" fill="var(--color-primary)" opacity="0.2" rx="4"/>
+                        <rect x="380" y="80" width="45" height="30" fill="var(--color-primary)" opacity="0.2" rx="4"/>
+                        <rect x="480" y="250" width="55" height="40" fill="var(--color-primary)" opacity="0.2" rx="4"/>
+                        
+                        <!-- Местоположение офиса -->
+                        <g class="location-marker" transform="translate(250, 180)">
+                            <circle cx="0" cy="0" r="40" fill="var(--color-primary)" opacity="0.2">
+                                <animate attributeName="r" from="20" to="40" dur="1.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="0" cy="0" r="25" fill="var(--color-primary)" opacity="0.4">
+                                <animate attributeName="r" from="15" to="25" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" from="0.4" to="0" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <path d="M0 -30 L0 -30 A30 30 0 1 1 0 10 L0 30 Z" fill="var(--color-primary)"/>
+                            <circle cx="0" cy="-10" r="8" fill="white"/>
+                        </g>
+                        
+                        <!-- Подпись -->
+                        <text x="300" y="380" text-anchor="middle" fill="var(--color-text-secondary)" font-size="14">
+                            Санкт-Петербург, Таврическая ул., 7
+                        </text>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Дополнительная информация -->
+            <div class="contact-extra">
+                <div class="extra-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>Режим работы</h4>
+                    <p>Пн-Пт: 9:00 - 18:00 (МСК)</p>
+                    <p>Поддержка 24/7 для клиентов</p>
+                </div>
+                
+                <div class="extra-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Соцсети</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="extra-card">
+                    <i class="fas fa-file-contract"></i>
+                    <h4>Реквизиты</h4>
+                    <p>АО «Платформа»</p>
+                    <p>ИНН 7801234567</p>
+                </div>
             </div>
         </section>
     </main>

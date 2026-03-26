@@ -1221,6 +1221,228 @@ body {
 }
 
 /* ===== КОНТАКТЫ ===== */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.contact-main-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: var(--shadow-card);
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--border-subtle);
+}
+
+.contact-logo {
+    font-size: 4rem;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+    display: block;
+}
+
+.contact-header h3 {
+    font-size: 1.8rem;
+    color: var(--color-text-heading);
+    margin-bottom: 8px;
+}
+
+.contact-header p {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+}
+
+.contact-details {
+    margin-bottom: 32px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: var(--gradient-hero);
+    border-radius: 16px;
+    transition: transform 0.2s;
+}
+
+.contact-item:hover {
+    transform: translateX(8px);
+}
+
+.contact-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contact-icon i {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-info strong {
+    color: var(--color-text-heading);
+    font-size: 1rem;
+}
+
+.contact-info span,
+.contact-info a {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-info a:hover {
+    color: var(--color-primary);
+}
+
+.contact-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.contact-actions .btn {
+    flex: 1;
+    min-width: 160px;
+    margin-top: 0;
+}
+
+/* Карта */
+.contact-map-container {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+.contact-map {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.location-marker {
+    cursor: pointer;
+}
+
+/* Дополнительная информация */
+.contact-extra {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.extra-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.extra-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.extra-card i {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+.extra-card h4 {
+    font-size: 1.2rem;
+    color: var(--color-text-heading);
+    margin-bottom: 12px;
+}
+
+.extra-card p {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.social-link {
+    width: 44px;
+    height: 44px;
+    background: var(--gradient-hero);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    background: var(--color-primary);
+}
+
+.social-link i {
+    color: white;
+    font-size: 1.3rem;
+}
+
+/* Адаптация */
+@media (max-width: 1024px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-extra {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-main-card {
+        padding: 24px;
+    }
+    
+    .contact-actions {
+        flex-direction: column;
+    }
+    
+    .contact-actions .btn {
+        width: 100%;
+    }
+    
+    .contact-map {
+        min-height: 300px;
+    }
+}
 .contact-info {
     max-width: 600px;
     margin: 0 auto;
