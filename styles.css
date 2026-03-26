@@ -623,22 +623,30 @@ body {
 }
 
 .lovii-header {
-    text-align: center;
-    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.lovii-logo-wrapper {
+    flex-shrink: 0;
 }
 
 .lovii-logo {
     width: 120px;
     height: 120px;
-    margin-bottom: 16px;
     object-fit: contain;
+}
+
+.lovii-title-block {
+    text-align: left;
 }
 
 .lovii-subtitle {
     font-size: 1.1rem;
     color: var(--color-text-secondary);
-    max-width: 600px;
-    margin: 8px auto 0;
+    margin: 8px 0 0;
 }
 
 /* Преимущества */
@@ -787,6 +795,16 @@ body {
 
 /* Адаптация для мобильных */
 @media (max-width: 768px) {
+    .lovii-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    
+    .lovii-title-block {
+        text-align: center;
+    }
+    
     .lovii-logo {
         width: 100px;
         height: 100px;
