@@ -191,9 +191,14 @@ function goToSlide(index) {
                 behavior: 'smooth'
             });
         } else {
-            slides[currentSlide].scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            // Вычисляем позицию с учетом хедера (~80px) и небольшого отступа
+            const headerOffset = 80;
+            const elementPosition = slides[currentSlide].getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
         }
     }

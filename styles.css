@@ -98,7 +98,7 @@ body {
 
 /* ===== СЛАЙДЫ (режим презентации) ===== */
 .slide {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -208,10 +208,6 @@ body {
 .hero h1 {
     font-size: clamp(2rem, 4vw, 3.5rem);
     line-height: 1.1;
-}
-
-.section-title {
-    font-size: clamp(2rem, 3vw, 2.8rem);
 }
 
 .stats-grid,
@@ -528,6 +524,10 @@ body {
     border-radius: 48px;
     border: 1px solid var(--border-strong);
     box-shadow: var(--shadow-card);
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero h1 {
@@ -536,10 +536,6 @@ body {
     color: var(--color-text-heading);
     margin-bottom: 24px;
     line-height: 1.2;
-}
-
-.hero .highlight {
-    color: var(--color-primary);
 }
 
 .hero p {
@@ -616,7 +612,8 @@ body {
 
 /* ===== СЕКЦИИ ===== */
 .section {
-    padding: 60px 0;
+    padding: 40px 0;
+    margin-bottom: 100px;
 }
 
 .section-title {
