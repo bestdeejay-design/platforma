@@ -1241,17 +1241,27 @@ body {
 }
 
 .contact-header {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
     margin-bottom: 24px;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--border-subtle);
 }
 
+.contact-logo-wrapper {
+    flex-shrink: 0;
+}
+
 .contact-logo {
     font-size: 3rem;
     color: var(--color-primary);
-    margin-bottom: 12px;
     display: block;
+}
+
+.contact-title-block {
+    flex: 1;
 }
 
 .contact-header h3 {
@@ -1450,12 +1460,16 @@ body {
         padding: 24px;
     }
     
-    .contact-header h3 {
-        font-size: 1.3rem;
+    .contact-header {
+        gap: 16px;
     }
     
     .contact-logo {
         font-size: 2.5rem;
+    }
+    
+    .contact-header h3 {
+        font-size: 1.3rem;
     }
     
     .contact-actions-compact {
