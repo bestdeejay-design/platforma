@@ -560,29 +560,85 @@
                         <!-- Фон карты -->
                         <rect width="600" height="400" fill="var(--color-bg-card)" rx="20"/>
                         
-                        <!-- Стилизованные улицы -->
-                        <path d="M50 100 L550 100" stroke="var(--border-subtle)" stroke-width="2"/>
-                        <path d="M50 200 L550 200" stroke="var(--border-subtle)" stroke-width="2"/>
-                        <path d="M50 300 L550 300" stroke="var(--border-subtle)" stroke-width="2"/>
-                        <path d="M150 50 L150 350" stroke="var(--border-subtle)" stroke-width="2"/>
-                        <path d="M300 50 L300 350" stroke="var(--border-subtle)" stroke-width="2"/>
-                        <path d="M450 50 L450 350" stroke="var(--border-subtle)" stroke-width="2"/>
-                        
-                        <!-- Река Нева (схематично) -->
-                        <path d="M0 150 Q150 130, 300 150 T600 150" 
+                        <!-- Река Нева (широкая, между островами) -->
+                        <path d="M0 180 Q100 160, 200 180 T400 180 Q500 180, 600 200" 
                               stroke="var(--color-primary)" 
-                              stroke-width="3" 
+                              stroke-width="25" 
                               fill="none" 
-                              opacity="0.3"/>
+                              opacity="0.3"
+                              stroke-linecap="round"/>
+                        
+                        <!-- Малая Нева -->
+                        <path d="M200 180 Q220 220, 250 280" 
+                              stroke="var(--color-primary)" 
+                              stroke-width="15" 
+                              fill="none" 
+                              opacity="0.25"
+                              stroke-linecap="round"/>
+                        
+                        <!-- Большая Невка -->
+                        <path d="M300 170 Q320 130, 350 100" 
+                              stroke="var(--color-primary)" 
+                              stroke-width="18" 
+                              fill="none" 
+                              opacity="0.25"
+                              stroke-linecap="round"/>
+                        
+                        <!-- Васильевский остров (слева) -->
+                        <path d="M10 190 L180 190 L180 280 L10 280 Z" 
+                              fill="var(--color-primary)" 
+                              opacity="0.15" 
+                              stroke="var(--border-subtle)" 
+                              stroke-width="1"
+                              rx="8"/>
+                        
+                        <!-- Петроградская сторона (справа вверху) -->
+                        <path d="M350 100 L580 100 L580 170 L350 170 Z" 
+                              fill="var(--color-primary)" 
+                              opacity="0.15" 
+                              stroke="var(--border-subtle)" 
+                              stroke-width="1"
+                              rx="8"/>
+                        
+                        <!-- Центральный район (справа внизу) -->
+                        <path d="M350 190 L580 190 L580 350 L350 350 Z" 
+                              fill="var(--color-primary)" 
+                              opacity="0.15" 
+                              stroke="var(--border-subtle)" 
+                              stroke-width="1"
+                              rx="8"/>
+                        
+                        <!-- Схематичные улицы -->
+                        <!-- Петроградка -->
+                        <path d="M380 120 L550 120" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M380 140 L550 140" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M420 100 L420 170" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M480 100 L480 170" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        
+                        <!-- Васильевский -->
+                        <path d="M50 210 L150 210" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M50 250 L150 250" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M80 190 L80 280" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M120 190 L120 280" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        
+                        <!-- Центр -->
+                        <path d="M380 210 L550 210" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M380 250 L550 250" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M380 300 L550 300" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M450 190 L450 350" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
+                        
+                        <!-- Мосты через Неву -->
+                        <path d="M200 180 L350 180" stroke="var(--border-subtle)" stroke-width="3" stroke-dasharray="5,5" opacity="0.6"/>
+                        <path d="M250 280 L350 200" stroke="var(--border-subtle)" stroke-width="3" stroke-dasharray="5,5" opacity="0.6"/>
                         
                         <!-- Здания (схематично) -->
-                        <rect x="100" y="60" width="40" height="30" fill="var(--color-primary)" opacity="0.2" rx="4"/>
-                        <rect x="200" y="220" width="50" height="35" fill="var(--color-primary)" opacity="0.2" rx="4"/>
-                        <rect x="380" y="80" width="45" height="30" fill="var(--color-primary)" opacity="0.2" rx="4"/>
-                        <rect x="480" y="250" width="55" height="40" fill="var(--color-primary)" opacity="0.2" rx="4"/>
+                        <rect x="400" y="210" width="50" height="35" fill="var(--color-primary)" opacity="0.25" rx="4"/>
+                        <rect x="480" y="230" width="60" height="40" fill="var(--color-primary)" opacity="0.25" rx="4"/>
+                        <rect x="100" y="220" width="40" height="30" fill="var(--color-primary)" opacity="0.25" rx="4"/>
+                        <rect x="450" y="120" width="45" height="30" fill="var(--color-primary)" opacity="0.25" rx="4"/>
                         
-                        <!-- Местоположение офиса -->
-                        <g class="location-marker" transform="translate(250, 180)">
+                        <!-- Местоположение офиса (Таврическая ул., 7 - Центральный район) -->
+                        <g class="location-marker" transform="translate(420, 240)">
                             <circle cx="0" cy="0" r="40" fill="var(--color-primary)" opacity="0.2">
                                 <animate attributeName="r" from="20" to="40" dur="1.5s" repeatCount="indefinite"/>
                                 <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
@@ -595,8 +651,19 @@
                             <circle cx="0" cy="-10" r="8" fill="white"/>
                         </g>
                         
-                        <!-- Подпись -->
-                        <text x="300" y="380" text-anchor="middle" fill="var(--color-text-secondary)" font-size="14">
+                        <!-- Подписи районов -->
+                        <text x="100" y="240" text-anchor="middle" fill="var(--color-text-secondary)" font-size="11" opacity="0.7">
+                            В.О.
+                        </text>
+                        <text x="460" y="140" text-anchor="middle" fill="var(--color-text-secondary)" font-size="11" opacity="0.7">
+                            Петроградка
+                        </text>
+                        <text x="480" y="260" text-anchor="middle" fill="var(--color-text-secondary)" font-size="11" opacity="0.7">
+                            Центр
+                        </text>
+                        
+                        <!-- Подпись адреса -->
+                        <text x="300" y="385" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">
                             Санкт-Петербург, Таврическая ул., 7
                         </text>
                     </svg>
