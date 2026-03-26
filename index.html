@@ -641,6 +641,46 @@
                         <path d="M200 180 L350 180" stroke="var(--border-subtle)" stroke-width="3" stroke-dasharray="5,5" opacity="0.6"/>
                         <path d="M250 280 L350 200" stroke="var(--border-subtle)" stroke-width="3" stroke-dasharray="5,5" opacity="0.6"/>
                         
+                        <!-- Движущиеся машинки (точки) -->
+                        <!-- По Петроградке -->
+                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
+                            <animateMotion dur="8s" repeatCount="indefinite" path="M380 120 L550 120"/>
+                        </circle>
+                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
+                            <animateMotion dur="7s" repeatCount="indefinite" begin="2s" path="M400 100 L400 170"/>
+                        </circle>
+                        <circle r="3" fill="var(--color-secondary)" opacity="0.8">
+                            <animateMotion dur="9s" repeatCount="indefinite" begin="1s" path="M480 100 L480 170"/>
+                        </circle>
+                        
+                        <!-- По Васильевскому -->
+                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
+                            <animateMotion dur="6s" repeatCount="indefinite" begin="0.5s" path="M30 205 L160 205"/>
+                        </circle>
+                        <circle r="3" fill="var(--color-secondary)" opacity="0.8">
+                            <animateMotion dur="7s" repeatCount="indefinite" begin="1.5s" path="M60 190 L60 280"/>
+                        </circle>
+                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
+                            <animateMotion dur="8s" repeatCount="indefinite" begin="3s" path="M120 190 L120 280"/>
+                        </circle>
+                        
+                        <!-- По Центру -->
+                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
+                            <animateMotion dur="5s" repeatCount="indefinite" path="M380 210 L550 210"/>
+                        </circle>
+                        <circle r="3" fill="var(--color-secondary)" opacity="0.8">
+                            <animateMotion dur="6s" repeatCount="indefinite" begin="0.5s" path="M380 250 L550 250"/>
+                        </circle>
+                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
+                            <animateMotion dur="7s" repeatCount="indefinite" begin="1s" path="M420 190 L420 350"/>
+                        </circle>
+                        <circle r="3" fill="var(--color-secondary)" opacity="0.8">
+                            <animateMotion dur="8s" repeatCount="indefinite" begin="2s" path="M460 190 L460 350"/>
+                        </circle>
+                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
+                            <animateMotion dur="6s" repeatCount="indefinite" begin="0.3s" path="M500 190 L500 350"/>
+                        </circle>
+                        
                         <!-- Здания (схематично) -->
                         <rect x="400" y="210" width="50" height="35" fill="var(--color-primary)" opacity="0.25" rx="4"/>
                         <rect x="480" y="230" width="60" height="40" fill="var(--color-primary)" opacity="0.25" rx="4"/>
