@@ -1062,6 +1062,25 @@ body {
         font-size: 0.8rem;
     }
     
+    /* Блок "О компании" - текст переносится */
+    #about p,
+    #about span,
+    #about strong {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    #about .contact-info div {
+        max-width: 100%;
+    }
+    
+    /* Grid с опытом - 1 колонка */
+    #about div[style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    
     .mobile-nav {
         padding: 100px 12px 24px;
     }
