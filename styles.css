@@ -1250,6 +1250,12 @@ body {
     border-bottom: 2px solid var(--border-subtle);
 }
 
+.contact-logo {
+    font-size: 3rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
 .contact-title-block {
     flex: 1;
 }
