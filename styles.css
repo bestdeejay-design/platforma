@@ -1423,25 +1423,25 @@ body {
 .social-text-link {
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: var(--color-text-secondary);
+    justify-content: center;
+    color: var(--color-primary);
     text-decoration: none;
-    font-size: 0.9rem;
-    padding: 8px 12px;
-    background: var(--gradient-hero);
+    font-size: 1.5rem;
+    padding: 12px;
+    background: transparent;
     border-radius: 8px;
     transition: all 0.2s;
 }
 
 .social-text-link:hover {
-    transform: translateX(4px);
-    color: var(--color-primary);
-    background: transparent;
+    transform: translateY(-4px);
+    color: var(--color-secondary);
+    background: var(--gradient-hero);
 }
 
 .social-text-link i {
-    font-size: 1.1rem;
-    width: 20px;
+    font-size: 1.5rem;
+    width: auto;
     text-align: center;
 }
 
