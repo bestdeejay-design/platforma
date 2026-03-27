@@ -658,6 +658,14 @@ body {
     display: block !important;
 }
 
+/* Альтернативный вариант с одним SVG и filter */
+/* .lovii-logo {
+    filter: invert(0);
+}
+[data-theme="light"] .lovii-logo {
+    filter: invert(1) hue-rotate(180deg);
+} */
+
 .lovii-title-block {
     text-align: left;
 }
