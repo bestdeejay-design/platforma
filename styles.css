@@ -1422,7 +1422,7 @@ body {
 .social-link-compact {
     width: 40px;
     height: 40px;
-    background: var(--gradient-hero);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     border-radius: 50%;
     display: flex;
     align-items: center;
