@@ -642,20 +642,20 @@ body {
 
 /* Переключение логотипов для светлой/тёмной темы */
 .lovii-logo-dark {
-    display: block;
+    display: block !important;
 }
 
 .lovii-logo-light {
-    display: none;
+    display: none !important;
 }
 
 /* Светлая тема */
 [data-theme="light"] .lovii-logo-dark {
-    display: none;
+    display: none !important;
 }
 
 [data-theme="light"] .lovii-logo-light {
-    display: block;
+    display: block !important;
 }
 
 .lovii-title-block {
