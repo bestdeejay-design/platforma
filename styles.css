@@ -1412,33 +1412,39 @@ body {
     line-height: 1.3;
 }
 
-.social-links-compact {
+/* Текстовые соцссылки */
+.social-links-text {
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    justify-content: center;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
-.social-link-compact {
-    width: 44px;
-    height: 44px;
-    background: var(--color-primary);
-    border-radius: 10px;
+.social-text-link {
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: transform 0.2s, background 0.2s;
+    gap: 10px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    background: var(--gradient-hero);
+    border-radius: 8px;
+    transition: all 0.2s;
 }
 
-.social-link-compact:hover {
-    transform: translateY(-4px);
-    background: var(--color-secondary);
+.social-text-link:hover {
+    transform: translateX(4px);
+    color: var(--color-primary);
+    background: transparent;
 }
 
-.social-link-compact i {
-    color: white;
-    font-size: 1.3rem;
+.social-text-link i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
 }
+
 
 /* Адаптация */
 @media (max-width: 1024px) {
