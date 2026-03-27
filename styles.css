@@ -640,6 +640,24 @@ body {
     object-fit: contain;
 }
 
+/* Переключение логотипов для светлой/тёмной темы */
+.lovii-logo-dark {
+    display: block;
+}
+
+.lovii-logo-light {
+    display: none;
+}
+
+/* Светлая тема */
+[data-theme="light"] .lovii-logo-dark {
+    display: none;
+}
+
+[data-theme="light"] .lovii-logo-light {
+    display: block;
+}
+
 .lovii-title-block {
     text-align: left;
 }
