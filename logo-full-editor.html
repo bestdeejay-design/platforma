@@ -748,9 +748,11 @@
                     window.location.reload(true);
                 }
                 
-                updateResult();
+                // Сначала создаём палитру и устанавливаем цвета
                 createColorMixer();
                 loadTheme();
+                // Потом обновляем результат с уже установленными цветами
+                updateResult();
             } catch (error) {
                 console.error('Ошибка инициализации:', error);
             }
