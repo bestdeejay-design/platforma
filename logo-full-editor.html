@@ -1013,27 +1013,37 @@
                     const allDoveFillOptions = doveFillContainer.querySelectorAll('.color-option');
                     const allBackpackOptions = backpackContainer.querySelectorAll('.color-option');
                     
-                    // Кликаем по кнопкам с цветами из оригинала
+                    console.log('Поиск цветов...');
+                    console.log('selectedBg:', selectedBg);
+                    console.log('selectedStroke:', selectedStroke);
+                    console.log('selectedDoveFill:', selectedDoveFill);
+                    console.log('selectedBackpack:', selectedBackpack);
+                    
+                    // Кликаем по кнопкам с цветами из оригинала - используем textContent для поиска
                     allBgOptions.forEach(opt => {
-                        if (opt.querySelector('.color-swatch').style.background === 'rgb(100, 187, 156)') { // #64bb9c
+                        if (opt.textContent.includes('Brand 500') || opt.textContent.includes('Зелёный')) {
+                            console.log('Нашёл фон, кликаем!');
                             opt.click();
                         }
                     });
                     
                     allStrokeOptions.forEach(opt => {
-                        if (opt.querySelector('.color-swatch').style.background === 'rgb(255, 255, 255)') { // #ffffff
+                        if (opt.textContent.includes('Белый')) {
+                            console.log('Нашёл обводку, кликаем!');
                             opt.click();
                         }
                     });
                     
                     allDoveFillOptions.forEach(opt => {
-                        if (opt.querySelector('.color-swatch').style.background === 'rgb(255, 255, 255)') { // #ffffff
+                        if (opt.textContent.includes('Белый')) {
+                            console.log('Нашёл голубя, кликаем!');
                             opt.click();
                         }
                     });
                     
                     allBackpackOptions.forEach(opt => {
-                        if (opt.querySelector('.color-swatch').style.background === 'rgb(123, 112, 224)') { // #7b70e0
+                        if (opt.textContent.includes('Фиолетовый')) {
+                            console.log('Нашёл рюкзак, кликаем!');
                             opt.click();
                         }
                     });
