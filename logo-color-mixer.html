@@ -80,6 +80,48 @@
             margin-bottom: 30px;
         }
 
+        @media (max-width: 1200px) {
+            .editor-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .panel-title {
+                font-size: 1.2rem;
+            }
+            
+            .mixer-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .color-options {
+                grid-template-columns: repeat(3, 1fr);
+                max-height: 200px;
+            }
+            
+            .svg-container {
+                min-height: 250px;
+                padding: 10px;
+            }
+            
+            .svg-container svg {
+                max-height: 250px;
+            }
+            
+            .controls {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .color-mixer {
             background: var(--color-card);
             padding: 20px;
@@ -287,6 +329,42 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .panel-title {
+                font-size: 1.2rem;
+            }
+            
+            .mixer-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .color-options {
+                grid-template-columns: repeat(3, 1fr);
+                max-height: 200px;
+            }
+            
+            .svg-container {
+                min-height: 250px;
+                padding: 10px;
+            }
+            
+            .svg-container svg {
+                max-height: 250px;
+            }
+            
+            .controls {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -414,69 +492,102 @@
     </div>
 
     <script>
+        // Безопасное обновление результата с проверками
         function updateResult() {
-            const bgColor = document.getElementById('bgColor').value;
-            const iconColor = document.getElementById('iconColor').value;
-            const heartFillColor = document.getElementById('heartFillColor').value;
+            try {
+                const bgColor = document.getElementById('bgColor').value;
+                const iconColor = document.getElementById('iconColor').value;
+                const heartFillColor = document.getElementById('heartFillColor').value;
 
-            // Обновляем цвет фона
-            const bgPath = document.querySelector('#resultSvg > path:first-child');
-            bgPath.setAttribute('fill', bgColor);
-
-            // Обновляем все элементы голубя (обводка)
-            const dovePaths = document.querySelectorAll('#resultSvg g path:not(#heartWithStroke):not(#heartCircle), #resultSvg g line');
-            dovePaths.forEach(path => {
-                const style = path.getAttribute('style');
-                if (style.includes('fill:none')) {
-                    // Это обводка - меняем stroke
-                    path.setAttribute('style', style.replace(/stroke:#[0-9A-Fa-f]{6}/g, `stroke:${iconColor}`));
-                } else if (style.includes('fill:')) {
-                    // Это заливка (глаз и т.д.) - меняем fill
-                    path.setAttribute('style', style.replace(/fill:#[0-9A-Fa-f]{6}/g, `fill:${iconColor}`));
+                // Обновляем цвет фона
+                const bgPath = document.querySelector('#resultSvg > path:first-child');
+                if (bgPath) {
+                    bgPath.setAttribute('fill', bgColor);
                 }
-            });
 
-            // Обновляем кружок под сердечком (в цвет обводки)
-            const circleElement = document.getElementById('heartCircle');
-            circleElement.style.fill = iconColor;
+                // Обновляем все элементы голубя (обводка)
+                const dovePaths = document.querySelectorAll('#resultSvg g path:not(#heartWithStroke):not(#heartCircle), #resultSvg g line');
+                dovePaths.forEach(path => {
+                    const style = path.getAttribute('style');
+                    if (style) {
+                        if (style.includes('fill:none')) {
+                            // Это обводка - меняем stroke
+                            path.setAttribute('style', style.replace(/stroke:#[0-9A-Fa-f]{6}/gi, `stroke:${iconColor}`));
+                        } else if (style.includes('fill:')) {
+                            // Это заливка (глаз и т.д.) - меняем fill
+                            path.setAttribute('style', style.replace(/fill:#[0-9A-Fa-f]{6}/gi, `fill:${iconColor}`));
+                        }
+                    }
+                });
 
-            // Обновляем сердечко
-            const heartPath = document.getElementById('heartWithStroke');
-            heartPath.style.fill = heartFillColor;
+                // Обновляем кружок под сердечком (в цвет обводки)
+                const circleElement = document.getElementById('heartCircle');
+                if (circleElement) {
+                    circleElement.style.fill = iconColor;
+                }
 
-            // Генерируем код
-            generateCode();
+                // Обновляем сердечко
+                const heartPath = document.getElementById('heartWithStroke');
+                if (heartPath) {
+                    heartPath.style.fill = heartFillColor;
+                }
+
+                // Генерируем код
+                generateCode();
+            } catch (error) {
+                console.error('Ошибка при обновлении результата:', error);
+            }
         }
 
         function generateCode() {
-            const svgElement = document.getElementById('resultSvg');
-            const serializer = new XMLSerializer();
-            let svgCode = serializer.serializeToString(svgElement);
-            
-            // Форматируем код
-            svgCode = svgCode.replace(/></g, '>\n<');
-            svgCode = svgCode.replace(/<path/g, '\n<path');
-            svgCode = svgCode.replace(/<circle/g, '\n<circle');
-            
-            document.getElementById('codeOutput').textContent = svgCode;
+            try {
+                const svgElement = document.getElementById('resultSvg');
+                if (!svgElement) return;
+                
+                const serializer = new XMLSerializer();
+                let svgCode = serializer.serializeToString(svgElement);
+                
+                // Форматируем код
+                svgCode = svgCode.replace(/></g, '>\n<');
+                svgCode = svgCode.replace(/<path/g, '\n<path');
+                svgCode = svgCode.replace(/<circle/g, '\n<circle');
+                
+                const codeOutput = document.getElementById('codeOutput');
+                if (codeOutput) {
+                    codeOutput.textContent = svgCode;
+                }
+            } catch (error) {
+                console.error('Ошибка генерации кода:', error);
+            }
         }
 
         function copyCode() {
-            const codeOutput = document.getElementById('codeOutput');
-            const range = document.createRange();
-            range.selectNode(codeOutput);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-            document.execCommand('copy');
-            window.getSelection().removeAllRanges();
-            alert('SVG код скопирован в буфер обмена! ✅');
+            try {
+                const codeOutput = document.getElementById('codeOutput');
+                if (!codeOutput) return;
+                
+                const range = document.createRange();
+                range.selectNode(codeOutput);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                alert('SVG код скопирован в буфер обмена! ✅');
+            } catch (error) {
+                console.error('Ошибка копирования:', error);
+                alert('Не удалось скопировать код 😞');
+            }
         }
 
         // Инициализация при загрузке
         window.onload = function() {
-            updateResult();
-            createColorMixer();
-            loadTheme();
+            try {
+                updateResult();
+                createColorMixer();
+                loadTheme();
+            } catch (error) {
+                console.error('Ошибка инициализации:', error);
+            }
         };
         
         // Переключение темы
@@ -644,61 +755,71 @@
         let selectedHeart = '#D84FC6';
         
         function createColorMixer() {
-            // Создаём колонку фонов (ВСЕ цвета из всех палитр)
-            const bgContainer = document.getElementById('bgColors');
-            const allBgColors = [
-                ...brandColors.brand, 
-                ...brandColors.lovii, 
-                ...brandColors.tochka,
-                ...additionalBgColors
-            ];
-            
-            allBgColors.forEach(item => {
-                const option = document.createElement('div');
-                option.className = 'color-option';
-                option.innerHTML = `
-                    <div class="color-swatch" style="background: ${item.bg}"></div>
-                    <span>${item.name}</span>
-                `;
-                option.onclick = () => selectBg(item.bg, option);
-                bgContainer.appendChild(option);
-            });
-            
-            // Создаём колонку обводок
-            const strokeContainer = document.getElementById('strokeColors');
-            strokeColors.forEach(item => {
-                const option = document.createElement('div');
-                option.className = 'color-option';
-                option.innerHTML = `
-                    <div class="color-swatch" style="background: ${item.color}"></div>
-                    <span>${item.name}</span>
-                `;
-                option.onclick = () => selectStroke(item.color, option);
-                strokeContainer.appendChild(option);
-            });
-            
-            // Создаём колонку сердечек
-            const heartContainer = document.getElementById('heartColors');
-            heartColors.forEach(item => {
-                const option = document.createElement('div');
-                option.className = 'color-option';
-                option.innerHTML = `
-                    <div class="color-swatch" style="background: ${item.color}"></div>
-                    <span>${item.name}</span>
-                `;
-                option.onclick = () => selectHeart(item.color, option);
-                heartContainer.appendChild(option);
-            });
-            
-            // Устанавливаем значения по умолчанию
-            setTimeout(() => {
-                const firstBg = bgContainer.children[0];
-                const firstStroke = strokeContainer.children[0];
-                const firstHeart = heartContainer.children[0];
-                if (firstBg) firstBg.click();
-                if (firstStroke) firstStroke.click();
-                if (firstHeart) firstHeart.click();
-            }, 100);
+            try {
+                // Создаём колонку фонов (ВСЕ цвета из всех палитр)
+                const bgContainer = document.getElementById('bgColors');
+                if (!bgContainer) return;
+                
+                const allBgColors = [
+                    ...brandColors.brand, 
+                    ...brandColors.lovii, 
+                    ...brandColors.tochka,
+                    ...additionalBgColors
+                ];
+                
+                allBgColors.forEach(item => {
+                    const option = document.createElement('div');
+                    option.className = 'color-option';
+                    option.innerHTML = `
+                        <div class="color-swatch" style="background: ${item.bg}"></div>
+                        <span>${item.name}</span>
+                    `;
+                    option.onclick = () => selectBg(item.bg, option);
+                    bgContainer.appendChild(option);
+                });
+                
+                // Создаём колонку обводок
+                const strokeContainer = document.getElementById('strokeColors');
+                if (!strokeContainer) return;
+                
+                strokeColors.forEach(item => {
+                    const option = document.createElement('div');
+                    option.className = 'color-option';
+                    option.innerHTML = `
+                        <div class="color-swatch" style="background: ${item.color}"></div>
+                        <span>${item.name}</span>
+                    `;
+                    option.onclick = () => selectStroke(item.color, option);
+                    strokeContainer.appendChild(option);
+                });
+                
+                // Создаём колонку сердечек
+                const heartContainer = document.getElementById('heartColors');
+                if (!heartContainer) return;
+                
+                heartColors.forEach(item => {
+                    const option = document.createElement('div');
+                    option.className = 'color-option';
+                    option.innerHTML = `
+                        <div class="color-swatch" style="background: ${item.color}"></div>
+                        <span>${item.name}</span>
+                    `;
+                    option.onclick = () => selectHeart(item.color, option);
+                    heartContainer.appendChild(option);
+                });
+                
+                // Устанавливаем значения по умолчанию
+                setTimeout(() => {
+                    const firstBg = bgContainer.children[0];
+                    const firstStroke = strokeContainer.children[0];
+                    const firstHeart = heartContainer.children[0];
+                    if (firstBg) firstBg.click();
+                    if (firstStroke) firstStroke.click();
+                    if (firstHeart) firstHeart.click();
+                }, 100);
+            } catch (error) {
+                console.error('Ошибка создания микшера:', error);
+            }
         }
         
         function selectBg(color, element) {
@@ -733,11 +854,17 @@
         }
         
         function highlightActive(element, type) {
-            // Снимаем выделение со всех кнопок этой колонки
-            const parent = element.parentElement;
-            Array.from(parent.children).forEach(child => child.classList.remove('active'));
-            // Выделяем текущую
-            element.classList.add('active');
+            try {
+                // Снимаем выделение со всех кнопок этой колонки
+                const parent = element.parentElement;
+                if (parent) {
+                    Array.from(parent.children).forEach(child => child.classList.remove('active'));
+                }
+                // Выделяем текущую
+                element.classList.add('active');
+            } catch (error) {
+                console.error('Ошибка выделения:', error);
+            }
         }
 
     </script>
