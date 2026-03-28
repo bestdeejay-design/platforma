@@ -311,6 +311,68 @@
             color: #856404;
             margin-top: 10px;
         }
+        
+        /* Стили для палитры в правой панели */
+        .color-mixer {
+            background: var(--color-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .mixer-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .mixer-column {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .mixer-title {
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+        
+        .color-option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .color-option:hover {
+            background: var(--color-border);
+        }
+        
+        .color-option.active {
+            border-color: var(--color-primary);
+            background: rgba(216, 79, 198, 0.1);
+        }
+        
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .color-option span {
+            font-size: 0.75rem;
+            color: var(--color-text);
+        }
 
         @media (max-width: 1200px) {
             .editor-grid {
@@ -493,24 +555,37 @@
                 </div>
                 
                 <h2 class="panel-title" style="margin-top: 30px;">🎨 Настройки</h2>
-                <div class="controls">
-                    <div class="control-group">
-                        <label for="bgColor">Цвет фона:</label>
-                        <input type="color" id="bgColor" value="#64bb9c" oninput="updateResult()">
-                    </div>
-                    <div class="control-group">
-                        <label for="strokeColor">Цвет обводки:</label>
-                        <input type="color" id="strokeColor" value="#ffffff" oninput="updateResult()">
-                    </div>
-                    <div class="control-group">
-                        <label for="doveFillColor">Цвет голубя:</label>
-                        <input type="color" id="doveFillColor" value="#ffffff" oninput="updateResult()">
-                    </div>
-                    <div class="control-group">
-                        <label for="backpackColor">Цвет рюкзака:</label>
-                        <input type="color" id="backpackColor" value="#7b70e0" oninput="updateResult()">
+                
+                <!-- Скрытые input для хранения значений -->
+                <div style="display: none;">
+                    <input type="color" id="bgColor" value="#64bb9c">
+                    <input type="color" id="strokeColor" value="#ffffff">
+                    <input type="color" id="doveFillColor" value="#ffffff">
+                    <input type="color" id="backpackColor" value="#7b70e0">
+                </div>
+                
+                <!-- Видимая палитра цветов -->
+                <div class="color-mixer" style="margin-top: 15px;">
+                    <div class="mixer-row">
+                        <div class="mixer-column">
+                            <h3 class="mixer-title">Фон</h3>
+                            <div class="color-grid" id="bgColors"></div>
+                        </div>
+                        <div class="mixer-column">
+                            <h3 class="mixer-title">Обводка</h3>
+                            <div class="color-grid" id="strokeColors"></div>
+                        </div>
+                        <div class="mixer-column">
+                            <h3 class="mixer-title">Голубь</h3>
+                            <div class="color-grid" id="doveFillColors"></div>
+                        </div>
+                        <div class="mixer-column">
+                            <h3 class="mixer-title">Рюкзак</h3>
+                            <div class="color-grid" id="backpackColors"></div>
+                        </div>
                     </div>
                 </div>
+                
                 <button onclick="copyCode()" style="width: 100%; margin-top: 20px;">📋 Копировать SVG</button>
             </div>
 
@@ -1003,7 +1078,10 @@
             document.getElementById('doveFillColor').value = selectedDoveFill;
             document.getElementById('backpackColor').value = selectedBackpack;
             
-            updateResult();
+            // Сначала обновляем инпуты, потом результат
+            setTimeout(() => {
+                updateResult();
+            }, 10);
         }
         
         function highlightActive(element, type) {
