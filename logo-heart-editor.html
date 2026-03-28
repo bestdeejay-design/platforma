@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактор сердечка - Голубь с рюкзаком</title>
+    <style>
+        :root {
+            --color-bg: #f5f5f5;
+            --color-card: #ffffff;
+            --color-text: #2E2A27;
+            --color-primary: #D84FC6;
+            --color-border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--color-card);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        .description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .editor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .editor-panel {
+            background: var(--color-card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .panel-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .svg-container {
+            background: #fff;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+        }
+
+        .svg-container svg {
+            max-width: 100%;
+            max-height: 500px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--color-text);
+        }
+
+        input[type="color"],
+        input[type="number"],
+        select {
+            padding: 8px;
+            border: 2px solid var(--color-border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        input[type="color"] {
+            height: 40px;
+            width: 100%;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(216, 79, 198, 0.3);
+        }
+
+        .code-output {
+            background: #1a1a1a;
+            color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .info-box strong {
+            color: #1976D2;
+        }
+
+        .position-hint {
+            display: inline-block;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #856404;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 1200px) {
+            .editor-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Редактор сердечка на рюкзаачке</h1>
+            <p class="description">
+                Инструмент для добавления обводки сердечку и помещения его в кружочек на SVG иконке голубя с рюкзаком
+            </p>
+        </header>
+
+        <div class="info-box">
+            <strong>📌 Задача:</strong> Добавить обводку для розового сердечка (#D84FC6) на рюкзаачке голубя и поместить сердечко в круглую рамку.
+        </div>
+
+        <div class="editor-grid">
+            <!-- Левая панель - Оригинал -->
+            <div class="editor-panel">
+                <h2 class="panel-title">📍 Оригинал (без изменений)</h2>
+                <div class="svg-container">
+                    <svg id="originalSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M0 54.6C0 24.5 24.5 0 54.6 0H457.4C487.5 0 512 24.5 512 54.6V457.4C512 487.5 487.5 512 457.4 512H54.6C24.5 512 0 487.5 0 457.4V54.6Z" fill="#FFFFFF"/>
+                        <g transform="translate(50, 50) scale(0.9)">
+                            <path style="fill:#2E2A27" d="m316.63,119.58c-1.45-6.9-8.22-11.32-15.11-9.87-6.9,1.45-11.32,8.22-9.87,15.12,1.45,6.9,8.22,11.32,15.12,9.87,6.9-1.45,11.32-8.22,9.87-15.12Z"/>
+                            <path style="fill:#2E2A27" d="m352.61,114.21s19.19.48,26.94,12.31c2.62,5.25,2.2,7.35-9.34,8.82-6.72.86-10.25,4.47-10.25,4.47l-7.35-25.59Z"/>
+                            <path style="fill:#2E2A27" d="m262.57,401.88l2.91,30.81s-36.95-3.82-36.95,10.67c1.55,12.09,12.42,10.33,42.41,9.93,12.63-.31,42.51,5.27,42.43-10.25-.08-14.59-25.47-10.22-28.91-10.22,0-9.88,1.91-35.26,1.91-35.26l-23.8,4.33Z"/>
+                            <path style="fill:none;stroke:#2E2A27;stroke-width:18;stroke-miterlimit:10" d="m135.39,354.84s20.1,2.43,82.63,3.46,76.48-45.47,75.44-76.48-41.34-27.39-49.61-22.22-146.24,127.64-141.07,126.6,55.98,1.55,74.41-.52c16.54,6.2,50.12,27.39,95.08,14.99,94.56-26.87,79.85-97.15,80.88-113.68s.25-135.9-.27-147.27,8.78-70.28-48.76-70.28-52.01,60.46-52.01,157.67c0,0,82.11-8.74,72.69,70.04-7.58,47.54-58.61,48.24-58.61,48.24"/>
+                            <path style="fill:none;stroke:#2E2A27;stroke-width:18;stroke-miterlimit:10" d="m128.8,246.51l-.99,47.88c-.21,10.4,8.16,18.95,18.57,18.95h35.26"/>
+                            <path style="fill:none;stroke:#2E2A27;stroke-width:18;stroke-miterlimit:10" d="m119.27,241h94.62s-1.24-49.15,16.88-49.15h21.23s-101.27-1.15-115.28,4.13-17.45,45.01-17.45,45.01Z"/>
+                            <line x1="209.41" y1="241" x2="209.41" y2="287.69" style="fill:none;stroke:#2E2A27;stroke-width:18;stroke-miterlimit:10"/>
+                            <path style="fill:#D84FC6" d="m195.36,233.69c-6.49-6.49-17-6.49-23.49,0l-2.68,2.68-2.68-2.68c-6.49-6.49-17-6.49-23.49,0-5.71,5.71-6.39,14.54-2.05,20.99,5.38,6.58,12.43,13.84,28.39,28.49l26-26c6.49-6.49,6.49-17,0-23.49Z"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="info-box">
+                    <strong>❤️ Сердечко:</strong> Розовый цвет #D84FC6, расположено на рюкзаачке голубя
+                </div>
+            </div>
+
+            <!-- Правая панель - Результат -->
+            <div class="editor-panel">
+                <h2 class="panel-title">✨ Результат (с обводкой и кружочком)</h2>
+                <div class="svg-container">
+                    <svg id="resultSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M0 54.6C0 24.5 24.5 0 54.6 0H457.4C487.5 0 512 24.5 512 54.6V457.4C512 487.5 487.5 512 457.4 512H54.6C24.5 512 0 487.5 0 457.4V54.6Z" fill="#FFFFFF"/>
+                        <g transform="translate(50, 50) scale(0.9)">
+                            <path style="fill:#2E2A27" d="m316.63,119.58c-1.45-6.9-8.22-11.32-15.11-9.87-6.9,1.45-11.32,8.22-9.87,15.12,1.45,6.9,8.22,11.32,15.12,9.87,6.9-1.45,11.32-8.22,9.87-15.12Z"/>
+                            <path style="fill:#2E2A27" d="m352.61,114.21s19.19.48,26.94,12.31c2.62,5.25,2.2,7.35-9.34,8.82-6.72.86-10.25,4.47-10.25,4.47l-7.35-25.59Z"/>
+                            <path style="fill:#2E2A27" d="m262.57,401.88l2.91,30.81s-36.95-3.82-36.95,10.67c1.55,12.09,12.42,10.33,42.41,9.93,12.63-.31,42.51,5.27,42.43-10.25-.08-14.59-25.47-10.22-28.91-10.22,0-9.88,1.91-35.26,1.91-35.26l-23.8,4.33Z"/>
+                            <path style="fill:none;stroke:#2E2A27;stroke-width:18;stroke-miterlimit:10" d="m135.39,354.84s20.1,2.43,82.63,3.46,76.48-45.47,75.44-76.48-41.34-27.39-49.61-22.22-146.24,127.64-141.07,126.6,55.98,1.55,74.41-.52c16.54,6.2,50.12,27.39,95.08,14.99,94.56-26.87,79.85-97.15,80.88-113.68s.25-135.9-.27-147.27,8.78-70.28-48.76-70.28-52.01,60.46-52.01,157.67c0,0,82.11-8.74,72.69,70.04-7.58,47.54-58.61,48.24-58.61,48.24"/>
+                            <path style="fill:none;stroke:#2E2A27;stroke-width:18;stroke-miterlimit:10" d="m128.8,246.51l-.99,47.88c-.21,10.4,8.16,18.95,18.57,18.95h35.26"/>
+                            <path style="fill:none;stroke:#2E2A27;stroke-width:18;stroke-miterlimit:10" d="m119.27,241h94.62s-1.24-49.15,16.88-49.15h21.23s-101.27-1.15-115.28,4.13-17.45,45.01-17.45,45.01Z"/>
+                            <line x1="209.41" y1="241" x2="209.41" y2="287.69" style="fill:none;stroke:#2E2A27;stroke-width:18;stroke-miterlimit:10"/>
+                            <!-- Сердечко с обводкой -->
+                            <circle id="heartCircle" cx="170" cy="252" r="42" style="fill:#2F2A27; stroke:#2E2A27; stroke-width:0"/>
+                            <path id="heartWithStroke" style="fill:#D84FC6; stroke:#2E2A27; stroke-width:0" d="m195.36,233.69c-6.49-6.49-17-6.49-23.49,0l-2.68,2.68-2.68-2.68c-6.49-6.49-17-6.49-23.49,0-5.71,5.71-6.39,14.54-2.05,20.99,5.38,6.58,12.43,13.84,28.39,28.49l26-26c6.49-6.49,6.49-17,0-23.49Z"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button onclick="updateResult()" style="flex: 1;">🔄 Обновить результат</button>
+                    <button onclick="copyCode()" style="flex: 1;">📋 Копировать SVG код</button>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button onclick="updateResult()" style="flex: 1;">🔄 Обновить результат</button>
+                    <button onclick="copyCode()" style="flex: 1;">📋 Копировать SVG код</button>
+                </div>
+
+                <div class="info-box">
+                    <strong>🎨 Настройки:</strong> Изменяйте цвета для создания нужной версии иконки. Все элементы используют один цвет обводки.
+                </div>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="bgColor">Цвет фона (квадрат):</label>
+                        <input type="color" id="bgColor" value="#FFFFFF">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="iconColor">Цвет иконки (голубь):</label>
+                        <input type="color" id="iconColor" value="#2E2A27">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="heartFillColor">Цвет сердечка:</label>
+                        <input type="color" id="heartFillColor" value="#D84FC6">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="circleFill">Цвет заливки кружочка:</label>
+                        <input type="color" id="circleFill" value="#2F2A27">
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="editor-panel">
+            <h2 class="panel-title">📝 SVG код результата:</h2>
+            <div class="code-output" id="codeOutput"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateResult() {
+            const bgColor = document.getElementById('bgColor').value;
+            const iconColor = document.getElementById('iconColor').value;
+            const heartFillColor = document.getElementById('heartFillColor').value;
+            const circleFill = document.getElementById('circleFill').value;
+
+            // Обновляем цвет фона
+            const bgPath = document.querySelector('#resultSvg > path:first-child');
+            bgPath.setAttribute('fill', bgColor);
+
+            // Обновляем все элементы голубя (обводка)
+            const dovePaths = document.querySelectorAll('#resultSvg g path[style*="fill:none"], #resultSvg g line');
+            dovePaths.forEach(path => {
+                const style = path.getAttribute('style');
+                if (style.includes('stroke:')) {
+                    path.setAttribute('style', style.replace(/stroke:#[0-9A-Fa-f]{6}/g, `stroke:${iconColor}`));
+                }
+            });
+
+            // Обновляем сердечко
+            const heartPath = document.getElementById('heartWithStroke');
+            heartPath.style.fill = heartFillColor;
+            heartPath.style.stroke = iconColor;
+
+            // Обновляем кружочек
+            const circleElement = document.getElementById('heartCircle');
+            circleElement.style.fill = circleFill;
+            circleElement.style.stroke = iconColor;
+
+            // Генерируем код
+            generateCode();
+        }
+
+        function generateCode() {
+            const svgElement = document.getElementById('resultSvg');
+            const serializer = new XMLSerializer();
+            let svgCode = serializer.serializeToString(svgElement);
+            
+            // Форматируем код
+            svgCode = svgCode.replace(/></g, '>\n<');
+            svgCode = svgCode.replace(/<path/g, '\n<path');
+            svgCode = svgCode.replace(/<circle/g, '\n<circle');
+            
+            document.getElementById('codeOutput').textContent = svgCode;
+        }
+
+        function copyCode() {
+            const codeOutput = document.getElementById('codeOutput');
+            const range = document.createRange();
+            range.selectNode(codeOutput);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert('SVG код скопирован в буфер обмена! ✅');
+        }
+
+        // Инициализация при загрузке
+        window.onload = function() {
+            updateResult();
+        };
+    </script>
+</body>
+</html>
