@@ -462,6 +462,10 @@
                             <div class="color-swatch" id="currentBackpack" style="background: #7B70E0;"></div>
                             <span style="font-size: 0.7rem;">Рюкзак</span>
                         </div>
+                        <div style="flex: 1; min-width: 80px; text-align: center;">
+                            <div class="color-swatch" id="currentHeart" style="background: #FF48C2;"></div>
+                            <span style="font-size: 0.7rem;">Сердце</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -491,6 +495,9 @@
                             <path class="cls-7" d="m253.85,223.83c0-19.64-19.66-152.27,50.29-152.61s51.45,98.18,48.47,257.34c-20.9,41.68-50.11,79.68-102.51,75.15s-59.79-18.34-80.9-18.09-57.46-2.79-59.69-4.01,35.14-32.38,35.14-32.38l107.36-92.89,41.81,11.24-9.3,64.77-5.51,13.78,40.9-33.42,11.81-33.42-18.33-38.93-36.44-14.47-23.08-2.07Z" fill="#7B70E0"/>
                             <polygon class="cls-5" points="304.14 327.87 316.91 310.3 320.68 271.02 291.37 233.13 248.68 226.58 252.47 195.92 230.77 191.22 159.46 194.89 138.16 199.71 127.81 207.29 122.25 230.37 123.98 289.84 133.81 307.8 151.88 312.71 178.75 309.95 225.95 265.86 252 250.7 283.13 255.37 296.22 275.85 297.26 304.1 287.27 327.87 284.86 337.17 304.14 327.87" fill="#FF0037"/>
                         </g>
+                        <!-- Круг и сердечко (отдельно) -->
+                        <circle id="heartCircle" class="cls-1" cx="169.2" cy="252.1" r="37.75" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="10"/>
+                        <path id="heartWithStroke" class="cls-6" d="m196.73,233.31c-6.82-6.82-17.89-6.82-24.71,0l-2.82,2.82-2.82-2.82c-6.82-6.82-17.89-6.82-24.71,0-6.01,6.01-6.73,15.3-2.16,22.09,5.66,6.92,13.08,14.57,29.87,29.98l27.35-27.35c6.82-6.82,6.82-17.89,0-24.71Z" fill="#FF48C2" fill-rule="evenodd"/>
                     </svg>
                 </div>
                 
@@ -581,9 +588,22 @@
                 
                 const backpackPocket = document.querySelector('#resultSvg #backpack .cls-5');
                 if (backpackPocket) {
-                    // Карман оставляем контрастным или делаем темнее
+                    // Карман делаем темнее на 20%
                     const darkerColor = makeColorDarker(backpackColor);
                     backpackPocket.setAttribute('fill', darkerColor);
+                }
+                
+                // Обновляем круг (cls-1)
+                const circleElement = document.getElementById('heartCircle');
+                if (circleElement) {
+                    circleElement.setAttribute('fill', doveFillColor);
+                    circleElement.setAttribute('stroke', strokeColor);
+                }
+                
+                // Обновляем сердечко (cls-6)
+                const heartElement = document.getElementById('heartWithStroke');
+                if (heartElement) {
+                    heartElement.setAttribute('fill', backpackColor);
                 }
 
                 // Генерируем код
@@ -961,6 +981,7 @@
             document.getElementById('currentStroke').style.background = selectedStroke;
             document.getElementById('currentDoveFill').style.background = selectedDoveFill;
             document.getElementById('currentBackpack').style.background = selectedBackpack;
+            document.getElementById('currentHeart').style.background = selectedBackpack; // Сердечко в цвет рюкзака
             
             // Обновляем инпуты
             document.getElementById('bgColor').value = selectedBg;
