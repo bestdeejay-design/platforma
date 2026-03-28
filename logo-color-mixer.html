@@ -534,6 +534,83 @@
             ]
         };
         
+        // Дополнительные цвета для фона (все возможные)
+        const additionalBgColors = [
+            { name: 'База', bg: '#FFFFFF' },
+            { name: 'Светлый', bg: '#F5F5F5' },
+            { name: 'Тёмный', bg: '#1A1A1A' },
+            { name: 'Ночь', bg: '#263238' },
+            { name: 'Графит', bg: '#CFD8DC' },
+            { name: 'Молоко', bg: '#FFFFFF' },
+            { name: 'Кофе', bg: '#D7CCC8' },
+            { name: 'Песок', bg: '#FFE082' },
+            { name: 'Сахара', bg: '#FFCC80' },
+            { name: 'Закат', bg: '#FFAB91' },
+            { name: 'Рассвет', bg: '#FFCC80' },
+            { name: 'Океан', bg: '#80DEEA' },
+            { name: 'Небо', bg: '#BBDEFB' },
+            { name: 'Арктика', bg: '#E1F5FE' },
+            { name: 'Горы', bg: '#B0BEC5' },
+            { name: 'Лес', bg: '#C8E6C9' },
+            { name: 'Тропики', bg: '#A5D6A7' },
+            { name: 'Мята', bg: '#E0F2F1' },
+            { name: 'Изумруд', bg: '#B9F6CA' },
+            { name: 'Шалфей', bg: '#DCEDC8' },
+            { name: 'Лайм', bg: '#DCEDC8' },
+            { name: 'Цитрус', bg: '#FFE082' },
+            { name: 'Топаз', bg: '#FFF9C4' },
+            { name: 'Жемчуг', bg: '#F5F5F5' },
+            { name: 'Серебро', bg: '#ECEFF1' },
+            { name: 'Золото', bg: '#FFECB3' },
+            { name: 'Медь', bg: '#FFCCBC' },
+            { name: 'Бронза', bg: '#FFE0B2' },
+            { name: 'Коралл', bg: '#FFCCBC' },
+            { name: 'Персик', bg: '#FFE0B2' },
+            { name: 'Лосось', bg: '#FFAB91' },
+            { name: 'Ягода', bg: '#F48FB1' },
+            { name: 'Малина', bg: '#F8BBD0' },
+            { name: 'Арбуз', bg: '#FFCDD2' },
+            { name: 'Рубин', bg: '#FFCDD2' },
+            { name: 'Вино', bg: '#F8BBD0' },
+            { name: 'Пурпур', bg: '#E1BEE7' },
+            { name: 'Аметист', bg: '#E1BEE7' },
+            { name: 'Лаванда', bg: '#EDE7F6' },
+            { name: 'Индиго', bg: '#C5CAE9' },
+            { name: 'Черника', bg: '#E8EAF6' },
+            { name: 'Сапфир', bg: '#BBDEFB' },
+            { name: 'Василёк', bg: '#90CAF9' },
+            { name: 'Море', bg: '#B3E5FC' },
+            { name: 'Бирюза', bg: '#B2DFDB' },
+            { name: 'Аквамарин', bg: '#A7FFEB' },
+            { name: 'Нефрит', bg: '#B9F6CA' },
+            { name: 'Олива', bg: '#F0F4C3' },
+            { name: 'Папоротник', bg: '#DCEDC8' },
+            { name: 'Фисташка', bg: '#F0F4C3' },
+            { name: 'Авокадо', bg: '#C5E1A5' },
+            { name: 'Лимон', bg: '#FFF59D' },
+            { name: 'Банан', bg: '#FFF9C4' },
+            { name: 'Ананас', bg: '#FFE082' },
+            { name: 'Манго', bg: '#FFCC80' },
+            { name: 'Апельсин', bg: '#FFCC80' },
+            { name: 'Мандарин', bg: '#FFB74D' },
+            { name: 'Тыква', bg: '#FFB74D' },
+            { name: 'Карамель', bg: '#FFCCBC' },
+            { name: 'Ирис', bg: '#D7CCC8' },
+            { name: 'Какао', bg: '#BCAAA4' },
+            { name: 'Шоколад', bg: '#A1887F' },
+            { name: 'Корица', bg: '#8D6E63' },
+            { name: 'Орех', bg: '#BCAAA4' },
+            { name: 'Дерево', bg: '#A1887F' },
+            { name: 'Камень', bg: '#CFD8DC' },
+            { name: 'Сталь', bg: '#B0BEC5' },
+            { name: 'Асфальт', bg: '#90A4AE' },
+            { name: 'Уголь', bg: '#546E7A' },
+            { name: 'Свинец', bg: '#78909C' },
+            { name: 'Туман', bg: '#ECEFF1' },
+            { name: 'Облако', bg: '#FAFAFA' },
+            { name: 'Дымка', bg: '#F5F5F5' }
+        ];
+        
         // Цвета для обводки и сердечка
         const strokeColors = [
             { name: 'Тёмный', color: '#2E2A27' },
@@ -567,9 +644,14 @@
         let selectedHeart = '#D84FC6';
         
         function createColorMixer() {
-            // Создаём колонку фонов (все фирменные цвета)
+            // Создаём колонку фонов (ВСЕ цвета из всех палитр)
             const bgContainer = document.getElementById('bgColors');
-            const allBgColors = [...brandColors.brand, ...brandColors.lovii, ...brandColors.tochka];
+            const allBgColors = [
+                ...brandColors.brand, 
+                ...brandColors.lovii, 
+                ...brandColors.tochka,
+                ...additionalBgColors
+            ];
             
             allBgColors.forEach(item => {
                 const option = document.createElement('div');
