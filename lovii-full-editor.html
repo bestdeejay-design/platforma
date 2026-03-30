@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎨 LOVII Logo Editor - Полный Оригинал</title>
+    <title>🎨 LOVII Logo - Все Цвета Оригинал</title>
     <style>
         :root {
             --color-bg: #ffffff;
@@ -30,7 +30,6 @@
             background: var(--color-bg);
             color: var(--color-text);
             line-height: 1.6;
-            transition: all 0.3s;
         }
 
         .container {
@@ -96,7 +95,7 @@
         }
 
         .mixer-title {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 12px;
             color: var(--color-text);
             font-weight: 600;
@@ -106,8 +105,8 @@
         .color-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            max-height: 250px;
+            gap: 6px;
+            max-height: 200px;
             overflow-y: auto;
             padding: 4px;
         }
@@ -115,13 +114,12 @@
         .color-option {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 4px;
+            gap: 4px;
+            padding: 3px;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s;
             border: 2px solid transparent;
-            min-width: 0;
         }
 
         .color-option:hover {
@@ -134,20 +132,19 @@
         }
 
         .color-swatch {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 3px;
             border: 1px solid rgba(0,0,0,0.2);
             flex-shrink: 0;
         }
 
         .color-option span {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: var(--color-text);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-weight: 500;
         }
 
         button {
@@ -159,7 +156,6 @@
             font-size: 1rem;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.2s;
             width: 100%;
             margin-top: 20px;
         }
@@ -175,7 +171,7 @@
             padding: 20px;
             border-radius: 8px;
             font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             overflow-x: auto;
             white-space: pre-wrap;
             word-break: break-all;
@@ -194,12 +190,6 @@
             cursor: pointer;
             z-index: 1000;
         }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -207,11 +197,10 @@
     
     <div class="container">
         <header>
-            <h1>🎨 Редактор LOVII Logo - Полный Оригинал</h1>
-            <p>Оригинальный SVG из var-_LOVI_LOGO_ShRIFT-09.svg</p>
+            <h1>🎨 LOVII Logo Editor - Все Цвета</h1>
+            <p>Управление каждым классом SVG отдельно</p>
         </header>
 
-        <!-- Панель результата -->
         <div class="panel">
             <h2 class="panel-title">✨ Результат</h2>
             <div class="svg-container">
@@ -261,42 +250,52 @@
                 </svg>
             </div>
 
-            <!-- Скрытые input для хранения значений -->
+            <!-- Скрытые input для всех 8 классов -->
             <div style="display: none;">
-                <input type="color" id="bgColor" value="#fff7f9">
-                <input type="color" id="doveColor" value="#dce3e8">
-                <input type="color" id="strokeColor" value="#2b2b2b">
-                <input type="color" id="textColor" value="#2b2b2b">
-                <input type="color" id="heartColor" value="#f64a8a">
-                <input type="color" id="accentColor" value="#ff8c42">
+                <input type="color" id="cls1Color" value="#fff7f9">
+                <input type="color" id="cls2Color" value="#2b2b2b">
+                <input type="color" id="cls3Color" value="#dce3e8">
+                <input type="color" id="cls4Color" value="#2b2b2b">
+                <input type="color" id="cls5Color" value="#ff8c42">
+                <input type="color" id="cls6Color" value="#f64a8a">
+                <input type="color" id="cls7Color" value="#2b2b2b">
+                <input type="color" id="cls8Color" value="#2b2b2b">
             </div>
 
-            <!-- Палитра цветов -->
+            <!-- Палитра для КАЖДОГО класса -->
             <div class="color-mixer">
                 <div class="mixer-row">
                     <div class="mixer-column">
-                        <h3 class="mixer-title">Фон (cls-1)</h3>
-                        <div class="color-grid" id="bgColors"></div>
+                        <h3 class="mixer-title">cls-1<br><small>Фон</small></h3>
+                        <div class="color-grid" id="cls1Colors"></div>
                     </div>
                     <div class="mixer-column">
-                        <h3 class="mixer-title">Голубь (cls-3)</h3>
-                        <div class="color-grid" id="doveColors"></div>
+                        <h3 class="mixer-title">cls-2<br><small>Текст</small></h3>
+                        <div class="color-grid" id="cls2Colors"></div>
                     </div>
                     <div class="mixer-column">
-                        <h3 class="mixer-title">Обводка (cls-7,8)</h3>
-                        <div class="color-grid" id="strokeColors"></div>
+                        <h3 class="mixer-title">cls-3<br><small>Голубь</small></h3>
+                        <div class="color-grid" id="cls3Colors"></div>
                     </div>
                     <div class="mixer-column">
-                        <h3 class="mixer-title">Текст (cls-2)</h3>
-                        <div class="color-grid" id="textColors"></div>
+                        <h3 class="mixer-title">cls-4<br><small>Детали</small></h3>
+                        <div class="color-grid" id="cls4Colors"></div>
                     </div>
                     <div class="mixer-column">
-                        <h3 class="mixer-title">Сердце (cls-6)</h3>
-                        <div class="color-grid" id="heartColors"></div>
+                        <h3 class="mixer-title">cls-5<br><small>Акцент</small></h3>
+                        <div class="color-grid" id="cls5Colors"></div>
                     </div>
                     <div class="mixer-column">
-                        <h3 class="mixer-title">Акцент (cls-5)</h3>
-                        <div class="color-grid" id="accentColors"></div>
+                        <h3 class="mixer-title">cls-6<br><small>Сердце</small></h3>
+                        <div class="color-grid" id="cls6Colors"></div>
+                    </div>
+                    <div class="mixer-column">
+                        <h3 class="mixer-title">cls-7<br><small>Обводка 1</small></h3>
+                        <div class="color-grid" id="cls7Colors"></div>
+                    </div>
+                    <div class="mixer-column">
+                        <h3 class="mixer-title">cls-8<br><small>Обводка 2</small></h3>
+                        <div class="color-grid" id="cls8Colors"></div>
                     </div>
                 </div>
             </div>
@@ -304,7 +303,6 @@
             <button onclick="copyCode()">📋 Копировать SVG код</button>
         </div>
 
-        <!-- Код -->
         <div class="panel">
             <h2 class="panel-title">📝 SVG код:</h2>
             <div class="code-output" id="codeOutput"></div>
@@ -312,49 +310,32 @@
     </div>
 
     <script>
-        // Обновление результата - ПОЛНАЯ ВЕРСИЯ
+        // Обновление ВСЕХ цветов
         function updateResult() {
-            const bgColor = document.getElementById('bgColor').value;
-            const doveColor = document.getElementById('doveColor').value;
-            const strokeColor = document.getElementById('strokeColor').value;
-            const textColor = document.getElementById('textColor').value;
-            const heartColor = document.getElementById('heartColor').value;
-            const accentColor = document.getElementById('accentColor').value;
+            const colors = {
+                'cls-1': document.getElementById('cls1Color').value,
+                'cls-2': document.getElementById('cls2Color').value,
+                'cls-3': document.getElementById('cls3Color').value,
+                'cls-4': document.getElementById('cls4Color').value,
+                'cls-5': document.getElementById('cls5Color').value,
+                'cls-6': document.getElementById('cls6Color').value,
+                'cls-7': document.getElementById('cls7Color').value,
+                'cls-8': document.getElementById('cls8Color').value
+            };
 
-            // cls-1 - Фон
-            document.querySelectorAll('#resultSvg .cls-1').forEach(el => {
-                el.setAttribute('fill', bgColor);
-            });
-
-            // cls-3 - Голубь/силуэт
-            document.querySelectorAll('#resultSvg .cls-3').forEach(el => {
-                el.setAttribute('fill', doveColor);
-            });
-
-            // cls-7, cls-8 - Обводка
-            document.querySelectorAll('#resultSvg .cls-7, #resultSvg .cls-8').forEach(el => {
-                el.setAttribute('stroke', strokeColor);
-            });
-
-            // cls-2 - Текст
-            document.querySelectorAll('#resultSvg .cls-2').forEach(el => {
-                el.setAttribute('fill', textColor);
-            });
-
-            // cls-4 - Детали (сердце контур + элементы)
-            document.querySelectorAll('#resultSvg .cls-4').forEach(el => {
-                el.setAttribute('fill', strokeColor);
-            });
-
-            // cls-6 - Сердечко
-            document.querySelectorAll('#resultSvg .cls-6').forEach(el => {
-                el.setAttribute('fill', heartColor);
-            });
-
-            // cls-5 - Акценты
-            document.querySelectorAll('#resultSvg .cls-5').forEach(el => {
-                el.setAttribute('fill', accentColor);
-            });
+            // Для каждого класса
+            for (const [cls, color] of Object.entries(colors)) {
+                const elements = document.querySelectorAll(`#resultSvg .${cls}`);
+                elements.forEach(el => {
+                    // Если это обводка (cls-7, cls-8)
+                    if (cls === 'cls-7' || cls === 'cls-8') {
+                        el.setAttribute('stroke', color);
+                    } else {
+                        // Если это заливка
+                        el.setAttribute('fill', color);
+                    }
+                });
+            }
 
             generateCode();
         }
@@ -386,162 +367,90 @@
             alert('SVG код скопирован! ✅');
         }
 
-        // Цветовые палитры
-        const bgColors = [
+        // Общие цвета для всех классов
+        const allColors = [
+            { name: 'Оригинал', color: null },
             { name: 'Белый', color: '#FFFFFF' },
-            { name: 'Розовый', color: '#FFF7F9' },
-            { name: 'Светло-серый', color: '#F5F5F5' },
-            { name: 'Чёрный', color: '#1A1A1A' },
-            { name: 'Тёмный', color: '#2B2B2B' },
-            { name: 'Кремовый', color: '#FFFDD0' }
-        ];
-
-        const doveColors = [
-            { name: 'Голубой', color: '#DCE3E8' },
-            { name: 'Белый', color: '#FFFFFF' },
-            { name: 'Светло-серый', color: '#E0E0E0' },
-            { name: 'Бежевый', color: '#F5F5DC' },
-            { name: 'Небесный', color: '#87CEEB' },
-            { name: 'Лаванда', color: '#E6E6FA' }
-        ];
-
-        const strokeColors = [
-            { name: 'Тёмный', color: '#2B2B2B' },
             { name: 'Чёрный', color: '#000000' },
-            { name: 'Серый', color: '#666666' },
-            { name: 'Синий', color: '#1E3A5F' },
-            { name: 'Коричневый', color: '#4A3728' },
-            { name: 'Зелёный', color: '#2D5016' }
-        ];
-
-        const textColors = [
             { name: 'Тёмный', color: '#2B2B2B' },
-            { name: 'Чёрный', color: '#000000' },
-            { name: 'Серый', color: '#333333' },
-            { name: 'Синий', color: '#1E3A5F' },
-            { name: 'Тёмно-синий', color: '#0F2D52' },
-            { name: 'Бордовый', color: '#800020' }
-        ];
-
-        const heartColors = [
-            { name: 'Франц. розовый', color: '#F64A8A' },
+            { name: 'Серый', color: '#808080' },
             { name: 'Красный', color: '#FF0000' },
             { name: 'Розовый', color: '#FF69B4' },
-            { name: 'Оранжевый', color: '#FF8C42' },
-            { name: 'Малиновый', color: '#DC143C' },
-            { name: 'Коралловый', color: '#FF6F61' }
-        ];
-
-        const accentColors = [
+            { name: 'Франц. розовый', color: '#F64A8A' },
             { name: 'Оранжевый', color: '#FF8C42' },
             { name: 'Золотой', color: '#FFD700' },
-            { name: 'Персиковый', color: '#FFCBA4' },
-            { name: 'Коралл', color: '#FF7F50' },
             { name: 'Жёлтый', color: '#FFEB3B' },
-            { name: 'Лайм', color: '#CDDC39' }
+            { name: 'Зелёный', color: '#4CAF50' },
+            { name: 'Голубой', color: '#87CEEB' },
+            { name: 'Синий', color: '#2196F3' },
+            { name: 'Фиолетовый', color: '#9C27B0' },
+            { name: 'Бежевый', color: '#F5F5DC' },
+            { name: 'Коричневый', color: '#8B4513' },
+            { name: 'Бирюза', color: '#40E0D0' },
+            { name: 'Лайм', color: '#CDDC39' },
+            { name: 'Коралл', color: '#FF7F50' }
         ];
 
-        // Текущие цвета
-        let selectedBg = '#fff7f9';
-        let selectedDove = '#dce3e8';
-        let selectedStroke = '#2b2b2b';
-        let selectedText = '#2b2b2b';
-        let selectedHeart = '#f64a8a';
-        let selectedAccent = '#ff8c42';
+        // Оригинальные цвета для каждого класса
+        const originalColors = {
+            'cls1': '#fff7f9',
+            'cls2': '#2b2b2b',
+            'cls3': '#dce3e8',
+            'cls4': '#2b2b2b',
+            'cls5': '#ff8c42',
+            'cls6': '#f64a8a',
+            'cls7': '#2b2b2b',
+            'cls8': '#2b2b2b'
+        };
+
+        // Текущие выбранные цвета
+        let selectedColors = { ...originalColors };
 
         function createColorMixer() {
-            const containers = {
-                bgColors: document.getElementById('bgColors'),
-                doveColors: document.getElementById('doveColors'),
-                strokeColors: document.getElementById('strokeColors'),
-                textColors: document.getElementById('textColors'),
-                heartColors: document.getElementById('heartColors'),
-                accentColors: document.getElementById('accentColors')
-            };
+            for (let i = 1; i <= 8; i++) {
+                const container = document.getElementById(`cls${i}Colors`);
+                if (!container) continue;
 
-            const colors = {
-                bgColors, doveColors, strokeColors, textColors, heartColors, accentColors
-            };
-
-            Object.keys(containers).forEach(key => {
-                if (!containers[key]) return;
-                
-                colors[key].forEach(item => {
+                allColors.forEach(item => {
                     const option = document.createElement('div');
                     option.className = 'color-option';
+                    
+                    const colorValue = item.color || originalColors[`cls${i}`];
                     option.innerHTML = `
-                        <div class="color-swatch" style="background: ${item.color}"></div>
+                        <div class="color-swatch" style="background: ${colorValue}"></div>
                         <span>${item.name}</span>
                     `;
                     
-                    option.onclick = () => selectColor(key, item.color, option);
-                    containers[key].appendChild(option);
+                    option.onclick = () => selectColor(i, colorValue, option);
+                    container.appendChild(option);
                 });
-            });
+            }
 
-            // Выбрать цвета по умолчанию
+            // Выбрать оригинальные цвета по умолчанию
             setTimeout(() => {
-                const defaults = [
-                    { key: 'bgColors', color: '#fff7f9' },
-                    { key: 'doveColors', color: '#dce3e8' },
-                    { key: 'strokeColors', color: '#2b2b2b' },
-                    { key: 'textColors', color: '#2b2b2b' },
-                    { key: 'heartColors', color: '#f64a8a' },
-                    { key: 'accentColors', color: '#ff8c42' }
-                ];
-
-                defaults.forEach(({key, color}) => {
-                    const options = document.getElementById(key)?.querySelectorAll('.color-option');
-                    options?.forEach(opt => {
-                        if (opt.querySelector('.color-swatch').style.background.toLowerCase() === rgbToHex(color)) {
-                            opt.click();
-                        }
-                    });
-                });
+                for (let i = 1; i <= 8; i++) {
+                    const container = document.getElementById(`cls${i}Colors`);
+                    if (container && container.children.length > 0) {
+                        selectColor(i, originalColors[`cls${i}`], container.children[0]);
+                    }
+                }
             }, 100);
         }
 
-        function rgbToHex(color) {
-            if (color.startsWith('#')) return color.toLowerCase();
-            const match = color.match(/\d+/g);
-            if (!match) return color;
-            return '#' + match.slice(0, 3).map(x => {
-                const hex = parseInt(x).toString(16);
-                return hex.length === 1 ? '0' + hex : hex;
-            }).join('');
-        }
-
-        function selectColor(type, color, element) {
-            switch(type) {
-                case 'bgColors': selectedBg = color; break;
-                case 'doveColors': selectedDove = color; break;
-                case 'strokeColors': selectedStroke = color; break;
-                case 'textColors': selectedText = color; break;
-                case 'heartColors': selectedHeart = color; break;
-                case 'accentColors': selectedAccent = color; break;
-            }
+        function selectColor(clsNum, color, element) {
+            selectedColors[`cls${clsNum}`] = color;
             
-            updateVisuals();
-            highlightActive(element);
-        }
-
-        function updateVisuals() {
-            document.getElementById('bgColor').value = selectedBg;
-            document.getElementById('doveColor').value = selectedDove;
-            document.getElementById('strokeColor').value = selectedStroke;
-            document.getElementById('textColor').value = selectedText;
-            document.getElementById('heartColor').value = selectedHeart;
-            document.getElementById('accentColor').value = selectedAccent;
+            // Обновить input
+            document.getElementById(`cls${clsNum}Color`).value = color;
             
-            setTimeout(() => updateResult(), 10);
-        }
-
-        function highlightActive(element) {
+            // Подсветка активного
             const parent = element.parentElement;
             if (parent) {
                 Array.from(parent.children).forEach(child => child.classList.remove('active'));
             }
             element.classList.add('active');
+            
+            setTimeout(() => updateResult(), 10);
         }
 
         function toggleTheme() {
