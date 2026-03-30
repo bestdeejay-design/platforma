@@ -480,6 +480,49 @@
             setTimeout(() => updateResult(), 10);
         }
 
+        // Принудительно выделить правильные цвета при загрузке
+        function highlightDefaultColors() {
+            for (let i = 1; i <= 8; i++) {
+                const currentColor = originalColors[`cls${i}`];
+                const container = document.getElementById(`cls${i}Colors`);
+                if (!container) continue;
+                
+                // Найти и выделить правильный цвет
+                Array.from(container.children).forEach(option => {
+                    const swatch = option.querySelector('.color-swatch');
+                    if (swatch) {
+                        const optionColor = swatch.style.background.replace(/\s/g, '').toLowerCase();
+                        const targetColor = currentColor.toLowerCase();
+                        
+                        // Сравниваем цвета
+                        if (optionColor === targetColor || 
+                            rgbToHex(optionColor) === targetColor ||
+                            optionColor === hexToRgb(targetColor)) {
+                            // Снять выделение со всех
+                            Array.from(container.children).forEach(c => c.classList.remove('active'));
+                            // Выделить текущий
+                            option.classList.add('active');
+                        }
+                    }
+                });
+            }
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? `rgb(${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)})` : null;
+        }
+
+        function rgbToHex(rgb) {
+            if (rgb.startsWith('#')) return rgb;
+            const match = rgb.match(/\d+/g);
+            if (!match) return rgb;
+            return '#' + match.slice(0, 3).map(x => {
+                const hex = parseInt(x).toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+        }
+
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
@@ -492,7 +535,12 @@
             createColorMixer();
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
-            updateResult();
+            
+            // Принудительно выделить цвета по умолчанию
+            setTimeout(() => {
+                highlightDefaultColors();
+                updateResult();
+            }, 100);
         };
     </script>
 </body>
