@@ -440,29 +440,8 @@
                 });
             }
 
-            // Выбрать правильные цвета по умолчанию после создания
-            setTimeout(() => {
-                for (let i = 1; i <= 8; i++) {
-                    const currentColor = originalColors[`cls${i}`];
-                    const container = document.getElementById(`cls${i}Colors`);
-                    if (!container) continue;
-                    
-                    // Найти и выделить правильный цвет
-                    Array.from(container.children).forEach((option, index) => {
-                        const swatch = option.querySelector('.color-swatch');
-                        if (swatch) {
-                            const optionColor = swatch.style.background.toLowerCase();
-                            if (optionColor === currentColor.toLowerCase()) {
-                                option.classList.add('active');
-                                console.log(`cls${i}: выбран ${optionColor}`);
-                            }
-                        }
-                    });
-                }
-                
-                // Обновить SVG с правильными цветами
-                updateResult();
-            }, 50);
+            // Сразу после создания выделить правильные цвета
+            highlightDefaultColors();
         }
 
         function selectColor(clsNum, color, element) {
@@ -537,11 +516,8 @@
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             
-            // Принудительно выделить цвета по умолчанию
-            setTimeout(() => {
-                highlightDefaultColors();
-                updateResult();
-            }, 100);
+            // Обновить SVG
+            setTimeout(() => updateResult(), 50);
         };
     </script>
 </body>
