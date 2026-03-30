@@ -467,12 +467,7 @@
             const computedStyle = getComputedStyle(document.documentElement);
             let bgColor = computedStyle.getPropertyValue('--color-bg').trim() || '#ffffff';
             
-            // Для JPG всегда белый фон
-            if (format === 'jpeg') {
-                bgColor = '#ffffff';
-            }
-            
-            // Закрасить фон
+            // Закрасить фон (и PNG и JPG используют цвет темы)
             ctx.fillStyle = bgColor;
             ctx.fillRect(0, 0, canvasWidth, canvasHeight);
             
