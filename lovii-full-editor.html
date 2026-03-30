@@ -341,6 +341,9 @@
                 <button onclick="downloadPNG()" style="flex: 1; margin-top: 0;">🖼️ Скачать PNG</button>
                 <button onclick="downloadJPG()" style="flex: 1; margin-top: 0;">📷 Скачать JPG</button>
             </div>
+            
+            <!-- Кнопка экспорта иконки -->
+            <button onclick="downloadIcon()" style="margin-top: 15px;">🎯 Скачать иконку 1080×1080</button>
         </div>
 
         <div class="panel">
@@ -427,6 +430,71 @@
             link.click();
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
+        }
+
+        // Скачать иконку 1080x1080
+        function downloadIcon() {
+            const svgElement = document.getElementById('resultSvg');
+            if (!svgElement) return;
+            
+            const serializer = new XMLSerializer();
+            let svgCode = serializer.serializeToString(svgElement);
+            
+            // Размер иконки
+            const iconSize = 1080;
+            
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = iconSize;
+            canvas.height = iconSize;
+            
+            // Определить цвет фона из текущей темы
+            const computedStyle = getComputedStyle(document.documentElement);
+            let bgColor = computedStyle.getPropertyValue('--color-bg').trim() || '#ffffff';
+            
+            // Закрасить фон
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, iconSize, iconSize);
+            
+            // Создать изображение из SVG
+            const img = new Image();
+            const svgBlob = new Blob([svgCode], {type: 'image/svg+xml;charset=utf-8'});
+            const url = URL.createObjectURL(svgBlob);
+            
+            img.onload = function() {
+                // Вычислить размеры для центрирования иконки
+                // Иконка занимает примерно левую часть (до текста)
+                const viewBox = svgElement.getAttribute('viewBox').split(' ');
+                const svgWidth = parseFloat(viewBox[2]);
+                const svgHeight = parseFloat(viewBox[3]);
+                
+                // Иконка примерно 512px шириной из 2443px общей ширины
+                const iconWidth = 512;
+                const scale = (iconSize - 40) / iconWidth; // -40 для отступов
+                
+                const scaledWidth = iconWidth * scale;
+                const scaledHeight = svgHeight * scale;
+                
+                // Центрировать по вертикали
+                const x = 20; // Небольшой отступ слева
+                const y = (iconSize - scaledHeight) / 2;
+                
+                ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
+                URL.revokeObjectURL(url);
+                
+                // Конвертировать в PNG и скачать
+                canvas.toBlob(function(blob) {
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'lovii-icon-1080.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }, 'image/png', 0.95);
+            };
+            
+            img.src = url;
         }
 
         // Скачать PNG
