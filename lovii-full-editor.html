@@ -808,17 +808,23 @@
                 const container = document.getElementById(`cls${i}Colors`);
                 if (!container) continue;
                 
+                const targetColor = currentColor.toLowerCase();
+                
                 // Найти и выделить правильный цвет
                 Array.from(container.children).forEach(option => {
                     const swatch = option.querySelector('.color-swatch');
                     if (swatch) {
-                        const optionColor = swatch.style.background.replace(/\s/g, '').toLowerCase();
-                        const targetColor = currentColor.toLowerCase();
+                        // Получить цвет из inline стиля
+                        let optionColor = swatch.style.backgroundColor || swatch.style.background;
+                        
+                        // Конвертировать в HEX для сравнения
+                        if (optionColor.startsWith('rgb')) {
+                            optionColor = rgbToHex(optionColor);
+                        }
+                        optionColor = optionColor.replace(/\s/g, '').toLowerCase();
                         
                         // Сравниваем цвета
-                        if (optionColor === targetColor || 
-                            rgbToHex(optionColor) === targetColor ||
-                            optionColor === hexToRgb(targetColor)) {
+                        if (optionColor === targetColor) {
                             // Снять выделение со всех
                             Array.from(container.children).forEach(c => c.classList.remove('active'));
                             // Выделить текущий
