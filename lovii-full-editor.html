@@ -209,15 +209,18 @@
         }
 
         .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
             padding: 10px 15px;
             background: var(--color-bg);
             border: 2px solid var(--color-border);
             border-radius: 8px;
             cursor: pointer;
-            z-index: 1000;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
