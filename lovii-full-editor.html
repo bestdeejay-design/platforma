@@ -227,11 +227,11 @@
 <body>
     <div class="container">
         <header>
-            <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <h1>🎨 LOVII Logo Editor - Все Цвета</h1>
                 <button class="theme-toggle" onclick="toggleTheme()">🌓 Тема</button>
             </div>
-            <p style="width: 100%; margin-top: 10px; text-align: center;">Управление каждым классом SVG отдельно</p>
+            <p style="margin-top: 10px;">Управление каждым классом SVG отдельно</p>
         </header>
 
         <div class="panel">
@@ -463,11 +463,18 @@
             canvas.width = canvasWidth;
             canvas.height = canvasHeight;
             
-            // Для JPG - белый фон
+            // Определить цвет фона из текущей темы
+            const computedStyle = getComputedStyle(document.documentElement);
+            let bgColor = computedStyle.getPropertyValue('--color-bg').trim() || '#ffffff';
+            
+            // Для JPG всегда белый фон
             if (format === 'jpeg') {
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+                bgColor = '#ffffff';
             }
+            
+            // Закрасить фон
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
             
             // Создать изображение из SVG
             const img = new Image();
