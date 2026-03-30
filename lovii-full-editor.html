@@ -301,6 +301,13 @@
             </div>
 
             <button onclick="copyCode()">📋 Копировать SVG код</button>
+            
+            <!-- Кнопки экспорта -->
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <button onclick="downloadSVG()" style="flex: 1; margin-top: 0;">💾 Скачать SVG</button>
+                <button onclick="downloadPNG()" style="flex: 1; margin-top: 0;">🖼️ Скачать PNG</button>
+                <button onclick="downloadJPG()" style="flex: 1; margin-top: 0;">📷 Скачать JPG</button>
+            </div>
         </div>
 
         <div class="panel">
@@ -368,6 +375,84 @@
             document.execCommand('copy');
             window.getSelection().removeAllRanges();
             alert('SVG код скопирован! ✅');
+        }
+
+        // Скачать SVG
+        function downloadSVG() {
+            const svgElement = document.getElementById('resultSvg');
+            if (!svgElement) return;
+            
+            const serializer = new XMLSerializer();
+            let svgCode = serializer.serializeToString(svgElement);
+            
+            const blob = new Blob([svgCode], {type: 'image/svg+xml;charset=utf-8'});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'lovii-logo.svg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        // Скачать PNG
+        function downloadPNG() {
+            downloadRaster('png', 'lovii-logo.png');
+        }
+
+        // Скачать JPG
+        function downloadJPG() {
+            downloadRaster('jpeg', 'lovii-logo.jpg');
+        }
+
+        // Конвертация в растр (PNG/JPG)
+        function downloadRaster(format, filename) {
+            const svgElement = document.getElementById('resultSvg');
+            if (!svgElement) return;
+            
+            const serializer = new XMLSerializer();
+            let svgCode = serializer.serializeToString(svgElement);
+            
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Установить размер канваса
+            const viewBox = svgElement.getAttribute('viewBox').split(' ');
+            const width = parseFloat(viewBox[2]);
+            const height = parseFloat(viewBox[3]);
+            
+            // Увеличить разрешение для качества
+            const scale = 2;
+            canvas.width = width * scale;
+            canvas.height = height * scale;
+            ctx.scale(scale, scale);
+            
+            // Для JPG - белый фон
+            if (format === 'jpeg') {
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, width, height);
+            }
+            
+            const img = new Image();
+            const svgBlob = new Blob([svgCode], {type: 'image/svg+xml;charset=utf-8'});
+            const url = URL.createObjectURL(svgBlob);
+            
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0);
+                URL.revokeObjectURL(url);
+                
+                canvas.toBlob(function(blob) {
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }, `image/${format}`, 0.95);
+            };
+            
+            img.src = url;
         }
 
         // Общие цвета для всех классов
