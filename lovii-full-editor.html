@@ -323,24 +323,19 @@
                 'cls-8': document.getElementById('cls8Color').value
             };
 
-            console.log('Updating colors:', colors);
-
             // Для каждого класса
             for (const [cls, color] of Object.entries(colors)) {
                 const elements = document.querySelectorAll(`#resultSvg .${cls}`);
-                console.log(`${cls}: ${elements.length} elements, color: ${color}`);
                 
                 elements.forEach(el => {
-                    // Проверяем есть ли stroke в стилях
-                    const hasStroke = el.getAttribute('stroke') !== null || 
-                                     (el.classList.contains('cls-7') || el.classList.contains('cls-8'));
-                    
-                    if (hasStroke) {
+                    // Если это обводка (cls-7, cls-8)
+                    if (cls === 'cls-7' || cls === 'cls-8') {
+                        el.style.stroke = color;
                         el.setAttribute('stroke', color);
-                        console.log(`  Set stroke ${color} for ${cls}`);
                     } else {
+                        // Если это заливка
+                        el.style.fill = color;
                         el.setAttribute('fill', color);
-                        console.log(`  Set fill ${color} for ${cls}`);
                     }
                 });
             }
@@ -401,7 +396,7 @@
 
         // Оригинальные цвета для каждого класса
         const originalColors = {
-            'cls1': '#fff7f9',
+            'cls1': '#ffffff',
             'cls2': '#2b2b2b',
             'cls3': '#dce3e8',
             'cls4': '#2b2b2b',
