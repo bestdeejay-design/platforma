@@ -323,16 +323,24 @@
                 'cls-8': document.getElementById('cls8Color').value
             };
 
+            console.log('Updating colors:', colors);
+
             // Для каждого класса
             for (const [cls, color] of Object.entries(colors)) {
                 const elements = document.querySelectorAll(`#resultSvg .${cls}`);
+                console.log(`${cls}: ${elements.length} elements, color: ${color}`);
+                
                 elements.forEach(el => {
-                    // Если это обводка (cls-7, cls-8)
-                    if (cls === 'cls-7' || cls === 'cls-8') {
+                    // Проверяем есть ли stroke в стилях
+                    const hasStroke = el.getAttribute('stroke') !== null || 
+                                     (el.classList.contains('cls-7') || el.classList.contains('cls-8'));
+                    
+                    if (hasStroke) {
                         el.setAttribute('stroke', color);
+                        console.log(`  Set stroke ${color} for ${cls}`);
                     } else {
-                        // Если это заливка
                         el.setAttribute('fill', color);
+                        console.log(`  Set fill ${color} for ${cls}`);
                     }
                 });
             }
