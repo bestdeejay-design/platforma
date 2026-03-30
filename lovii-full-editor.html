@@ -856,6 +856,26 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            
+            // При смене темы меняем цвет текста (cls-2)
+            if (newTheme === 'dark') {
+                // Тёмная тема - белый текст
+                selectColorForTheme(2, '#ffffff');
+            } else {
+                // Светлая тема - чёрный текст
+                selectColorForTheme(2, '#000000');
+            }
+        }
+
+        // Выбрать цвет для темы (без обновления UI выделения)
+        function selectColorForTheme(clsNum, color) {
+            selectedColors[`cls${clsNum}`] = color;
+            
+            // Обновить input
+            document.getElementById(`cls${clsNum}Color`).value = color;
+            
+            // Обновить SVG
+            updateResult();
         }
 
         window.onload = function() {
