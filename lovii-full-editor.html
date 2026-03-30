@@ -212,7 +212,7 @@
                             .cls-7, .cls-8 { fill: none; stroke: #2b2b2b; stroke-miterlimit: 10; }
                             .cls-3 { fill: #dce3e8; }
                             .cls-4 { fill: #2b2b2b; }
-                            .cls-5 { fill: #ff8c42; }
+                            .cls-5 { fill: #ffffff; }
                             .cls-6 { fill: #f64a8a; fill-rule: evenodd; }
                             .cls-8 { stroke-width: 15px; }
                         </style>
@@ -256,7 +256,7 @@
                 <input type="color" id="cls2Color" value="#2b2b2b">
                 <input type="color" id="cls3Color" value="#dce3e8">
                 <input type="color" id="cls4Color" value="#2b2b2b">
-                <input type="color" id="cls5Color" value="#ff8c42">
+                <input type="color" id="cls5Color" value="#ffffff">
                 <input type="color" id="cls6Color" value="#f64a8a">
                 <input type="color" id="cls7Color" value="#2b2b2b">
                 <input type="color" id="cls8Color" value="#2b2b2b">
@@ -372,7 +372,7 @@
 
         // Общие цвета для всех классов
         const allColors = [
-            { name: 'Оригинал', color: null },
+            { name: 'Оригинал', color: '#7e90c2' },
             { name: 'Белый', color: '#FFFFFF' },
             { name: 'Чёрный', color: '#000000' },
             { name: 'Ультра-чёрный', color: '#0A0A0A' },
@@ -385,6 +385,7 @@
             { name: 'Красный', color: '#FF0000' },
             { name: 'Розовый', color: '#FF69B4' },
             { name: 'Франц. розовый', color: '#F64A8A' },
+            { name: 'Коралл. красный', color: '#CC4E5C' },
             { name: 'Оранжевый', color: '#FF8C42' },
             { name: 'Золотой', color: '#FFD700' },
             { name: 'Жёлтый', color: '#FFEB3B' },
@@ -394,6 +395,8 @@
             { name: 'Синий', color: '#2196F3' },
             { name: 'Фиолетовый', color: '#8B00FF' },
             { name: 'Неон фиолетовый', color: '#8000FF' },
+            { name: 'Пурпурный', color: '#8B008B' },
+            { name: 'Кирпичный', color: '#904D30' },
             { name: 'Бежевый', color: '#F5F5DC' },
             { name: 'Коричневый', color: '#8B4513' },
             { name: 'Бирюза', color: '#40E0D0' },
@@ -403,11 +406,11 @@
 
         // Оригинальные цвета для каждого класса
         const originalColors = {
-            'cls1': '#ffffff',
+            'cls1': '#fff7f9',
             'cls2': '#2b2b2b',
-            'cls3': '#7e90c2',
+            'cls3': '#dce3e8',
             'cls4': '#2b2b2b',
-            'cls5': '#ff8c42',
+            'cls5': '#ffffff',
             'cls6': '#f64a8a',
             'cls7': '#2b2b2b',
             'cls8': '#2b2b2b'
