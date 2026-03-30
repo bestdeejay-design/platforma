@@ -297,8 +297,10 @@
                     <input type="color" id="bgColor" value="#fff7f9">
                     <input type="color" id="iconStrokeColor" value="#2b2b2b">
                     <input type="color" id="textColor" value="#2b2b2b">
+                    <input type="color" id="doveColor" value="#dce3e8">
                     <input type="color" id="heartColor" value="#f64a8a">
                     <input type="color" id="accentColor" value="#ff8c42">
+                    <input type="color" id="detailColor" value="#2b2b2b">
                 </div>
                 
                 <!-- Видимая палитра цветов -->
@@ -307,6 +309,10 @@
                         <div class="mixer-column">
                             <h3 class="mixer-title">Фон</h3>
                             <div class="color-grid" id="bgColors"></div>
+                        </div>
+                        <div class="mixer-column">
+                            <h3 class="mixer-title">Голубь</h3>
+                            <div class="color-grid" id="doveColors"></div>
                         </div>
                         <div class="mixer-column">
                             <h3 class="mixer-title">Обводка</h3>
@@ -344,6 +350,7 @@
                 const bgColor = document.getElementById('bgColor').value;
                 const iconStrokeColor = document.getElementById('iconStrokeColor').value;
                 const textColor = document.getElementById('textColor').value;
+                const doveColor = document.getElementById('doveColor').value;
                 const heartColor = document.getElementById('heartColor').value;
                 const accentColor = document.getElementById('accentColor').value;
 
@@ -352,6 +359,12 @@
                 if (bgPath) {
                     bgPath.setAttribute('fill', bgColor);
                 }
+
+                // Голубь/силуэт (cls-3)
+                const doveElements = document.querySelectorAll('#resultSvg .cls-3');
+                doveElements.forEach(el => {
+                    el.setAttribute('fill', doveColor);
+                });
 
                 // Обводка иконки (cls-7, cls-8)
                 ['cls-7', 'cls-8'].forEach(cls => {
@@ -365,6 +378,12 @@
                 const textElements = document.querySelectorAll('#resultSvg .cls-2');
                 textElements.forEach(el => {
                     el.setAttribute('fill', textColor);
+                });
+
+                // Детали иконки (cls-4)
+                const detailElements = document.querySelectorAll('#resultSvg .cls-4');
+                detailElements.forEach(el => {
+                    el.setAttribute('fill', iconStrokeColor);
                 });
 
                 // Сердечко (cls-6)
@@ -436,13 +455,28 @@
             { name: 'Зелёный', color: '#2D5016' }
         ];
 
+        const doveColors = [
+            { name: 'Голубой', color: '#DCE3E8' },
+            { name: 'Белый', color: '#FFFFFF' },
+            { name: 'Светло-серый', color: '#E0E0E0' },
+            { name: 'Бежевый', color: '#F5F5DC' },
+            { name: 'Небесный', color: '#87CEEB' },
+            { name: 'Лаванда', color: '#E6E6FA' }
+        ];
+
         const strokeColors = [
             { name: 'Тёмный', color: '#2B2B2B' },
             { name: 'Чёрный', color: '#000000' },
             { name: 'Серый', color: '#666666' },
             { name: 'Синий', color: '#1E3A5F' },
             { name: 'Коричневый', color: '#4A3728' },
-            { name: 'Зелёный', color: '#2D5016' }
+            { name: 'Зелёный', color: '#2D5016' },
+            { name: 'Франц. розовый', color: '#F64A8A' },
+            { name: 'Красный', color: '#FF0000' },
+            { name: 'Розовый', color: '#FF69B4' },
+            { name: 'Оранжевый', color: '#FF8C42' },
+            { name: 'Малиновый', color: '#DC143C' },
+            { name: 'Коралловый', color: '#FF6F61' }
         ];
 
         const textColors = [
@@ -476,12 +510,14 @@
         let selectedBg = '#fff7f9';
         let selectedIconStroke = '#2b2b2b';
         let selectedText = '#2b2b2b';
+        let selectedDove = '#dce3e8';
         let selectedHeart = '#f64a8a';
         let selectedAccent = '#ff8c42';
 
         function createColorMixer() {
             const containers = {
                 bgColors: document.getElementById('bgColors'),
+                doveColors: document.getElementById('doveColors'),
                 strokeColors: document.getElementById('strokeColors'),
                 textColors: document.getElementById('textColors'),
                 heartColors: document.getElementById('heartColors'),
@@ -489,7 +525,7 @@
             };
 
             const colors = {
-                bgColors, strokeColors, textColors, heartColors, accentColors
+                bgColors, doveColors, strokeColors, textColors, heartColors, accentColors
             };
 
             Object.keys(containers).forEach(key => {
@@ -511,6 +547,7 @@
             setTimeout(() => {
                 const defaultColors = [
                     { key: 'bgColors', color: '#fff7f9' },
+                    { key: 'doveColors', color: '#dce3e8' },
                     { key: 'strokeColors', color: '#2b2b2b' },
                     { key: 'textColors', color: '#2b2b2b' },
                     { key: 'heartColors', color: '#f64a8a' },
@@ -531,6 +568,7 @@
         function getColorName(key, color) {
             const names = {
                 bgColors: { '#fff7f9': 'Розовый', '#FFFFFF': 'Белый' },
+                doveColors: { '#dce3e8': 'Голубой' },
                 strokeColors: { '#2b2b2b': 'Тёмный' },
                 textColors: { '#2b2b2b': 'Тёмный' },
                 heartColors: { '#f64a8a': 'Франц. розовый' },
@@ -542,6 +580,7 @@
         function selectColor(type, color, element) {
             switch(type) {
                 case 'bgColors': selectedBg = color; break;
+                case 'doveColors': selectedDove = color; break;
                 case 'strokeColors': selectedIconStroke = color; break;
                 case 'textColors': selectedText = color; break;
                 case 'heartColors': selectedHeart = color; break;
@@ -556,6 +595,7 @@
             document.getElementById('bgColor').value = selectedBg;
             document.getElementById('iconStrokeColor').value = selectedIconStroke;
             document.getElementById('textColor').value = selectedText;
+            document.getElementById('doveColor').value = selectedDove;
             document.getElementById('heartColor').value = selectedHeart;
             document.getElementById('accentColor').value = selectedAccent;
             
