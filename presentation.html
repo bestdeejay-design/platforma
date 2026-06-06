@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOVII — Стратегия развития 2026</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="presentation-styles.css">
+</head>
+<body>
+    <!-- Прогресс-бар -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Верхняя панель -->
+    <header class="top-bar">
+        <div class="top-bar-inner">
+            <div class="brand" id="brandLogo" style="cursor: pointer;" title="На главный слайд">
+                <img src="lovii-icon.svg" alt="LOVII" class="brand-icon" width="32" height="32">
+                <span class="brand-text">Стратегия 2026</span>
+            </div>
+            <div class="top-bar-actions">
+                <span class="slide-counter"><span id="currentSlideNum">01</span> / <span id="totalSlides">15</span></span>
+                <button class="theme-toggle" id="themeToggle" aria-label="Сменить тему">
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Контейнер слайдов -->
+    <main class="slides-wrapper" id="slidesWrapper">
+        
+        <!-- СЛАЙД 1: Титульный -->
+        <section class="slide active" data-slide="1">
+            <div class="slide-inner">
+                <div class="title-slide">
+                    <div class="title-logo">
+                        <img src="img/logos/lovii-logo.svg" alt="LOVII" class="logo-light" height="80">
+                        <img src="img/logos/lovii-logo_dark.svg" alt="LOVII" class="logo-dark" height="80">
+                    </div>
+                    <h1 class="title-main">Цифровая инфраструктура<br><span class="accent">локальной экономики</span></h1>
+                    <p class="title-sub">Виртуальный оператор лояльности и витрина для микробизнеса.<br>От локального MVP к федеральному SaaS-стандарту с капитализацией 3 млрд рублей.</p>
+                    <div class="title-meta">СТРАТЕГИЧЕСКИЙ ПЛАН РАЗВИТИЯ · 2026</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 2: Проблема -->
+        <section class="slide" data-slide="2">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">02</span>
+                        <h2 class="slide-title">Проблема</h2>
+                        <p class="slide-desc">Разрыв локальной экономики: «невидимый» бизнес и «замороженная» лояльность</p>
+                    </div>
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <div class="card-header">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                <h3>Микробизнес</h3>
+                            </div>
+                            <ul class="list">
+                                <li>Отсутствие доступа к массовой аудитории</li>
+                                <li>Высокие комиссии агрегаторов</li>
+                                <li>Сложная ERP-интеграция</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-header">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <h3>Потребитель</h3>
+                            </div>
+                            <ul class="list">
+                                <li>Локальные товары в «слепой зоне»</li>
+                                <li>Десятки разрозненных программ лояльности</li>
+                                <li>Баллы сгорают или блокируются</li>
+                                <li>Нулевая ликвидность бонусов</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="callout">
+                        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <p>Локальный капитал утекает в федеральные сети, а потенциал микробизнеса остаётся нереализованным.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 3: Решение -->
+        <section class="slide" data-slide="3">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">03</span>
+                        <h2 class="slide-title">Решение LOVII</h2>
+                        <p class="slide-desc">Синтез каталога и универсального актива</p>
+                    </div>
+                    <div class="grid-2">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <h3>Цифровая витрина</h3>
+                            <ul class="list">
+                                <li>Единый каталог товаров и услуг</li>
+                                <li>Отображение наравне с гипермаркетами</li>
+                                <li>Простая загрузка: QR / Excel / Web</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                            <h3>Оператор лояльности</h3>
+                            <ul class="list">
+                                <li>Единая программа для всей экосистемы</li>
+                                <li>Начисление за любую транзакцию</li>
+                                <li>Универсальный актив: баллы в обороте</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 4: Экосистема -->
+        <section class="slide" data-slide="4">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">04</span>
+                        <h2 class="slide-title">Экосистема</h2>
+                        <p class="slide-desc">Маховик локальной экономики: обмен ценностью</p>
+                    </div>
+                    <div class="ecosystem-flow">
+                        <div class="eco-node">
+                            <div class="eco-icon-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <h3>Пользователи</h3>
+                            <p>Совершают покупки, формируют спрос</p>
+                            <div class="eco-benefit">Получают баллы, доступ к локальным благам</div>
+                        </div>
+                        <div class="eco-connector">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                        </div>
+                        <div class="eco-node">
+                            <div class="eco-icon-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            </div>
+                            <h3>Микробизнес</h3>
+                            <p>Размещают товары, эмитируют баллы</p>
+                            <div class="eco-benefit">Рост выручки без IT-интеграции</div>
+                        </div>
+                        <div class="eco-connector">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                        </div>
+                        <div class="eco-node">
+                            <div class="eco-icon-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            </div>
+                            <h3>Поставщики</h3>
+                            <p>Логистика, процессинг, финансы</p>
+                            <div class="eco-benefit">Доля от экономической активности зоны</div>
+                        </div>
+                    </div>
+                    <div class="cycle-note">
+                        <strong>Замкнутый круг:</strong> Спрос → Рост точек → Больше предложений → Рост спроса
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 5: Механика баллов -->
+        <section class="slide" data-slide="5">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">05</span>
+                        <h2 class="slide-title">Механика баллов</h2>
+                        <p class="slide-desc">100% ликвидность внутри локации · 1 балл = 1 рубль</p>
+                    </div>
+                    <div class="steps-row">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <h3>Генерация</h3>
+                            <p>Покупка → 5% баллами</p>
+                        </div>
+                        <div class="step-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <h3>Циркуляция</h3>
+                            <p>Трата у партнёров или перевод</p>
+                        </div>
+                        <div class="step-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <h3>Монетизация</h3>
+                            <p>Вывод через СБП или оплата</p>
+                        </div>
+                    </div>
+                    <div class="principles">
+                        <div class="principle-item">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Фиксированная привязка: 1 балл = 1 рубль</span>
+                        </div>
+                        <div class="principle-item">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Баллы не зависят от эмитента</span>
+                        </div>
+                        <div class="principle-item">
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Удержание оборота внутри локации + рост LTV</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 6: Финансовая модель -->
+        <section class="slide" data-slide="6">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">06</span>
+                        <h2 class="slide-title">Финансовая маршрутизация</h2>
+                        <p class="slide-desc">Агентская модель · ФЗ-54 · ФЗ-161</p>
+                    </div>
+                    <div class="flow-diagram">
+                        <div class="flow-node">
+                            <div class="flow-value">1 000 ₽</div>
+                            <div class="flow-label">Пользователь</div>
+                        </div>
+                        <div class="flow-arrow-down">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                        </div>
+                        <div class="flow-node highlight">
+                            <div class="flow-title">Безопасная агентская модель</div>
+                            <div class="flow-desc">Платформа не владеет деньгами · Полная фискализация</div>
+                        </div>
+                        <div class="flow-arrow-down">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                        </div>
+                        <div class="flow-split">
+                            <div class="flow-node">
+                                <div class="flow-title">Микробизнес</div>
+                                <div class="flow-desc">За вычетом комиссии</div>
+                            </div>
+                            <div class="flow-node">
+                                <div class="flow-title">Пользователь</div>
+                                <div class="flow-desc">Баллы на активный счёт</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compliance-tags">
+                        <span class="tag">ФЗ-54</span>
+                        <span class="tag">ФЗ-161</span>
+                        <span class="tag">ФЗ-152</span>
+                        <span class="tag">СБП</span>
+                        <span class="tag">2FA</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 7: Позиционирование -->
+        <section class="slide" data-slide="7">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">07</span>
+                        <h2 class="slide-title">Позиционирование</h2>
+                        <p class="slide-desc">Почему LOVII не конкурирует с маркетплейсами</p>
+                    </div>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Критерий</th>
+                                    <th class="col-lovii">LOVII</th>
+                                    <th>Агрегаторы</th>
+                                    <th>Соло-программы</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ликвидность баллов</strong></td>
+                                    <td class="col-lovii">Универсальная (вывод в рубли)</td>
+                                    <td>Замкнуты внутри гиганта</td>
+                                    <td>Заморожены в одной точке</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Бизнес-модель</strong></td>
+                                    <td class="col-lovii">Чистый агентский сервис</td>
+                                    <td>Перепродажа, диктовка цен</td>
+                                    <td>Отсутствует</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Конкуренция</strong></td>
+                                    <td class="col-lovii">Гео-изоляция (0% каннибализации)</td>
+                                    <td>Прямая конкуренция</td>
+                                    <td>Невидимый локальный</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Порог входа</strong></td>
+                                    <td class="col-lovii">За 5 минут (QR/Excel)</td>
+                                    <td>Сложный ERP</td>
+                                    <td>Высокие затраты на ПО</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 8: Архитектура -->
+        <section class="slide" data-slide="8">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">08</span>
+                        <h2 class="slide-title">SaaS-Архитектура</h2>
+                        <p class="slide-desc">Централизованное ядро, локальная автономия</p>
+                    </div>
+                    <div class="arch-diagram">
+                        <div class="arch-nodes">
+                            <div class="arch-node">
+                                <div class="arch-node-title">LOVII.Петроградка</div>
+                                <ul class="arch-list">
+                                    <li>Своя аудитория</li>
+                                    <li>Свой каталог</li>
+                                    <li>Свои курьеры</li>
+                                </ul>
+                            </div>
+                            <div class="arch-node">
+                                <div class="arch-node-title">LOVII.Хамовники</div>
+                                <ul class="arch-list">
+                                    <li>Своя аудитория</li>
+                                    <li>Свой каталог</li>
+                                    <li>Свои курьеры</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                        </div>
+                        <div class="arch-barrier">
+                            <div class="arch-barrier-title">White-label барьер изоляции</div>
+                            <div class="arch-barrier-desc">Абсолютно независимая экономика</div>
+                        </div>
+                        <div class="arch-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                        </div>
+                        <div class="arch-core">
+                            <div class="arch-core-title">Централизованное ядро (Core)</div>
+                            <div class="arch-core-desc">Единая кодовая база · Финансовая маршрутизация · Безопасность</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 9: Монетизация -->
+        <section class="slide" data-slide="9">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">09</span>
+                        <h2 class="slide-title">Монетизация</h2>
+                        <p class="slide-desc">Устойчивая юнит-экономика: четыре столпа</p>
+                    </div>
+                    <div class="mono-grid">
+                        <div class="mono-card">
+                            <div class="mono-num">01</div>
+                            <h3>Транзакционная комиссия</h3>
+                            <div class="mono-value">10%</div>
+                            <div class="mono-desc">с денежной части оплаты</div>
+                            <div class="mono-note">0% для оборота до 30 000 ₽/мес</div>
+                        </div>
+                        <div class="mono-card">
+                            <div class="mono-num">02</div>
+                            <h3>SaaS-подписка (PRO)</h3>
+                            <div class="mono-value">2 999 ₽</div>
+                            <div class="mono-desc">в месяц</div>
+                            <div class="mono-note">Комиссия снижается до 4–7%</div>
+                        </div>
+                        <div class="mono-card">
+                            <div class="mono-num">03</div>
+                            <h3>Реклама и продвижение</h3>
+                            <div class="mono-desc">Закреплённые позиции в витрине · Нативные подборки</div>
+                        </div>
+                        <div class="mono-card">
+                            <div class="mono-num">04</div>
+                            <h3>B2B API & Интеграции</h3>
+                            <div class="mono-desc">Открытые API для банков, телекомов и HR-систем</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 10: Цели MVP -->
+        <section class="slide" data-slide="10">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">10</span>
+                        <h2 class="slide-title">Цели этапа MVP</h2>
+                        <p class="slide-desc">6 месяцев</p>
+                    </div>
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-value">5 млн ₽</div>
+                            <div class="kpi-label">GMV</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value">500+</div>
+                            <div class="kpi-label">Активных пользователей</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value">30+</div>
+                            <div class="kpi-label">Подключённых точек</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value">40%</div>
+                            <div class="kpi-label">Retention Day 30</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value">&gt; 3</div>
+                            <div class="kpi-label">LTV / CAC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 11: Цели зрелой локации -->
+        <section class="slide" data-slide="11">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">11</span>
+                        <h2 class="slide-title">Цели органического роста</h2>
+                        <p class="slide-desc">18 месяцев</p>
+                    </div>
+                    <div class="goals-list">
+                        <div class="goal-item">
+                            <div class="goal-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="goal-text"><strong>200+</strong> подключённых точек</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="goal-text"><strong>30%</strong> доля платных PRO-тарифов</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="goal-text"><strong>Полная окупаемость</strong> узла</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="goal-text"><strong>NPS ≥ 40</strong></div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="goal-text"><strong>Положительная EBITDA</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 12: Дорожная карта -->
+        <section class="slide" data-slide="12">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">12</span>
+                        <h2 class="slide-title">Дорожная карта</h2>
+                        <p class="slide-desc">От района к Федерации</p>
+                    </div>
+                    <div class="roadmap">
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot">1</div>
+                            <div class="roadmap-body">
+                                <h3>Запуск MVP (Район)</h3>
+                                <p>10–20 поставщиков · Модуль «Витрина» · Проверка гипотез</p>
+                            </div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot">2</div>
+                            <div class="roadmap-body">
+                                <h3>Репликация модели (Сеть локаций)</h3>
+                                <p>Новые узлы · Единая аналитика · Внешние партнёры</p>
+                            </div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot">3</div>
+                            <div class="roadmap-body">
+                                <h3>Федеральная сеть</h3>
+                                <p>Кросс-локальный обмен · Корпоративные программы · Масштабирование по РФ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 13: Дисциплина роста -->
+        <section class="slide" data-slide="13">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">13</span>
+                        <h2 class="slide-title">Дисциплина роста</h2>
+                        <p class="slide-desc">Жёсткие критерии перехода</p>
+                    </div>
+                    <div class="criteria-grid">
+                        <div class="criteria-card">
+                            <div class="criteria-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                            <h3>Финансы</h3>
+                            <div class="criteria-value">≥ 5 млн ₽/мес</div>
+                            <p>Стабильное превышение порога рентабельности</p>
+                        </div>
+                        <div class="criteria-card">
+                            <div class="criteria-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                            </div>
+                            <h3>Предложение</h3>
+                            <div class="criteria-value">≥ 50 поставщиков</div>
+                            <p>Плотный локальный каталог</p>
+                        </div>
+                        <div class="criteria-card">
+                            <div class="criteria-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <h3>Спрос</h3>
+                            <div class="criteria-value">Retention D30 ≥ 40%</div>
+                            <p>Подтверждённая ценность для клиента</p>
+                        </div>
+                    </div>
+                    <div class="alert-box">
+                        <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <p>Масштабирование начинается <strong>только</strong> после достижения юнит-экономики на предыдущем узле. Это исключает кассовые разрывы.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 14: Горизонты -->
+        <section class="slide" data-slide="14">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">14</span>
+                        <h2 class="slide-title">Дальнейшие горизонты</h2>
+                        <p class="slide-desc">Больше, чем просто витрина</p>
+                    </div>
+                    <div class="horizons-grid">
+                        <div class="horizon-card">
+                            <div class="horizon-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
+                            </div>
+                            <h3>B2G & Муниципалитеты</h3>
+                            <p>Помощник администрации по развитию МСП. Социальные льготы и сертификаты.</p>
+                        </div>
+                        <div class="horizon-card">
+                            <div class="horizon-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <h3>Экспансия в СНГ</h3>
+                            <p>Репликация SaaS-модели. Адаптация под местное законодательство.</p>
+                        </div>
+                        <div class="horizon-card">
+                            <div class="horizon-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            </div>
+                            <h3>Локальные токены</h3>
+                            <p>Эмиссия локальных цифровых валют. NFT-сертификаты.</p>
+                        </div>
+                    </div>
+                    <div class="final-cta">
+                        <h3>Готовы построить цифровую инфраструктуру локальной экономики?</h3>
+                        <p>LOVII — от района к Федерации</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 15: Контакты и реквизиты -->
+        <section class="slide" data-slide="15">
+            <div class="slide-inner">
+                <div class="content-slide">
+                    <div class="slide-header">
+                        <span class="slide-label">15</span>
+                        <h2 class="slide-title">Контакты и реквизиты</h2>
+                        <p class="slide-desc">Свяжитесь с нами для обсуждения сотрудничества</p>
+                    </div>
+                    <div class="contacts-grid">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <h3>Email</h3>
+                            <a href="mailto:hello@axiiom.ru" class="contact-value">hello@axiiom.ru</a>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <h3>Телефон</h3>
+                            <a href="tel:+78129287478" class="contact-value">+7 812 928-74-78</a>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <h3>Адрес</h3>
+                            <p class="contact-value">г. Санкт-Петербург, Думская ул., 4</p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            </div>
+                            <h3>Сайт</h3>
+                            <a href="https://axiiom.ru" target="_blank" rel="noopener" class="contact-value">axiiom.ru</a>
+                        </div>
+                    </div>
+                    <div class="requisites-block">
+                        <h3>Реквизиты</h3>
+                        <div class="requisites-grid">
+                            <div class="req-item">
+                                <span class="req-label">Компания</span>
+                                <span class="req-value">АО «Платформа»</span>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-label">ИНН</span>
+                                <span class="req-value">7801234567</span>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-label">КПП</span>
+                                <span class="req-value">780101001</span>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-label">ОГРН</span>
+                                <span class="req-value">1234567890123</span>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-label">Р/с</span>
+                                <span class="req-value">40702810000000012345</span>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-label">Банк</span>
+                                <span class="req-value">ПАО «Сбербанк»</span>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-label">БИК</span>
+                                <span class="req-value">044030653</span>
+                            </div>
+                            <div class="req-item">
+                                <span class="req-label">К/с</span>
+                                <span class="req-value">30101810500000000653</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Навигация -->
+    <nav class="slide-nav">
+        <button class="nav-btn prev" id="prevBtn" aria-label="Предыдущий слайд">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="nav-dots" id="navDots"></div>
+        <button class="nav-btn next" id="nextBtn" aria-label="Следующий слайд">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+    </nav>
+
+    <!-- Кнопка открытия меню слайдов -->
+    <button class="slides-menu-toggle" id="slidesMenuToggle" aria-label="Меню слайдов">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+
+    <!-- Боковое меню слайдов -->
+    <aside class="slides-menu" id="slidesMenu">
+        <div class="slides-menu-header">
+            <h3>Навигация по презентации</h3>
+            <button class="slides-menu-close" id="slidesMenuClose" aria-label="Закрыть меню">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <ul class="slides-menu-list" id="slidesMenuList">
+            <li class="slides-menu-item active" data-slide="1">
+                <span class="slide-num">01</span>
+                <span class="slide-name">Титульный слайд</span>
+            </li>
+            <li class="slides-menu-item" data-slide="2">
+                <span class="slide-num">02</span>
+                <span class="slide-name">Проблема</span>
+            </li>
+            <li class="slides-menu-item" data-slide="3">
+                <span class="slide-num">03</span>
+                <span class="slide-name">Решение LOVII</span>
+            </li>
+            <li class="slides-menu-item" data-slide="4">
+                <span class="slide-num">04</span>
+                <span class="slide-name">Экосистема</span>
+            </li>
+            <li class="slides-menu-item" data-slide="5">
+                <span class="slide-num">05</span>
+                <span class="slide-name">Механика баллов</span>
+            </li>
+            <li class="slides-menu-item" data-slide="6">
+                <span class="slide-num">06</span>
+                <span class="slide-name">Финансовая маршрутизация</span>
+            </li>
+            <li class="slides-menu-item" data-slide="7">
+                <span class="slide-num">07</span>
+                <span class="slide-name">Позиционирование</span>
+            </li>
+            <li class="slides-menu-item" data-slide="8">
+                <span class="slide-num">08</span>
+                <span class="slide-name">SaaS-Архитектура</span>
+            </li>
+            <li class="slides-menu-item" data-slide="9">
+                <span class="slide-num">09</span>
+                <span class="slide-name">Монетизация</span>
+            </li>
+            <li class="slides-menu-item" data-slide="10">
+                <span class="slide-num">10</span>
+                <span class="slide-name">Цели этапа MVP</span>
+            </li>
+            <li class="slides-menu-item" data-slide="11">
+                <span class="slide-num">11</span>
+                <span class="slide-name">Цели органического роста</span>
+            </li>
+            <li class="slides-menu-item" data-slide="12">
+                <span class="slide-num">12</span>
+                <span class="slide-name">Дорожная карта</span>
+            </li>
+            <li class="slides-menu-item" data-slide="13">
+                <span class="slide-num">13</span>
+                <span class="slide-name">Дисциплина роста</span>
+            </li>
+            <li class="slides-menu-item" data-slide="14">
+                <span class="slide-num">14</span>
+                <span class="slide-name">Дальнейшие горизонты</span>
+            </li>
+            <li class="slides-menu-item" data-slide="15">
+                <span class="slide-num">15</span>
+                <span class="slide-name">Контакты и реквизиты</span>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Затемнение фона -->
+    <div class="slides-menu-overlay" id="slidesMenuOverlay"></div>
+
+    <script src="presentation-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон - круг -->
+  <circle cx="256" cy="256" r="256" fill="url(#gradient)"/>
+  
+  <!-- Градиент -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D84FC6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B836A8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Буква L -->
+  <path d="M140 120V392H192V172H320V120H140Z" fill="white"/>
+  
+  <!-- Буква O -->
+  <path d="M240 120V392H292V120H240ZM240 150H292C310 150 320 165 320 196C320 227 310 242 292 242H240V150ZM240 270H292C310 270 320 285 320 316C320 347 310 362 292 362H240V270Z" fill="white"/>
+  
+  <!-- Буква V -->
+  <path d="M360 120L320 392H375L400 240L425 392H480L440 120H360Z" fill="white"/>
+  
+  <!-- Буква I -->
+  <path d="M480 120V392H532V120H480Z" fill="white"/>
+</svg>

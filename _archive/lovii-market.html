@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOVII Market · тёмная/светлая тема</title>
+    <meta name="description" content="LOVII Market - доставка продуктов за 60 минут. Широкий ассортимент товаров из гипермаркетов рядом с вами. Быстрая и удобная доставка.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== СБРОС И БАЗОВЫЕ НАСТРОЙКИ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            transition: background-color 0.3s ease, color 0.2s ease;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* ===== ТЁМНАЯ ТЕМА (по умолчанию) ===== */
+        :root {
+            /* --- ЦВЕТАВАЯ ПАЛИТРА --- */
+            --color-primary: #D84FC6;
+            --color-primary-hover: #B836A8;
+            --color-primary-active: #9A268F;
+            --color-primary-light: rgba(216, 79, 198, 0.1);
+            --gradient-primary: linear-gradient(135deg, #D84FC6 0%, #B836A8 100%);
+
+            --color-secondary: #3ABE9A;
+            --color-secondary-hover: #2E9F80;
+            --color-secondary-light: rgba(58, 190, 154, 0.1);
+
+            /* --- ФОНОВЫЕ ЦВЕТА --- */
+            --color-bg-dark: #1A1A1A;
+            --color-bg-light: #F8F5F0;
+            --color-bg-card: #242424;
+            --color-bg-card-hover: #2C2C2C;
+            
+            /* --- ТЕКСТОВЫЕ ЦВЕТА --- */
+            --color-text-primary: #E8D5C4;
+            --color-text-secondary: #DDCBB8;
+            --color-text-heading: #F5EBE0;
+            --color-text-inverse: #1A1A1A;
+            
+            /* --- ЦВЕТА ФУНКЦИОНАЛЬНЫЕ --- */
+            --color-success: #4ADE80;
+            --color-success-bg: rgba(74, 222, 128, 0.12);
+            --color-warning: #FBBF24;
+            --color-warning-bg: rgba(251, 191, 36, 0.12);
+            --color-error: #F87171;
+            --color-error-bg: rgba(248, 113, 113, 0.12);
+
+            /* --- ТИПОГРАФИЯ --- */
+            --font-base: 1rem;               /* 16 px */
+            --font-lg: clamp(1.125rem, 2vw, 1.5rem);
+            --font-weight-bold: 700;
+            --font-weight-semibold: 600;
+            --font-weight-medium: 500;
+            --font-weight-normal: 400;
+
+            /* --- ОТСТУПЫ --- */
+            --space-xs: .25rem;
+            --space-sm: .5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-xxl: 3rem;
+
+            /* --- РАДИУСЫ --- */
+            --radius-xs: .25rem;   /* 4px */
+            --radius-sm: .5rem;    /* 8px */
+            --radius-md: .75rem;   /* 12px */
+            --radius-lg: 1rem;     /* 16px */
+            --radius-xl: 1.5rem;   /* 24px */
+            --radius-xxl: 2rem;    /* 32px */
+
+            /* --- ТЕНИ --- */
+            --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 4px 20px rgba(216, 79, 198, 0.25);
+            --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(216, 79, 198, 0.1);
+            --gradient-hero: linear-gradient(145deg, #1A1A1A 0%, #2A1A28 50%, #1A1A1A 100%);
+        }
+
+        body.light-theme {
+            /* --- основные акценты сохраняются, фон становится светлым --- */
+            --color-bg-dark: #F8F5F0;        /* тёплый светлый фон */
+            --color-bg-card: #FFFFFF;         /* белые карточки */
+            --color-bg-card-hover: #FAF7F2;   /* чуть темнее при hover */
+            --glass-dark: rgba(255, 255, 255, 0.7);
+            --border-subtle: #E0DCD8;         /* светлые границы */
+            --border-strong: #C0BCB8;         /* чуть темнее для акцента */
+
+            /* --- текст теперь тёмный, но мягкий --- */
+            --color-text-primary: #2E2E2E;     /* тёмно-серый, основной */
+            --color-text-secondary: #5E5E5E;   /* серый для второстепенного */
+            --color-text-heading: #1A1A1A;     /* почти чёрный для заголовков */
+            --color-text-inverse: #F8F5F0;     /* светлый для обратного текста */
+
+            /* --- функциональные цвета осталяем, но фон бейджей делаем более заметным --- */
+            --color-success-bg: rgba(74, 222, 128, 0.2);
+            --color-warning-bg: rgba(251, 191, 36, 0.2);
+            --color-error-bg: rgba(248, 113, 113, 0.2);
+
+            /* --- тени — мягкие серые, без розового свечения (можно оставить лёгкий намёк) --- */
+            --shadow-glow: 0 4px 15px rgba(216, 79, 198, 0.2);
+            --shadow-card: 0 8px 25px -8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(216, 79, 198, 0.2);
+            --gradient-hero: linear-gradient(145deg, #F8F5F0 0%, #F0EAE2 50%, #F8F5F0 100%);
+        }
+
+        /* ===== КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ===== */
+        .theme-toggle {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--color-text-primary);
+            font-size: 1.4rem;
+            transition: 0.2s;
+        }
+        .theme-toggle:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* ===== ХЕДЕР с переключателем ===== */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md) 0 var(--space-xl) 0;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: var(--space-xxl);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-bold);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            background: none;
+            color: var(--color-text-primary);
+            font-weight: var(--font-weight-normal);
+        }
+
+        .search-bar {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            width: 300px;
+            transition: 0.2s;
+        }
+        .search-bar:focus-within {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-light);
+        }
+        .search-bar i {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--color-text-primary);
+            width: 100%;
+            outline: none;
+            font-size: 0.95rem;
+        }
+        .search-bar input::placeholder {
+            color: var(--color-text-secondary);
+            opacity: 0.7;
+        }
+
+        .cart-btn {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: var(--space-sm) calc(var(--space-md) * 1.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-text-heading);
+            font-weight: var(--font-weight-medium);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .cart-btn i {
+            color: var(--color-primary);
+            font-size: 1.3rem;
+        }
+
+        /* Остальные стили (категории, герой, карточки и т.д.) */
+        .categories-nav {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-xxl);
+        }
+        .category-chip {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--space-sm) calc(var(--space-md) * 1.5);
+            font-size: 0.9rem;
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .category-chip.active {
+            background: var(--color-primary-light);
+            border-color: var(--color-primary);
+            color: var(--color-text-heading);
+        }
+        .category-chip i {
+            margin-right: 6px;
+            color: var(--color-primary);
+        }
+
+        .hero {
+            background: var(--gradient-hero);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-xxl);
+            padding: var(--space-xl) var(--space-xxl);
+            margin-bottom: var(--space-xxl);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-card);
+        }
+        .hero-content h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: var(--space-sm);
+            max-width: 500px;
+            line-height: 1.4;
+        }
+        .hero-content p {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: var(--space-xl);
+            max-width: 450px;
+            line-height: 1.4;
+        }
+        .hero-stats {
+            display: flex;
+            gap: var(--space-xxl);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-heading);
+        }
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+        .hero-image {
+            background: var(--gradient-primary);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-glow);
+        }
+        .hero-image i {
+            font-size: 5rem;
+            color: #1A1A1A;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+        .section-link {
+            color: var(--color-primary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xxl);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                padding: var(--space-lg);
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+
+            .hero-stats {
+                gap: var(--space-md);
+            }
+
+            .stat-number {
+                font-size: 1.4rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .hero-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .hero-image i {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-md);
+            }
+
+            .header-left {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .search-bar {
+                width: 100%;
+                order: 3;
+                margin-top: var(--space-sm);
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-lg);
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-stats {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .product-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg) var(--space-md) var(--space-lg) var(--space-md);
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            min-height: 320px;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-strong);
+            background: var(--color-bg-card-hover);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .product-badge {
+            background: var(--color-primary-light);
+            border: 1px solid var(--color-primary);
+            color: var(--color-text-heading);
+            font-size: 0.7rem;
+            font-weight: var(--font-weight-semibold);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-lg);
+            align-self: flex-start;
+            margin-bottom: var(--space-md);
+        }
+        .product-badge.secondary {
+            background: var(--color-secondary-light);
+            border-color: var(--color-secondary);
+            color: var(--color-text-heading);
+        }
+        .product-badge.success {
+            background: var(--color-success-bg);
+            border-color: var(--color-success);
+            color: var(--color-text-heading);
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: var(--glass-dark);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            border: 1px solid var(--border-subtle);
+            color: var(--color-primary);
+            font-size: 3rem;
+        }
+
+        .product-title {
+            font-weight: var(--font-weight-semibold);
+            font-size: 1.2rem;
+            color: var(--color-text-heading);
+            margin-bottom: var(--space-xs);
+        }
+
+        .product-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-heading);
+        }
+        .price small {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-weight: var(--font-weight-normal);
+        }
+
+        .btn-small {
+            background: transparent;
+            border: 1px solid var(--color-primary);
+            color: var(--color-text-heading);
+            padding: var(--space-sm) calc(var(--space-md) * 1.2);
+            border-radius: var(--radius-lg);
+            font-weight: var(--font-weight-semibold);
+            font-size: 0.9rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .btn-small:hover {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: #fff;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-xxl);
+            margin: var(--space-xxl) 0;
+        }
+        .feature-item {
+            background: var(--glass-dark);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xxl);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+        }
+        .feature-icon {
+            background: var(--color-primary-light);
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-lg);
+            font-size: 2rem;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+        }
+        .feature-item h4 {
+            margin-bottom: var(--space-sm);
+        }
+        .feature-item p {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: var(--space-xl) 0 var(--space-md);
+            margin-top: var(--space-xxl);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-text-secondary);
+        }
+        .socials {
+            display: flex;
+            gap: var(--space-lg);
+        }
+        .socials a {
+            font-size: 1.4rem;
+            color: var(--color-text-secondary);
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .socials a:hover {
+            color: var(--color-primary);
+            transform: scale(1.1);
+        }
+
+        /* Кнопки в демо */
+        .btn-primary, .btn-secondary, .btn-outline {
+            /* уже определены ранее, добавим если надобно */
+        }
+        .btn-primary {
+            background: var(--color-primary);
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-xl);
+            font-weight: var(--font-weight-semibold);
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-glow);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(216, 79, 198, 0.45);
+        }
+        .btn-secondary {
+            background: var(--color-secondary);
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--radius-xl);
+            font-weight: var(--font-weight-semibold);
+            transition: 0.2s;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-secondary:hover {
+            background: var(--color-secondary-hover);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--color-primary);
+            color: var(--color-text-heading);
+            padding: 10px 22px;
+            border-radius: var(--radius-xl);
+            font-weight: var(--font-weight-medium);
+            transition: all 0.2s;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-outline:hover {
+            background: var(--color-primary-light);
+            border-color: var(--color-primary-hover);
+            color: var(--color-text-heading);
+        }
+
+        @media (max-width: 700px) {
+            body { padding: var(--space-md); }
+            .header { flex-direction: column; gap: var(--space-md); align-items: stretch; }
+            .search-bar { width: 100%; }
+            .hero { flex-direction: column; text-align: center; padding: var(--space-xl) var(--space-md); }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-stats { justify-content: center; }
+            .hero-image { margin-top: var(--space-xl); }
+        }
+        
+        /* Скрытый для визуального, но читаемый скринридером */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Стили для фокуса */
+        :focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+        
+        /* Уменьшение анимаций для пользователей с prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link sr-only">Перейти к содержимому</a>
+    
+    <div class="container">
+        <!-- ШАПКА с переключателем темы -->
+        <header class="site-header">
+            <div class="header-left">
+                <button class="theme-toggle" aria-label="Переключить тему">
+                    <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+                </button>
+
+                <a href="/" class="logo" aria-label="LOVII Market">
+                    lovii<span>market</span> <i class="fas fa-basket-shopping" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <form class="search-bar" role="search" action="/search">
+                <label for="search" class="sr-only">Поиск</label>
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input type="search" id="search" name="q" placeholder="Поиск продуктов, брендов...">
+            </form>
+
+            <button class="cart-btn" aria-label="Корзина, 3 товара">
+                <i class="fas fa-cart-shopping" aria-hidden="true"></i>
+                <span>Корзина · 3</span>
+            </button>
+        </header>
+
+        <!-- КАТЕГОРИИ -->
+        <nav class="categories-nav" aria-label="Навигация по категориям">
+            <ul class="categories">
+                <li><button class="category-chip active" aria-pressed="true"><i class="fas fa-fire" aria-hidden="true"></i> Хиты</button></li>
+                <li><button class="category-chip"><i class="fas fa-carrot" aria-hidden="true"></i> Овощи и фрукты</button></li>
+                <li><button class="category-chip"><i class="fas fa-cow" aria-hidden="true"></i> Мясо, рыба</button></li>
+                <li><button class="category-chip"><i class="fas fa-wine-bottle" aria-hidden="true"></i> Напитки</button></li>
+                <li><button class="category-chip"><i class="fas fa-utensils" aria-hidden="true"></i> Готовая еда</button></li>
+                <li><button class="category-chip"><i class="fas fa-cookie-bite" aria-hidden="true"></i> Сладости</button></li>
+            </ul>
+        </nav>
+
+        <!-- ГЕРОЙ -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Доставим продукты <span>за 60 минут</span></h1>
+                <p>Из гипермаркетов рядом с вами. Первая доставка — бесплатно промокод LOVII</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="/order" class="btn-primary"><i class="fas fa-rocket"></i> Заказать сейчас</a>
+                    <a href="/eco" class="btn-secondary"><i class="fas fa-leaf"></i> Экотовары</a>
+                    <a href="/app" class="btn-outline"><i class="fas fa-mobile-alt"></i> Приложение</a>
+                </div>
+                <div class="hero-stats" style="margin-top: 2rem;">
+                    <div class="stat-item">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">магазинов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15k</div>
+                        <div class="stat-label">товаров</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.8★</div>
+                        <div class="stat-label">рейтинг</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-truck-fast"></i>
+            </div>
+        </section>
+
+        <!-- ПОПУЛЯРНЫЕ ТОВАРЫ -->
+        <section aria-labelledby="fresh-title">
+            <div class="section-header">
+                <h2 id="fresh-title"><i class="fas fa-crown"></i> Свежие поступления</h2>
+                <a href="#" class="section-link">Смотреть все <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="product-grid">
+                <article class="product-card">
+                    <span class="product-badge secondary" role="status" aria-live="polite">эко</span>
+                    <div class="product-img"><i class="fas fa-apple-alt"></i></div>
+                    <div class="product-title">Яблоки Pink Lady</div>
+                    <div class="product-desc">сладкие, хрустящие, 1 кг</div>
+                    <div class="product-footer">
+                        <span class="price">299 <small>₽</small></span>
+                        <button class="btn-small"><i class="fas fa-plus"></i> В корзину</button>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <span class="product-badge success" role="status" aria-live="polite">в наличии</span>
+                    <div class="product-img"><i class="fas fa-drumstick-bite"></i></div>
+                    <div class="product-title">Куриное филе</div>
+                    <div class="product-desc">охлаждённое, 500 г</div>
+                    <div class="product-footer">
+                        <span class="price">199 <small>₽</small></span>
+                        <button class="btn-small"><i class="fas fa-plus"></i></button>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <span class="product-badge" role="status" aria-live="polite">новинка</span>
+                    <div class="product-img"><i class="fas fa-cheese"></i></div>
+                    <div class="product-title">Сыр моцарелла</div>
+                    <div class="product-desc">нежный, 250 г</div>
+                    <div class="product-footer">
+                        <span class="price">349 <small>₽</small></span>
+                        <button class="btn-small"><i class="fas fa-plus"></i></button>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <span class="product-badge" role="status" aria-live="polite">хит</span>
+                    <div class="product-img"><i class="fas fa-wine-glass-alt"></i></div>
+                    <div class="product-title">Сок апельсиновый</div>
+                <div class="product-desc">свежевыжатый, 1 л</div>
+                <div class="product-footer">
+                    <span class="price">159 <small>₽</small></span>
+                    <button class="btn-small"><i class="fas fa-plus"></i></button>
+                </div>
+            </article>
+        </div>
+
+        <!-- ПРЕИМУЩЕСТВА -->
+        <div style="margin: 3rem 0;">
+            <h2><i class="fas fa-star"></i> Почему lovii market?</h2>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <h4>60 минут</h4>
+                    <p>Быстрая доставка или заморозим цену</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-store-alt"></i></div>
+                    <h4>Только гипермаркеты</h4>
+                    <p>Ашан, Лента, Перекрёсток и другие</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Контроль качества</h4>
+                    <p>Проверяем сроки и упаковку</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-gem"></i></div>
+                    <h4>LOVII Pink</h4>
+                    <p>Особые условия для подписчиков</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ДЛЯ ВЕЧЕРИНКИ -->
+        <section aria-labelledby="party-title">
+            <div class="section-header">
+                <h2 id="party-title"><i class="fas fa-glass-cheers"></i> Для вечеринки</h2>
+                <a href="#" class="section-link">Все идеи <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-img"><i class="fas fa-pizza-slice"></i></div>
+                    <div class="product-title">Пицца Маргарита</div>
+                    <div class="product-desc">сыр, томаты, 400 г</div>
+                    <div class="product-footer"><span class="price">499 ₽</span><button class="btn-small"><i class="fas fa-plus"></i></button></div>
+                </article>
+                <article class="product-card">
+                    <span class="product-badge secondary" role="status" aria-live="polite">новинка</span>
+                    <div class="product-img"><i class="fas fa-cocktail"></i></div>
+                    <div class="product-title">Лимонад Imbir</div>
+                    <div class="product-desc">имбирь-лайм, 0.5 л</div>
+                    <div class="product-footer"><span class="price">129 ₽</span><button class="btn-small"><i class="fas fa-plus"></i></button></div>
+                </article>
+                <article class="product-card">
+                    <div class="product-img"><i class="fas fa-ice-cream"></i></div>
+                    <div class="product-title">Мороженое фисташка</div>
+                    <div class="product-desc">вафельный стакан</div>
+                    <div class="product-footer"><span class="price">99 ₽</span><button class="btn-small"><i class="fas fa-plus"></i></button></div>
+                </article>
+                <article class="product-card">
+                    <span class="product-badge success" role="status" aria-live="polite">акция</span>
+                    <div class="product-img"><i class="fas fa-wine-bottle"></i></div>
+                    <div class="product-title">Сидр яблочный</div>
+                    <div class="product-desc">лёгкий, 0.75 л</div>
+                    <div class="product-footer"><span class="price">349 ₽</span><button class="btn-small"><i class="fas fa-plus"></i></button></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ФУТЕР -->
+        <footer class="site-footer" role="contentinfo">
+            <div>© 2025 lovii market — доставка с заботой</div>
+            <nav aria-label="Социальные сети">
+                <div class="socials">
+                    <a href="#" class="social-link" aria-label="Telegram">
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="ВКонтакте">
+                        <i class="fab fa-vk" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </nav>
+        </footer>
+    </div>
+
+    <!-- КНОПКИ ДЕМО -->
+    <div style="text-align: center; margin-top: 2rem; opacity: 0.6; font-size: 0.8rem; color: var(--color-text-secondary);">
+        <span class="btn-primary" style="margin-right: 1rem;">Primary</span>
+        <span class="btn-secondary" style="margin-right: 1rem;">Secondary</span>
+        <span class="btn-outline">Outline</span>
+    </div>
+
+    <script>
+        (function() {
+            const toggleBtn = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            const body = document.body;
+
+            // Проверяем сохранённую тему в localStorage
+            const savedTheme = localStorage.getItem('loviiTheme');
+            if (savedTheme === 'light') {
+                body.classList.add('light-theme');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('light-theme');
+                if (body.classList.contains('light-theme')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('loviiTheme', 'light');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('loviiTheme', 'dark');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

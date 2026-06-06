@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АО Платформа - Все страницы проекта</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .page-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .page-card h2 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .page-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .page-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .page-card a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .badge-main {
+            background: #10b981;
+            color: white;
+        }
+
+        .badge-alt {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .badge-demo {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .badge-old {
+            background: #6b7280;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📁 Все страницы проекта</h1>
+        <p class="subtitle">Индекс всех HTML файлов, собранных в рамках проекта АО Платформа</p>
+
+        <div class="pages-grid">
+            <!-- Главная страница -->
+            <div class="page-card">
+                <span class="badge badge-main">Основная</span>
+                <h2>index.html</h2>
+                <p>Главная презентационная страница сайта. Слайды, продукты, партнёры, франшиза, контакты.</p>
+                <a href="index.html">Открыть →</a>
+            </div>
+
+            <!-- LOVII Market -->
+            <div class="page-card">
+                <span class="badge badge-alt">Альтернативная</span>
+                <h2>loviimarket.html</h2>
+                <p>Версия для LOVII Market с расширенными функциями: поиск, категории, фильтры товаров.</p>
+                <a href="loviimarket.html">Открыть →</a>
+            </div>
+
+            <!-- Platforma -->
+            <div class="page-card">
+                <span class="badge badge-alt">Альтернативная</span>
+                <h2>platforma.html</h2>
+                <p>Корпоративная версия для АО Платформа с полным функционалом платформы.</p>
+                <a href="platforma.html">Открыть →</a>
+            </div>
+
+            <!-- Lovii-Market (копия) -->
+            <div class="page-card">
+                <span class="badge badge-demo">Демо</span>
+                <h2>lovii-market.html</h2>
+                <p>Ранняя версия LOVII Market из материалов DeepSeek.</p>
+                <a href="lovii-market.html">Открыть →</a>
+            </div>
+
+            <!-- Loviim (копия) -->
+            <div class="page-card">
+                <span class="badge badge-old">Архив</span>
+                <h2>loviim.html</h2>
+                <p>Старая версия страницы LOVII Market.</p>
+                <a href="loviim.html">Открыть →</a>
+            </div>
+
+            <!-- Demo -->
+            <div class="page-card">
+                <span class="badge badge-demo">Демо</span>
+                <h2>demo.html</h2>
+                <p>Демонстрационная страница для тестирования функций.</p>
+                <a href="demo.html">Открыть →</a>
+            </div>
+
+            <!-- DeepSeek версии -->
+            <div class="page-card">
+                <span class="badge badge-old">Архив</span>
+                <h2>deepseek_html_20260222_02e2b3.html</h2>
+                <p>Версия от DeepSeek - LOVII Market (исходная)</p>
+                <a href="deepseek_html_20260222_02e2b3.html">Открыть →</a>
+            </div>
+
+            <div class="page-card">
+                <span class="badge badge-old">Архив</span>
+                <h2>deepseek_html_20260222_1a0c1e.html</h2>
+                <p>Версия от DeepSeek - АО Платформа (исходная)</p>
+                <a href="deepseek_html_20260222_1a0c1e.html">Открыть →</a>
+            </div>
+
+            <div class="page-card">
+                <span class="badge badge-old">Архив</span>
+                <h2>deepseek_html_20260222_42eb7a.html</h2>
+                <p>Версия от DeepSeek - альтернативная (исходная)</p>
+                <a href="deepseek_html_20260222_42eb7a.html">Открыть →</a>
+            </div>
+
+            <div class="page-card">
+                <span class="badge badge-old">Архив</span>
+                <h2>deepseek_html_20260222_470900.html</h2>
+                <p>Версия от DeepSeek - ранняя (исходная)</p>
+                <a href="deepseek_html_20260222_470900.html">Открыть →</a>
+            </div>
+
+            <div class="page-card">
+                <span class="badge badge-old">Архив</span>
+                <h2>deepseek_html_20260222_78a2a0.html</h2>
+                <p>Версия от DeepSeek - черновик (исходная)</p>
+                <a href="deepseek_html_20260222_78a2a0.html">Открыть →</a>
+            </div>
+
+            <div class="page-card">
+                <span class="badge badge-old">Архив</span>
+                <h2>deepseek_html_20260222_7a41d6.html</h2>
+                <p>Версия от DeepSeek - финальная (исходная)</p>
+                <a href="deepseek_html_20260222_7a41d6.html">Открыть →</a>
+            </div>
+
+            <div class="page-card">
+                <span class="badge badge-old">Архив</span>
+                <h2>deepseek_html_20260222_a1441f.html</h2>
+                <p>Версия от DeepSeek - расширенная (исходная)</p>
+                <a href="deepseek_html_20260222_a1441f.html">Открыть →</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 АО Платформа. Все права защищены.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                Индекс создан: 26 марта 2026
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
