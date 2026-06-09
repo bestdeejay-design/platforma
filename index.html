@@ -16,6 +16,14 @@
     --border: #232834;
     --radius: 12px;
   }
+  .light {
+    --bg: #f5f6fa;
+    --surface: #ffffff;
+    --surface2: #eef0f5;
+    --text: #1a1d24;
+    --text-muted: #6b7080;
+    --border: #dde0e8;
+  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -24,6 +32,28 @@
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
+
+  /* Theme toggle */
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: background 0.2s;
+  }
+  .theme-toggle:hover { background: var(--surface2); }
+  .theme-toggle span { padding: 2px 8px; border-radius: 100px; transition: 0.2s; }
+  .theme-toggle .active { background: var(--accent); color: #fff; }
 
   /* Header / Hero */
   .hero {
@@ -244,6 +274,10 @@
 <body>
 
 <header class="hero">
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+    <span class="active" data-theme="dark">🌙</span>
+    <span data-theme="light">☀️</span>
+  </button>
   <div class="hero-badge">White Paper v1.0</div>
   <h1>LOVII — <span>от района к Федерации</span></h1>
   <p>White-label & SaaS-платформа для запуска и масштабирования маркетплейсов для микро- и малого бизнеса в отдельно взятом пространстве, торговом центре, районе или городе.</p>
@@ -512,5 +546,17 @@
   © 2026 — White Paper v1.0
 </footer>
 
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const isLight = html.classList.toggle('light');
+  document.querySelectorAll('.theme-toggle span').forEach(el => {
+    el.classList.toggle('active', isLight ? el.dataset.theme === 'light' : el.dataset.theme === 'dark');
+  });
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+const saved = localStorage.getItem('theme');
+if (saved === 'light') { document.documentElement.classList.add('light'); document.querySelectorAll('.theme-toggle span').forEach(el => el.classList.toggle('active', el.dataset.theme === 'light')); }
+</script>
 </body>
 </html>
