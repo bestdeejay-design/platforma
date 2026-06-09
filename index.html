@@ -1,854 +1,513 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>АО Платформа — цифровая инфраструктура для малого бизнеса | SaaS, программы лояльности и платёжные интеграции</title>
-    <meta name="description" content="АО «Платформа» — технологический оператор SaaS-решений, программ лояльности и платёжные интеграции для малого бизнеса. Подключено 500+ партнёров в 50+ городах.">
-    <meta name="keywords" content="SaaS, программа лояльности, эквайринг, для малого бизнеса, Lovii, цифровая платформа">
-    <meta name="author" content="АО Платформа">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://platforma.ai/">
-    <meta property="og:title" content="АО Платформа — цифровая инфраструктура">
-    <meta property="og:description" content="Технологический оператор SaaS-решений для малого бизнеса. Программы лояльности и платёжные интеграции.">
-    <meta property="og:image" content="https://platforma.ai/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="АО Платформа — цифровая инфраструктура">
-    <meta name="twitter:description" content="Технологический оператор SaaS-решений для малого бизнеса. Программы лояльности и платёжные интеграции.">
-    <meta name="twitter:image" content="https://platforma.ai/og-image.jpg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOVII — White Paper</title>
+<style>
+  :root {
+    --accent: #00c9b7;
+    --accent-dim: #009e90;
+    --bg: #0b0d10;
+    --surface: #13161c;
+    --surface2: #1a1f28;
+    --text: #e4e7ed;
+    --text-muted: #8a8f9c;
+    --border: #232834;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" sizes="any">
-    <link rel="apple-touch-icon" href="favicon.svg" sizes="any">
+  /* Header / Hero */
+  .hero {
+    padding: 80px 24px 60px;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(0,201,183,0.12);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 4px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero-meta {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "АО Платформа",
-      "url": "https://platforma.ai/",
-      "logo": "https://platforma.ai/lovii-logo.svg",
-      "description": "Технологический оператор SaaS-решений, программ лояльности и платёжных интеграций для малого бизнеса",
-      "telephone": "+7 (495) 123-45-67",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ул. Думская, 4",
-        "addressLocality": "Москва",
-        "postalCode": "101000",
-        "addressCountry": "RU"
-      },
-      "sameAs": [
-        "https://vk.com/platforma",
-        "https://t.me/platforma_bot",
-        "https://youtube.com/@platforma"
-      ],
-      "contactPoint": [{
-        "@type": "ContactPoint",
-        "telephone": "+7-495-123-45-67",
-        "contactType": "Customer Service",
-        "areaServed": "RU"
-      }]
-    }
-    </script>
+  /* Layout */
+  .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+  section { padding: 60px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  h2 + .subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  p { margin-bottom: 16px; color: var(--text-muted); }
+  p strong { color: var(--text); }
+
+  ul, ol { margin: 0 0 20px 24px; color: var(--text-muted); }
+  li { margin-bottom: 6px; }
+  li strong { color: var(--text); }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .card h3 { font-size: 15px; margin-bottom: 4px; }
+  .card .value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .card p { font-size: 13px; margin: 0; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; margin-bottom: 24px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--surface);
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  td { color: var(--text-muted); }
+  td:first-child { font-weight: 500; color: var(--text); }
+
+  /* Highlight box */
+  .highlight {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .highlight strong { color: var(--accent); }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; margin-bottom: 24px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .tl-item .phase {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .tl-item h3 { font-size: 17px; }
+  .tl-item p { font-size: 14px; margin: 2px 0 0; }
+
+  /* Metrics row */
+  .metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 48px;
+    margin-bottom: 24px;
+  }
+  .metric .num { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1.1; }
+  .metric .label { font-size: 13px; color: var(--text-muted); }
+
+  /* Tag */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 2px 10px;
+    border-radius: 100px;
+    background: rgba(0,201,183,0.1);
+    color: var(--accent);
+    margin-right: 6px;
+    text-transform: uppercase;
+  }
+
+  /* Nav */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .toc-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
+  .toc ol { margin: 0; list-style: none; counter-reset: toc; }
+  .toc li { counter-increment: toc; margin-bottom: 4px; }
+  .toc li::before { content: counter(toc) ". "; color: var(--accent); font-weight: 600; }
+  .toc a { color: var(--text); text-decoration: none; font-size: 14px; }
+  .toc a:hover { color: var(--accent); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 16px 32px; }
+    section { padding: 40px 0; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
-    <a href="#main" class="skip-link">Перейти к контенту</a>
-    <!-- ХЕДЕР -->
-    <header class="header">
-        <div class="container header-content">
-            <a href="#" class="logo">
-                <img src="img/logos/lovii-logo.svg" alt="LOVII" class="logo-light" height="40">
-                <img src="img/logos/lovii-logo_dark.svg" alt="LOVII" class="logo-dark" height="40">
-            </a>
-            
-            <!-- Бургер кнопка для мобильных -->
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <nav class="nav">
-                <ul>
-                    <li><a href="#lovii-tariff">Лови</a></li>
-                    <li><a href="#lovii-benefits">Преимущества</a></li>
-                    <li><a href="#products">Продукты</a></li>
-                    <li><a href="#partners">Партнёрам</a></li>
-                    <li><a href="#franchise">Франшиза</a></li>
-                    <li><a href="#about">О компании</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-            </nav>
-            
-            <!-- Кнопка смены темы для десктопа -->
-            <button class="theme-toggle" id="themeToggle">
-                <i class="fas fa-sun" id="themeIcon"></i> Тема
-            </button>
-        </div>
-    </header>
 
-    <!-- Затемнение фона для мобильного меню -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-        <nav class="mobile-nav">
-            <ul>
-                <li><a href="#lovii-tariff">Лови</a></li>
-                <li><a href="#lovii-benefits">Преимущества</a></li>
-                <li><a href="#products">Продукты</a></li>
-                <li><a href="#partners">Партнёрам</a></li>
-                <li><a href="#franchise">Франшиза</a></li>
-                <li><a href="#about">О компании</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
-            <button class="theme-toggle-btn mobile-theme-btn" id="themeToggleMobile">
-                <i class="fas fa-sun" id="themeIconMobile"></i>
-                <span>Сменить тему</span>
-            </button>
-        </nav>
+<header class="hero">
+  <div class="hero-badge">White Paper v1.0</div>
+  <h1>LOVII — <span>от района к Федерации</span></h1>
+  <p>White-label SaaS-платформа для запуска и масштабирования маркетплейсов микро- и малого бизнеса в отдельно взятом районе.</p>
+  <div class="hero-meta">
+    <span>Дата: июнь 2026</span>
+    <span>Статус: MVP</span>
+    <span>АО «Платформа»</span>
+  </div>
+</header>
+
+<div class="container">
+
+<div class="toc">
+  <div class="toc-title">Содержание</div>
+  <ol>
+    <li><a href="#exec">Исполнительное резюме</a></li>
+    <li><a href="#done">Что сделано (Done)</a></li>
+    <li><a href="#now">Текущий статус (Now)</a></li>
+    <li><a href="#roadmap">Дорожная карта</a></li>
+    <li><a href="#architecture">Архитектура</a></li>
+    <li><a href="#monetization">Монетизация</a></li>
+    <li><a href="#unit">Юнит-экономика</a></li>
+    <li><a href="#horizons">Дальнейшие горизонты</a></li>
+  </ol>
+</div>
+
+<!-- 1. Executive Summary -->
+<section id="exec">
+  <h2>1. Исполнительное резюме</h2>
+  <p class="subtitle">Рыночная ниша, гипотеза, модель</p>
+
+  <p><strong>LOVII</strong> — white-label SaaS-платформа, которая позволяет запустить маркетплейс микро- и малого бизнеса в <strong>отдельно взятом районе</strong> города за 5 минут.</p>
+
+  <p>Ключевая гипотеза: малый бизнес в спальных районах не идёт на маркетплейсы федерального масштаба (Wildberries, Ozon, Яндекс.Маркет) из-за <strong>непрозрачной логистики, высоких комиссий и жёстких требований к обороту</strong>. При этом жители района <strong>готовы покупать локально</strong>, если предложение собрано в одном месте и доставка занимает 15–30 минут.</p>
+
+  <p>LOVII создаёт изолированную экономику каждого района с собственной аудиторией, каталогом и курьерской сетью — на едином централизованном ядре.</p>
+
+  <div class="highlight">
+    <strong>Ёмкость рынка:</strong> только в Санкт-Петербурге ~40 спальных районов (локаций). При среднем GMV 5–10 млн ₽/мес на локацию — <strong>TAM 2–5 млрд ₽/год</strong> в одном городе.
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="num">40%</div><div class="label">Retention D30 (цель)</div></div>
+    <div class="metric"><div class="num">&gt;3</div><div class="label">LTV / CAC (цель)</div></div>
+    <div class="metric"><div class="num">10%</div><div class="label">Комиссия с транзакции</div></div>
+    <div class="metric"><div class="num">2 999 ₽</div><div class="label">PRO-подписка / мес</div></div>
+  </div>
+</section>
+
+<!-- 2. Done -->
+<section id="done">
+  <h2>2. Что сделано (Done)</h2>
+  <p class="subtitle">Бэклог выполненных работ за первый спринт</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag">Сайт</span>
+      <h3>Лендинг LOVII</h3>
+      <p>Одностраничный сайт с описанием продукта, тарифами и контактами.</p>
     </div>
+    <div class="card">
+      <span class="tag">Презентация</span>
+      <h3>Инвест-презентация</h3>
+      <p>15 слайдов: проблема, решение, рынок, архитектура, монетизация, дорожная карта.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Брендинг</span>
+      <h3>Редакторы логотипов</h3>
+      <p>Три варианта лого LOVII (основной, минималистичный, значок).</p>
+    </div>
+    <div class="card">
+      <span class="tag">Продукт</span>
+      <h3>LOVII Market</h3>
+      <p>Веб-витрина с каталогом товаров и услуг локальных поставщиков.</p>
+    </div>
+  </div>
 
-    <main class="container" id="main" role="main">
-        <!-- ПЕРВЫЙ СЛАЙД: Герой + Статистика (две секции на одном экране) -->
-        <section id="hero" class="hero section slide">
-            <h1>Цифровая инфраструктура<br> <span class="highlight">локальной экономики</span></h1>
-            <p>АО «Платформа» — технологический оператор <span lang="en">SaaS</span>-решений, программ лояльности и платёжных интеграций для малого бизнеса</p>
-            <div>
-                <a href="#franchise" class="btn">Стать франчайзи</a>
-                <a href="#products" class="btn btn-outline">Продукты</a>
-            </div>
-        </section>
+  <p>Все артефакты заархивированы и доступны по ссылкам:</p>
+  <ul>
+    <li><strong>Лендинг</strong> — <code>axiiom.ru</code></li>
+    <li><strong>LOVII Market</strong> — <code>market.lovii.ru</code></li>
+    <li><strong>Презентация</strong> — <code>lovii.ru/pitch</code></li>
+  </ul>
 
-        <!-- Секция 2: Статистика -->
-        <section class="stats section">
-            <div class="stats-grid">
-                <div>
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Партнёров</div>
-                </div>
-                <div>
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Городов</div>
-                </div>
-                <div>
-                    <div class="stat-number">10K+</div>
-                    <div class="stat-label">Точек бизнеса</div>
-                </div>
-            </div>
-        </section>
+  <div class="highlight">
+    <strong>Ключевой вывод:</strong> продукт сформулирован, бренд упакован, витрина работает. Следующий этап — подключение первых поставщиков и набор аудитории в пилотном районе.
+  </div>
+</section>
 
-        <!-- LOVII - ТАРИФ МЕЧТЫ -->
-        <section id="lovii-tariff" class="section slide">
-            <div class="lovii-container">
-                <!-- Логотип и заголовок -->
-                <div class="lovii-header">
-                    <div class="lovii-logo-wrapper">
-                        <!-- Иконка для тёмной темы -->
-                        <img src="lovii-icon.svg" alt="LOVII" class="lovii-logo lovii-logo-dark" width="120" height="120" loading="lazy">
-                        <!-- Иконка для светлой темы -->
-                        <img src="lovii-icon.svg" alt="LOVII" class="lovii-logo lovii-logo-light" width="120" height="120" loading="lazy">
-                    </div>
-                    <div class="lovii-title-block">
-                        <h2 class="section-title">LOVII — <span>Тариф Мечты</span></h2>
-                        <p class="lovii-subtitle">Цифровой лифт для вашего бизнеса</p>
-                    </div>
-                </div>
-                
-                <!-- Преимущества -->
-                <div class="lovii-features">
-                    <div class="lovii-feature-card">
-                        <i class="fas fa-rocket"></i>
-                        <h3>Старт за 5 минут</h3>
-                        <p>Подключение через <span lang="en"><span lang="en">QR</span></span>-код или загрузку из Excel</p>
-                    </div>
-                    
-                    <div class="lovii-feature-card">
-                        <i class="fas fa-percent"></i>
-                        <h3>Честная комиссия</h3>
-                        <p>Платите только за результат, без абонентской платы</p>
-                    </div>
-                    
-                    <div class="lovii-feature-card">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h3>Готовое приложение</h3>
-                        <p>Белое приложение с вашим брендом для iOS и Android</p>
-                    </div>
-                    
-                    <div class="lovii-feature-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Аналитика 360°</h3>
-                        <p>Полная статистика по продажам и клиентам</p>
-                    </div>
-                </div>
-                
-                <!-- Тарифы -->
-                <div class="lovii-pricing">
-                    <!-- Тариф 8% -->
-                    <div class="lovii-tariff-card tariff-start">
-                        <div class="tariff-badge">Без подписки</div>
-                        <h3>Тариф 8%</h3>
-                        <div class="tariff-price">
-                            <span class="price-main">8%</span>
-                            <span class="price-desc">с чека</span>
-                        </div>
-                        <ul class="tariff-features">
-                            <li><i class="fas fa-check"></i> Без абонентской платы</li>
-                            <li><i class="fas fa-check"></i> Оплата за результат</li>
-                            <li><i class="fas fa-check"></i> Эквайринг включен</li>
-                            <li><i class="fas fa-check"></i> Идеально для старта</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Выбрать</a>
-                    </div>
-                    
-                    <!-- <span lang="en">SaaS</span> Лови -->
-                    <div class="lovii-tariff-card tariff-saas">
-                        <div class="tariff-badge badge-hit">ХИТ</div>
-                        <h3><span lang="en">SaaS</span> «Лови»</h3>
-                        <div class="tariff-price">
-                            <span class="price-main">2 990₽</span>
-                            <span class="price-desc">в месяц</span>
-                        </div>
-                        <ul class="tariff-features">
-                            <li><i class="fas fa-check"></i> Полная платформа</li>
-                            <li><i class="fas fa-check"></i> White Label приложение</li>
-                            <li><i class="fas fa-check"></i> Программа лояльности</li>
-                            <li><i class="fas fa-check"></i> Вывод баллов через СБП</li>
-                            <li><i class="fas fa-check"></i> Каталог услуг</li>
-                            <li><i class="fas fa-check"></i> Поддержка 24/7</li>
-                        </ul>
-                        <a href="#contact" class="btn">Выбрать</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- 3. Now -->
+<section id="now">
+  <h2>3. Текущий статус (Now)</h2>
+  <p class="subtitle">Где мы находимся сегодня</p>
 
-        <!-- LOVII - ПРЕИМУЩЕСТВА И ВОЗМОЖНОСТИ -->
-        <section id="lovii-benefits" class="section slide">
-            <div class="container">
-                <h2 class="section-title">Почему <span>выбирают LOVII</span></h2>
-                
-                <!-- Как это работает -->
-                <div class="how-it-works">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <i class="fas fa-qrcode step-icon"></i>
-                        <h3>Сканируйте <span lang="en">QR</span></h3>
-                        <p>Клиент сканирует <span lang="en">QR</span>-код на кассе или витрине</p>
-                    </div>
-                    <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <i class="fas fa-download step-icon"></i>
-                        <h3>Загружайте товары</h3>
-                        <p>Автоматическая загрузка из Excel или 1С</p>
-                    </div>
-                    <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <i class="fas fa-chart-line step-icon"></i>
-                        <h3>Продавайте больше</h3>
-                        <p>Программа лояльности увеличивает средний чек на 30%</p>
-                    </div>
-                </div>
-                
-                <!-- Цифры -->
-                <div class="lovii-stats">
-                    <div class="stat-card">
-                        <div class="stat-value">500+</div>
-                        <div class="stat-label">Подключенных бизнесов</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">30%</div>
-                        <div class="stat-label">Рост среднего чека</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">85%</div>
-                        <div class="stat-label">Возвращаемость клиентов</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">50+</div>
-                        <div class="stat-label">Городов присутствия</div>
-                    </div>
-                </div>
-                
-                <!-- Для кого -->
-                <div class="target-audience">
-                    <h3 class="section-title-centered">Решения для каждого</h3>
-                    <div class="audience-grid">
-                        <div class="audience-card">
-                            <i class="fas fa-store"></i>
-                            <h4>Микробизнес</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Старт за 5 минут</li>
-                                <li><i class="fas fa-check"></i> Без абонентской платы</li>
-                                <li><i class="fas fa-check"></i> Простой интерфейс</li>
-                            </ul>
-                        </div>
-                        <div class="audience-card">
-                            <i class="fas fa-shopping-cart"></i>
-                            <h4>Ритейл</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Программа лояльности</li>
-                                <li><i class="fas fa-check"></i> Аналитика продаж</li>
-                                <li><i class="fas fa-check"></i> Интеграция с 1С</li>
-                            </ul>
-                        </div>
-                        <div class="audience-card">
-                            <i class="fas fa-handshake"></i>
-                            <h4>Франшизы</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Единая платформа</li>
-                                <li><i class="fas fa-check"></i> Централизованное управление</li>
-                                <li><i class="fas fa-check"></i>白 label приложение</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Что входит -->
-                <div class="platform-features">
-                    <h3 class="section-title-centered">Всё необходимое в одной платформе</h3>
-                    <div class="features-list">
-                        <div class="feature-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            <div>
-                                <strong>Белое приложение</strong>
-                                <span>iOS и Android с вашим брендом</span>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-percentage"></i>
-                            <div>
-                                <strong>Программа лояльности</strong>
-                                <span>Баллы, скидки, кэшбэк</span>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-chart-bar"></i>
-                            <div>
-                                <strong>Аналитика 360°</strong>
-                                <span>Продажи, клиенты, ABC-анализ</span>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-sync-alt"></i>
-                            <div>
-                                <strong>Вывод баллов через СБП</strong>
-                                <span>Мгновенная конвертация</span>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-box-open"></i>
-                            <div>
-                                <strong>Каталог услуг</strong>
-                                <span>Дополнительный доход</span>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-headset"></i>
-                            <div>
-                                <strong>Поддержка 24/7</strong>
-                                <span>Всегда на связи</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- CTA -->
-                <div class="cta-block">
-                    <h3>Готовы увеличить продажи?</h3>
-                    <p>Подключитесь за 5 минут и получите первые результаты уже через неделю</p>
-                    <div class="cta-buttons">
-                        <a href="#contact" class="btn">Попробовать бесплатно</a>
-                        <a href="#products" class="btn btn-outline">Узнать подробнее</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <p>Проект находится в фазе <strong>Pre-MVP</strong>. Запущены и работают:</p>
 
-        <!-- ПРОДУКТЫ -->
-        <section id="products" class="section slide">
-            <h2 class="section-title">Продукты <span>и решения</span></h2>
-            <div class="grid">
-                <div class="card">
-                    <span class="card-badge badge-hit">Хит</span>
-                    <h3><span lang="en">SaaS</span> «Лови»</h3>
-                    <p>Оператор лояльности для микробизнеса. Обмен баллов, вывод через СБП, каталог услуг.</p>
-                    <div class="card-price">от 2 990 ₽ <span>/ мес</span><br><span>+ эквайринг</span></div>
-                </div>
+  <ul>
+    <li><strong>Домен и хостинг</strong> — axiiom.ru (основной), lovii.ru (перенаправление)</li>
+    <li><strong>LOVII Market</strong> — веб-витрина с каталогом товаров и услуг (рыба/тестовые данные)</li>
+    <li><strong>Презентационные материалы</strong> — лендинг и pitch-презентация для инвесторов и партнёров</li>
+    <li><strong>Брендбук</strong> — логотипы, цветовая схема, визуальный стиль</li>
+  </ul>
 
-                <div class="card">
-                    <span class="card-badge badge-new">Новинка</span>
-                    <h3>Тариф 8%</h3>
-                    <p>Комиссия 8% с чека без абонентской платы. Платите только за результат. Идеально для старта.</p>
-                    <div class="card-price">8% <span>/ чек</span><br><span>без абон. платы</span></div>
-                </div>
+  <p>Текущий фокус — <strong>поиск первых 10–20 поставщиков</strong> в пилотном районе (Петроградский район, Санкт-Петербург) и запуск MVP с реальными транзакциями.</p>
 
-                <div class="card">
-                    <span class="card-badge badge-new">Новинка</span>
-                    <h3>Цифровая витрина</h3>
-                    <p>Виртуальная полка для локальных производителей. Геозависимая доступность товаров.</p>
-                    <div class="card-price">от 4 990 ₽ <span>/ мес</span><br><span>+ эквайринг</span></div>
-                </div>
+  <div class="highlight">
+    <strong>Ближайшая веха:</strong> GMV 5 млн ₽/мес, 30+ активных точек, Retention D30 ≥ 40%.
+  </div>
+</section>
 
-                <div class="card">
-                    <span class="card-badge badge-hit">Партнёрам</span>
-                    <h3>Инфраструктура под ключ</h3>
-                    <p>Для партнёров с выручкой более 10 млн. Полная инфраструктура и поддержка.</p>
-                    <div class="card-price">от 30 000 ₽ <span>/ точка / мес</span><br><span>+ эквайринг</span></div>
-                </div>
+<!-- 4. Roadmap -->
+<section id="roadmap">
+  <h2>4. Дорожная карта</h2>
+  <p class="subtitle">Три фазы: от района к Федерации</p>
 
-                <div class="card">
-                    <h3>City Franchise</h3>
-                    <p>Запуск локальной экосистемы в вашем городе. Готовая ИТ-платформа + методология.</p>
-                    <div class="card-price">Индивидуально</div>
-                </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="phase">Фаза 1 — MVP (6 мес)</div>
+      <h3>Запуск в пилотном районе</h3>
+      <p>10–20 поставщиков · Модуль «Витрина» · Приём онлайн-оплат · Проверка гипотез спроса и юнит-экономики · <strong>Критерий:</strong> GMV ≥ 5 млн ₽/мес, Retention D30 ≥ 40%, LTV/CAC &gt; 3</p>
+    </div>
+    <div class="tl-item">
+      <div class="phase">Фаза 2 — Сеть (12–18 мес)</div>
+      <h3>Репликация модели</h3>
+      <p>Подключение 3–5 новых районов · White-label узлы с единой аналитикой · PRO-подписка · Внешние B2B-партнёры (банки, телекомы) · <strong>Критерий:</strong> 200+ точек, 30% PRO, положительная EBITDA узла</p>
+    </div>
+    <div class="tl-item">
+      <div class="phase">Фаза 3 — Федерация (24+ мес)</div>
+      <h3>Федеральная сеть</h3>
+      <p>Кросс-локальный обмен (товары между районами) · Корпоративные программы · Масштабирование по РФ и СНГ · <strong>Критерий:</strong> Полная окупаемость платформы, NPS ≥ 40</p>
+    </div>
+  </div>
 
-                <div class="card">
-                    <span class="card-badge badge-promo">Акция</span>
-                    <h3>API для партнёров</h3>
-                    <p>Интеграция с платформой «Лови». Передача статусов, заказов, логистики.</p>
-                    <div class="card-price">от 10 000 ₽ <span>/ мес</span></div>
-                </div>
+  <p>Переход между фазами происходит <strong>только</strong> после достижения целевых показателей юнит-экономики на текущем этапе.</p>
+</section>
 
-                <div class="card">
-                    <h3>Финансовая инфраструктура</h3>
-                    <p>Интеграция с банковскими платёжными агентами. Автоматизация документооборота.</p>
-                    <div class="card-price">По запросу</div>
-                </div>
+<!-- 5. Architecture -->
+<section id="architecture">
+  <h2>5. Архитектура</h2>
+  <p class="subtitle">Централизованное ядро, локальная автономия</p>
 
-                <div class="card">
-                    <h3>White Label</h3>
-                    <p>Лицензирование технологии для регионов и сетей. Запуск под вашим брендом.</p>
-                    <div class="card-price">от 500 000 ₽ <span>/ год</span></div>
-                </div>
-            </div>
-        </section>
+  <p>Архитектура LOVII построена по принципу <strong>white-label изоляции</strong>: каждый район (узел) работает как независимый маркетплейс с собственным каталогом, аудиторией и курьерской сетью, но на единой кодовой базе.</p>
 
-        <!-- ПАРТНЁРЫ -->
-        <section id="partners" class="section slide">
-            <h2 class="section-title">Мы <span>интегрировали</span></h2>
-            <div class="partners-grid">
-                <div class="partner-card"><i class="fas fa-signal"></i> Билайн</div>
-                <div class="partner-card"><i class="fas fa-taxi" ></i> Яндекс.Go</div>
-                <div class="partner-card"><i class="fas fa-truck" ></i> СДЭК</div>
-                <div class="partner-card"><i class="fas fa-credit-card" ></i> Тинькофф</div>
-                <div class="partner-card"><i class="fas fa-laptop-code" ></i> 1С</div>
-                <div class="partner-card"><i class="fas fa-landmark" ></i> Фонд МСП</div>
-                <div class="partner-card"><i class="fas fa-university" ></i> Сбербанк</div>
-                <div class="partner-card"><i class="fas fa-rocket" ></i> Альфа-Банк</div>
-                <div class="partner-card"><i class="fas fa-wallet" ></i> ЮMoney</div>
-                <div class="partner-card"><i class="fas fa-mobile-alt" ></i> МТС</div>
-                <div class="partner-card"><i class="fas fa-plane" ></i> Aviasales</div>
-                <div class="partner-card"><i class="fas fa-search" ></i> Яндекс</div>
-                <div class="partner-card"><i class="fas fa-hotel" ></i> Ostrovok.ru</div>
-                <div class="partner-card"><i class="fas fa-chart-line" ></i> Сравни.ру</div>
-                <div class="partner-card"><i class="fas fa-handshake" ></i> Admitad</div>
-                <div class="partner-card"><i class="fas fa-gift" ></i> Giftery</div>
-                <div class="partner-card"><i class="fas fa-tower-broadcast" ></i> Ростелеком</div>
-                <div class="partner-card"><i class="fas fa-bullhorn" ></i> adv.cake</div>
-                <div class="partner-card"><i class="fas fa-users" ></i> XPartners</div>
-                <div class="partner-card"><i class="fas fa-camera" ></i> Фотострана</div>
-                <div class="partner-card"><i class="fas fa-newspaper" ></i> Пикабу</div>
-                <div class="partner-card"><i class="fas fa-shopping-cart" ></i> Магнит</div>
-                <div class="partner-card"><i class="fas fa-store" ></i> Лента</div>
-                <div class="partner-card"><i class="fas fa-shopping-bag" ></i> Ашан</div>
-                <div class="partner-card"><i class="fas fa-warehouse" ></i> Метро</div>
-                <div class="partner-card"><i class="fas fa-globe" ></i> Глобус</div>
-                <div class="partner-card"><i class="fas fa-building" ></i> СуперБабилон</div>
-            </div>
-        </section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Компонент</th><th>Описание</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Центральное ядро (Core)</td><td>Единая кодовая база, финансовая маршрутизация, безопасность, аналитика</td></tr>
+        <tr><td>White-label узел (район)</td><td>Свой бренд, каталог, аудитория, курьерская сеть, цены. Абсолютно независимая экономика</td></tr>
+        <tr><td>API-слой</td><td>Открытые API для внешних интеграций: банки, телекомы, HR-системы, муниципалитеты</td></tr>
+        <tr><td>Финансовый модуль</td><td>Маршрутизация платежей, автоматическое распределение комиссий, отложенные выплаты</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-        <!-- ФРАНШИЗА -->
-        <section id="franchise" class="section slide">
-            <h2 class="section-title">Франшиза <span>City Franchise</span></h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Старт</h3>
-                    <p>Для городов от 10 000 жителей. Базовый пакет поддержки.</p>
-                    <div class="card-price">500 000 ₽</div>
-                    <ul>
-                        <li>Доступ к <span lang="en">SaaS</span>-платформе</li>
-                        <li>Методология запуска</li>
-                        <li>Базовая поддержка</li>
-                    </ul>
-                </div>
+  <div class="highlight">
+    <strong>Ключевое преимущество:</strong> экономия на разработке (одно ядро), гибкость на периферии (каждый узел сам решает, как работать с локальным рынком).
+  </div>
+</section>
 
-                <div class="card">
-                    <span class="card-badge badge-hit">Популярный</span>
-                    <h3>Бизнес</h3>
-                    <p>Для городов от 50 000 жителей. Расширенный пакет.</p>
-                    <div class="card-price">1 500 000 ₽</div>
-                    <ul>
-                        <li>Всё из тарифа Старт</li>
-                        <li>Выделенный менеджер</li>
-                        <li>Маркетинговая поддержка</li>
-                        <li>Приоритет в поиске</li>
-                    </ul>
-                </div>
+<!-- 6. Monetization -->
+<section id="monetization">
+  <h2>6. Монетизация</h2>
+  <p class="subtitle">Четыре столпа выручки</p>
 
-                <div class="card">
-                    <h3>Премиум</h3>
-                    <p>Для городов-миллионников. Полный пакет.</p>
-                    <div class="card-price">Индивидуально</div>
-                    <ul>
-                        <li>Всё из тарифа Бизнес</li>
-                        <li>Персональный менеджер 24/7</li>
-                        <li>Эксклюзивные условия</li>
-                        <li>Доля в рекламном доходе</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <div class="card-grid">
+    <div class="card">
+      <div class="value">10%</div>
+      <h3>Транзакционная комиссия</h3>
+      <p>С денежной части оплаты. 0% для оборота до 30 000 ₽/мес — порог входа для микробизнеса.</p>
+    </div>
+    <div class="card">
+      <div class="value">2 999 ₽</div>
+      <h3>PRO-подписка</h3>
+      <p>Фиксированная ставка в месяц. Комиссия снижается до 4–7%. Для активных поставщиков.</p>
+    </div>
+    <div class="card">
+      <div class="value">Реклама</div>
+      <h3>Продвижение</h3>
+      <p>Закреплённые позиции в витрине, нативные подборки, спонсорство категорий.</p>
+    </div>
+    <div class="card">
+      <div class="value">B2B API</div>
+      <h3>Интеграции</h3>
+      <p>Платный доступ к API для банков, телекомов, HR-систем и муниципалитетов.</p>
+    </div>
+  </div>
+</section>
 
-        <!-- О КОМПАНИИ -->
-        <section id="about" class="section slide">
-            <h2 class="section-title">О <span>компании</span></h2>
-            <div class="growth-text-block">
-                <p>
-                    Создаём цифровую инфраструктуру для тысяч предприятий малого и микробизнеса. Клиенты делают заказы онлайн через нашу Платформу.
-                </p>
+<!-- 7. Unit Economics -->
+<section id="unit">
+  <h2>7. Юнит-экономика</h2>
+  <p class="subtitle">Целевые показатели на этап MVP</p>
 
-                <h3>Почему мы быстро растём</h3>
-                <p>
-                    Предоставляем готовую цифровую инфраструктуру максимально доступно для тех, у кого уже есть клиентская база.
-                </p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="value">5 млн ₽</div>
+      <p>GMV в месяц</p>
+    </div>
+    <div class="card">
+      <div class="value">500+</div>
+      <p>Активных пользователей</p>
+    </div>
+    <div class="card">
+      <div class="value">30+</div>
+      <p>Подключённых точек</p>
+    </div>
+    <div class="card">
+      <div class="value">40%</div>
+      <p>Retention Day 30</p>
+    </div>
+    <div class="card">
+      <div class="value">&gt; 3</div>
+      <p>LTV / CAC</p>
+    </div>
+  </div>
 
-                <div class="growth-list">
-                    <div class="growth-list-item">
-                        <strong>✓ Готовая инфраструктура без вложений</strong>
-                        <span>ТСП подключаются сами — им выгоднее использовать нашу платформу, чем разрабатывать свою (приложение, сайт, онлайн-кассу, ОФД, интеграции).</span>
-                    </div>
+  <p>При достижении этих показателей в пилотном районе платформа масштабируется на следующие локации. Каждый новый узел запускается только при условии положительной юнит-экономики предыдущего.</p>
 
-                    <div class="growth-list-item">
-                        <strong>✓ Низкий CAC и высокая скорость</strong>
-                        <span>От интереса до первого заказа — несколько минут.</span>
-                    </div>
-                </div>
+  <div class="highlight">
+    <strong>Принцип:</strong> Масштабирование начинается <strong>только</strong> после достижения юнит-экономики на предыдущем узле. Это исключает кассовые разрывы.
+  </div>
+</section>
 
-                <div class="experience-block">
-                    <h3>Наш опыт</h3>
-                    <p>
-                        Более 50 успешных внедрений в ритейле, HoReCa и финтехе. Используем технологические решения и банковские интеграции уровня enterprise.
-                    </p>
-                    <div class="experience-grid">
-                        <div class="experience-stat">
-                            <div class="experience-stat-value">50+</div>
-                            <div class="experience-stat-label">Внедрений</div>
-                        </div>
-                        <div class="experience-stat">
-                            <div class="experience-stat-value">24/7</div>
-                            <div class="experience-stat-label">Поддержка</div>
-                        </div>
-                        <div class="experience-stat">
-                            <div class="experience-stat-value">PCI DSS</div>
-                            <div class="experience-stat-label">Безопасность</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </section>
+<!-- 8. Horizons -->
+<section id="horizons">
+  <h2>8. Дальнейшие горизонты</h2>
+  <p class="subtitle">Больше, чем просто витрина</p>
 
-        <!-- КОНТАКТЫ -->
-        <section id="contact" class="section slide">
-            <h2 class="section-title"><i class="fas fa-envelope"></i> Контакты</h2>
-            
-            <div class="contact-wrapper">
-                <!-- Основная карточка -->
-                <div class="contact-main-card">
-                    <div class="contact-header">
-                        <i class="fas fa-microchip contact-logo"></i>
-                        <div class="contact-title-block">
-                            <h3>АО Платформа</h3>
-                            <p>Цифровая инфраструктура для малого бизнеса</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-details-compact">
-                        <div class="contact-item-compact">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Адрес</strong>
-                                <span>г. Санкт-Петербург, Думская ул., 4</span>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item-compact">
-                            <i class="fas fa-phone-alt"></i>
-                            <div>
-                                <strong>Телефон</strong>
-                                <a href="tel:+78129287478">+7 812 928-74-78</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item-compact contact-row-double">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <a href="mailto:hello@axiiom.ru">hello@axiiom.ru</a>
-                            </div>
-                            <i class="fas fa-globe franchise-icon-auto"></i>
-                            <div>
-                                <strong>Сайт</strong>
-                                <a href="https://axiiom.ru" target="_blank">axiiom.ru</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-actions-compact">
-                        <a href="mailto:hello@axiiom.ru" class="btn">
-                            <i class="fas fa-paper-plane"></i> Написать нам
-                        </a>
-                        <a href="tel:+78129287478" class="btn btn-outline">
-                            <i class="fas fa-phone"></i> Позвонить
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Карта -->
-                <div class="contact-map-container">
-                    <svg class="contact-map" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Фон карты -->
-                        <rect width="600" height="400" fill="var(--color-bg-card)" rx="20"/>
-                        
-                        <!-- Река Нева (широкая, между островами) -->
-                        <path d="M0 180 Q100 160, 200 180 T400 180 Q500 180, 600 200" 
-                              stroke="var(--color-primary)" 
-                              stroke-width="25" 
-                              fill="none" 
-                              opacity="0.3"
-                              stroke-linecap="round"/>
-                        
-                        <!-- Малая Нева -->
-                        <path d="M200 180 Q220 220, 250 280" 
-                              stroke="var(--color-primary)" 
-                              stroke-width="15" 
-                              fill="none" 
-                              opacity="0.25"
-                              stroke-linecap="round"/>
-                        
-                        <!-- Большая Невка -->
-                        <path d="M300 170 Q320 130, 350 100" 
-                              stroke="var(--color-primary)" 
-                              stroke-width="18" 
-                              fill="none" 
-                              opacity="0.25"
-                              stroke-linecap="round"/>
-                        
-                        <!-- Васильевский остров (слева) -->
-                        <path d="M10 190 L180 190 L180 280 L10 280 Z" 
-                              fill="var(--color-primary)" 
-                              opacity="0.15" 
-                              stroke="var(--border-subtle)" 
-                              stroke-width="1"
-                              rx="8"/>
-                        
-                        <!-- Петроградская сторона (справа вверху) -->
-                        <path d="M350 100 L580 100 L580 170 L350 170 Z" 
-                              fill="var(--color-primary)" 
-                              opacity="0.15" 
-                              stroke="var(--border-subtle)" 
-                              stroke-width="1"
-                              rx="8"/>
-                        
-                        <!-- Центральный район (справа внизу) -->
-                        <path d="M350 190 L580 190 L580 350 L350 350 Z" 
-                              fill="var(--color-primary)" 
-                              opacity="0.15" 
-                              stroke="var(--border-subtle)" 
-                              stroke-width="1"
-                              rx="8"/>
-                        
-                        <!-- Схематичные улицы -->
-                        <!-- Петроградка - подробнее -->
-                        <path d="M380 120 L550 120" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M380 135 L550 135" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M380 150 L550 150" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M400 100 L400 170" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M440 100 L440 170" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M480 100 L480 170" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M520 100 L520 170" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        
-                        <!-- Васильевский - подробнее -->
-                        <path d="M30 205 L160 205" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M30 225 L160 225" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M30 245 L160 245" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M30 265 L160 265" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M60 190 L60 280" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M90 190 L90 280" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M120 190 L120 280" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M150 190 L150 280" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        
-                        <!-- Центр - подробнее -->
-                        <path d="M380 210 L550 210" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M380 230 L550 230" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M380 250 L550 250" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M380 270 L550 270" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M380 290 L550 290" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M380 310 L550 310" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M420 190 L420 350" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M460 190 L460 350" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M500 190 L500 350" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        <path d="M540 190 L540 350" stroke="var(--border-subtle)" stroke-width="1.5" opacity="0.5"/>
-                        
-                        <!-- Мосты через Неву -->
-                        <path d="M200 180 L350 180" stroke="var(--border-subtle)" stroke-width="3" stroke-dasharray="5,5" opacity="0.6"/>
-                        <path d="M250 280 L350 200" stroke="var(--border-subtle)" stroke-width="3" stroke-dasharray="5,5" opacity="0.6"/>
-                        
-                        <!-- Движущиеся машинки (точки) -->
-                        <!-- По Петроградке -->
-                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
-                            <animateMotion dur="8s" repeatCount="indefinite" path="M380 120 L550 120"/>
-                        </circle>
-                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
-                            <animateMotion dur="7s" repeatCount="indefinite" begin="2s" path="M400 100 L400 170"/>
-                        </circle>
-                        <circle r="3" fill="var(--color-secondary)" opacity="0.8">
-                            <animateMotion dur="9s" repeatCount="indefinite" begin="1s" path="M480 100 L480 170"/>
-                        </circle>
-                        
-                        <!-- По Васильевскому -->
-                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
-                            <animateMotion dur="6s" repeatCount="indefinite" begin="0.5s" path="M30 205 L160 205"/>
-                        </circle>
-                        <circle r="3" fill="var(--color-secondary)" opacity="0.8">
-                            <animateMotion dur="7s" repeatCount="indefinite" begin="1.5s" path="M60 190 L60 280"/>
-                        </circle>
-                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
-                            <animateMotion dur="8s" repeatCount="indefinite" begin="3s" path="M120 190 L120 280"/>
-                        </circle>
-                        
-                        <!-- По Центру -->
-                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
-                            <animateMotion dur="5s" repeatCount="indefinite" path="M380 210 L550 210"/>
-                        </circle>
-                        <circle r="3" fill="var(--color-secondary)" opacity="0.8">
-                            <animateMotion dur="6s" repeatCount="indefinite" begin="0.5s" path="M380 250 L550 250"/>
-                        </circle>
-                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
-                            <animateMotion dur="7s" repeatCount="indefinite" begin="1s" path="M420 190 L420 350"/>
-                        </circle>
-                        <circle r="3" fill="var(--color-secondary)" opacity="0.8">
-                            <animateMotion dur="8s" repeatCount="indefinite" begin="2s" path="M460 190 L460 350"/>
-                        </circle>
-                        <circle r="3" fill="var(--color-primary)" opacity="0.8">
-                            <animateMotion dur="6s" repeatCount="indefinite" begin="0.3s" path="M500 190 L500 350"/>
-                        </circle>
-                        
-                        <!-- Здания (схематично) -->
-                        <rect x="400" y="210" width="50" height="35" fill="var(--color-primary)" opacity="0.25" rx="4"/>
-                        <rect x="480" y="230" width="60" height="40" fill="var(--color-primary)" opacity="0.25" rx="4"/>
-                        <rect x="100" y="220" width="40" height="30" fill="var(--color-primary)" opacity="0.25" rx="4"/>
-                        <rect x="450" y="120" width="45" height="30" fill="var(--color-primary)" opacity="0.25" rx="4"/>
-                        
-                        <!-- Местоположение офиса (Таврическая ул., 7 - Центральный район) -->
-                        <g class="location-marker" transform="translate(420, 240)">
-                            <circle cx="0" cy="0" r="40" fill="var(--color-primary)" opacity="0.2">
-                                <animate attributeName="r" from="20" to="40" dur="1.5s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" from="0.6" to="0" dur="1.5s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="0" cy="0" r="25" fill="var(--color-primary)" opacity="0.4">
-                                <animate attributeName="r" from="15" to="25" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" from="0.4" to="0" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
-                            </circle>
-                            <path d="M0 -30 L0 -30 A30 30 0 1 1 0 10 L0 30 Z" fill="var(--color-primary)"/>
-                            <circle cx="0" cy="-10" r="8" fill="white"/>
-                        </g>
-                        
-                        <!-- Подписи районов - УБРАНО -->
-                        
-                        <!-- Подпись адреса -->
-                        <text x="300" y="385" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">
-                            Санкт-Петербург, Думская ул., 4
-                        </text>
-                    </svg>
-                </div>
-            </div>
-            
-            <!-- Дополнительная информация -->
-            <div class="contact-extra-compact">
-                <div class="extra-card-compact">
-                    <i class="fas fa-clock"></i>
-                    <h4>Режим работы</h4>
-                    <p>Пн-Пт: 9:00 - 18:00 (МСК)</p>
-                    <p>Поддержка 24/7</p>
-                </div>
-                
-                <div class="extra-card-compact">
-                    <i class="fas fa-share-alt"></i>
-                    <h4>Мы в интернете</h4>
-                    <div class="social-links-text">
-                        <a href="#" class="social-text-link"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="#" class="social-text-link"><i class="fab fa-vk"></i></a>
-                        <a href="#" class="social-text-link"><i class="fas fa-video"></i></a>
-                        <a href="#" class="social-text-link"><i class="fas fa-play-circle"></i></a>
-                    </div>
-                </div>
-                
-                <div class="extra-card-compact">
-                    <i class="fas fa-file-contract"></i>
-                    <h4>Реквизиты</h4>
-                    <p>АО «Платформа»</p>
-                    <p>ИНН 7801234567</p>
-                </div>
-            </div>
-        </section>
-    </main>
+  <div class="card-grid">
+    <div class="card">
+      <h3>B2G и муниципалитеты</h3>
+      <p>Помощник администрации по развитию МСП. Социальные льготы и сертификаты для локальных предпринимателей.</p>
+    </div>
+    <div class="card">
+      <h3>Экспансия в СНГ</h3>
+      <p>Репликация SaaS-модели в страны ближнего зарубежья с адаптацией под местное законодательство.</p>
+    </div>
+    <div class="card">
+      <h3>Локальные токены</h3>
+      <p>Эмиссия локальных цифровых валют для внутренних расчётов внутри районов. NFT-сертификаты.</p>
+    </div>
+  </div>
 
-    <!-- ФУТЕР -->
-    <footer class="footer">
-        <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h4>Продукты</h4>
-                        <ul>
-                            <li><a href="#"><span lang="en">SaaS</span> «Лови»</a></li>
-                            <li><a href="#">Цифровая витрина</a></li>
-                            <li><a href="#">City Franchise</a></li>
-                            <li><a href="#">API для партнёров</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Компания</h4>
-                        <ul>
-                            <li><a href="#">О нас</a></li>
-                            <li><a href="#">Команда</a></li>
-                            <li><a href="#">Карьера</a></li>
-                            <li><a href="#">Новости</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Партнёрам</h4>
-                        <ul>
-                            <li><a href="#">Франчайзи</a></li>
-                            <li><a href="#">Поставщики</a></li>
-                            <li><a href="#">Интеграторы</a></li>
-                            <li><a href="#">Инвесторам</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Документы</h4>
-                        <ul>
-                            <li><a href="#">Публичная оферта</a></li>
-                            <li><a href="#">Политика ПДн</a></li>
-                            <li><a href="#">Договор франшизы</a></li>
-                            <li><a href="#">Реквизиты</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>© 2026 АО Платформа. Все права защищены.</p>
-                </div>
-            </div>
-        </footer>
+  <p>Эти направления не входят в ближайший roadmap, но формируют долгосрочное видение продукта.</p>
 
-    <script src="script.js"></script>
+  <div style="text-align:center; margin-top: 48px; padding: 32px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);">
+    <h3 style="font-size: 22px; margin-bottom: 8px;">Готовы построить цифровую инфраструктуру локальной экономики?</h3>
+    <p style="margin-bottom: 20px;">LOVII — от района к Федерации</p>
+    <p style="font-size: 14px;">
+      <strong>Email:</strong> <a href="mailto:hello@axiiom.ru" style="color:var(--accent); text-decoration:none;">hello@axiiom.ru</a> ·
+      <strong>Тел.:</strong> <a href="tel:+78129287478" style="color:var(--accent); text-decoration:none;">+7 812 928-74-78</a>
+    </p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  АО «Платформа» · ИНН 7801234567 · г. Санкт-Петербург, Думская ул., 4<br>
+  © 2026 — White Paper v1.0
+</footer>
+
 </body>
 </html>
