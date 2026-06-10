@@ -240,6 +240,12 @@
   .metric .num { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1.1; }
   .metric .label { font-size: 14px; color: var(--text-muted); }
 
+  /* Logo */
+  .hero-logo { max-width: 300px; margin: 0 auto 16px; display: block; }
+  .hero-logo.light-logo { display: none; }
+  .light .hero-logo.light-logo { display: block; }
+  .light .hero-logo.dark-logo { display: none; }
+
   /* Tag */
   .tag {
     display: inline-block;
@@ -305,6 +311,8 @@
     <span data-theme="light">Light</span>
   </button>
   <div class="hero-badge">White Paper v1.22</div>
+  <img class="hero-logo dark-logo" src="img/logos/lovii-logo_dark.svg" alt="LOVII">
+  <img class="hero-logo light-logo" src="img/logos/lovii-logo.svg" alt="LOVII">
   <h1>LOVII — <span>от района к Федерации</span></h1>
   <p>White-label & SaaS-платформа для создания и масштабирования локальных маркетплейсов для микро- и малого бизнеса в отдельно взятом пространстве, фуд-корте, торговом центре, районе или городе.</p>
   <div class="hero-meta">
