@@ -26,6 +26,7 @@
     --border: #232834;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 17px;
@@ -77,7 +78,7 @@
     left: 0;
     right: 0;
     z-index: 200;
-    background: rgba(11, 13, 16, 0.72);
+    background: rgba(245, 246, 250, 0.76);
     backdrop-filter: blur(16px) saturate(1.4);
     -webkit-backdrop-filter: blur(16px) saturate(1.4);
     border-bottom: 1px solid var(--border);
@@ -131,6 +132,10 @@
     color: var(--text);
     background: rgba(128,128,128,0.08);
   }
+  .header-nav a.active {
+    color: var(--accent);
+    background: rgba(0,201,183,0.1);
+  }
 
   .top-header .theme-toggle {
     position: static;
@@ -159,7 +164,7 @@
     right: 0;
     bottom: 0;
     z-index: 199;
-    background: rgba(11, 13, 16, 0.92);
+    background: rgba(245, 246, 250, 0.94);
     backdrop-filter: blur(20px) saturate(1.4);
     -webkit-backdrop-filter: blur(20px) saturate(1.4);
     padding: 24px;
@@ -169,7 +174,7 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
   .dark .mobile-menu {
-    background: rgba(245, 246, 250, 0.94);
+    background: rgba(11, 13, 16, 0.92);
   }
   .mobile-menu.open {
     display: block;
@@ -207,10 +212,22 @@
   .mobile-tabbar { display: none; }
 
   .hero {
-    padding: 60px 24px 60px;
+    padding: 80px 24px 60px;
     max-width: 820px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(0,201,183,0.06) 0%, transparent 70%);
+    pointer-events: none;
   }
   .hero-badge {
     display: inline-block;
@@ -289,6 +306,11 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   }
   .card h3 { font-size: 16px; margin-bottom: 4px; }
   .card .value {
@@ -459,7 +481,41 @@
   .toc a { color: var(--text); text-decoration: none; font-size: 15px; }
   .toc a:hover { color: var(--accent); }
 
-  /* Footer */
+  /* Section reveal */
+  section {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Footer / CTA */
+  .cta-block {
+    text-align: center;
+    margin-top: 48px;
+    padding: 40px 32px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .cta-block h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .cta-block p { margin-bottom: 20px; }
+  .cta-block .cta-links {
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+  .cta-block .cta-links a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .cta-block .cta-links a:hover { text-decoration: underline; }
+
   footer {
     border-top: 1px solid var(--border);
     padding: 32px 24px;
@@ -819,12 +875,12 @@
 
   <p>Эти направления не входят в ближайший roadmap, но формируют долгосрочное видение продукта.</p>
 
-  <div style="text-align:center; margin-top: 48px; padding: 32px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);">
-    <h3 style="font-size: 22px; margin-bottom: 8px;">Готовы построить цифровую инфраструктуру локальной экономики?</h3>
-    <p style="margin-bottom: 20px;">LOVII — от района к Федерации</p>
-    <p style="font-size: 15px;">
-      <strong>Email:</strong> <a href="mailto:hello@axiiom.ru" style="color:var(--accent); text-decoration:none;">hello@axiiom.ru</a> ·
-      <strong>Тел.:</strong> <a href="tel:+78129287478" style="color:var(--accent); text-decoration:none;">+7 812 928-74-78</a>
+  <div class="cta-block">
+    <h3>Готовы построить цифровую инфраструктуру локальной экономики?</h3>
+    <p>LOVII — от района к Федерации</p>
+    <p class="cta-links">
+      <strong>Email:</strong> <a href="mailto:hello@axiiom.ru">hello@axiiom.ru</a> ·
+      <strong>Тел.:</strong> <a href="tel:+78129287478">+7 812 928-74-78</a>
     </p>
   </div>
 </section>
@@ -861,6 +917,21 @@ function closeMenu() {
   document.getElementById('mobileMenu').classList.remove('open');
   document.body.classList.remove('menu-open');
 }
+
+// Section reveal + active nav
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.header-nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+sections.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
