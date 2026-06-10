@@ -9,21 +9,21 @@
   :root {
     --accent: #00c9b7;
     --accent-dim: #009e90;
-    --bg: #0b0d10;
-    --surface: #13161c;
-    --surface2: #1a1f28;
-    --text: #e4e7ed;
-    --text-muted: #8a8f9c;
-    --border: #232834;
-    --radius: 12px;
-  }
-  .light {
     --bg: #f5f6fa;
     --surface: #ffffff;
     --surface2: #eef0f5;
     --text: #1a1d24;
     --text-muted: #6b7080;
     --border: #dde0e8;
+    --radius: 12px;
+  }
+  .dark {
+    --bg: #0b0d10;
+    --surface: #13161c;
+    --surface2: #1a1f28;
+    --text: #e4e7ed;
+    --text-muted: #8a8f9c;
+    --border: #232834;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -83,8 +83,8 @@
     border-bottom: 1px solid var(--border);
     transition: background 0.3s, border-color 0.3s;
   }
-  .light .top-header {
-    background: rgba(245, 246, 250, 0.78);
+  .dark .top-header {
+    background: rgba(11, 13, 16, 0.72);
   }
   body.menu-open { overflow: hidden; }
   .header-inner {
@@ -107,9 +107,9 @@
     width: auto;
     display: block;
   }
-  .header-logo .light-logo { display: none; }
-  .light .header-logo .light-logo { display: block; }
-  .light .header-logo .dark-logo { display: none; }
+  .header-logo .dark-logo { display: none; }
+  .dark .header-logo .dark-logo { display: block; }
+  .dark .header-logo .light-logo { display: none; }
 
   .header-nav {
     display: flex;
@@ -168,7 +168,7 @@
     transform: translateY(-8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  .light .mobile-menu {
+  .dark .mobile-menu {
     background: rgba(245, 246, 250, 0.94);
   }
   .mobile-menu.open {
@@ -441,8 +441,8 @@
 <header class="top-header">
   <div class="header-inner">
     <a href="#" class="header-logo">
-      <img class="dark-logo" src="img/logos/lovii-logo_dark.svg" alt="LOVII">
       <img class="light-logo" src="img/logos/lovii-logo.svg" alt="LOVII">
+      <img class="dark-logo" src="img/logos/lovii-logo_dark.svg" alt="LOVII">
     </a>
     <nav class="header-nav">
       <a href="#exec">Резюме</a>
@@ -455,8 +455,8 @@
       <a href="#horizons">Горизонты</a>
     </nav>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-      <span class="active" data-theme="dark">Dark</span>
-      <span data-theme="light">Light</span>
+      <span data-theme="dark">Dark</span>
+      <span class="active" data-theme="light">Light</span>
     </button>
     <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Меню">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
@@ -476,8 +476,8 @@
     <a href="#horizons" onclick="closeMenu()">Дальнейшие горизонты</a>
   </nav>
   <button class="theme-toggle" onclick="toggleTheme(); closeMenu()">
-    <span class="active" data-theme="dark">Dark</span>
-    <span data-theme="light">Light</span>
+    <span data-theme="dark">Dark</span>
+    <span class="active" data-theme="light">Light</span>
   </button>
 </div>
 
@@ -753,16 +753,18 @@
 <script>
 function toggleTheme() {
   const html = document.documentElement;
-  const isLight = html.classList.toggle('light');
+  const isDark = html.classList.toggle('dark');
   document.querySelectorAll('.theme-toggle span').forEach(el => {
-    el.classList.toggle('active', isLight ? el.dataset.theme === 'light' : el.dataset.theme === 'dark');
+    el.classList.toggle('active', isDark ? el.dataset.theme === 'dark' : el.dataset.theme === 'light');
   });
-  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
+
 const saved = localStorage.getItem('theme');
-if (saved === 'light') {
-  document.documentElement.classList.add('light');
-  document.querySelectorAll('.theme-toggle span').forEach(el => el.classList.toggle('active', el.dataset.theme === 'light'));
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (saved === 'dark' || (!saved && prefersDark)) {
+  document.documentElement.classList.add('dark');
+  document.querySelectorAll('.theme-toggle span').forEach(el => el.classList.toggle('active', el.dataset.theme === 'dark'));
 }
 
 function toggleMenu() {
