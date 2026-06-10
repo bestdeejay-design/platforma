@@ -332,6 +332,48 @@
   }
   .highlight strong { color: var(--accent); }
 
+  .calc-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .calc-block h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+  }
+  .calc-row:last-child { border-bottom: none; }
+  .calc-row .label { color: var(--text-muted); }
+  .calc-row .value {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-row.result {
+    border-bottom: none;
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 2px solid var(--accent);
+  }
+  .calc-row.result .value {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 17px;
+  }
+
   /* Timeline */
   .timeline { position: relative; padding-left: 28px; margin-bottom: 24px; }
   .timeline::before {
@@ -701,6 +743,50 @@
     <div class="card">
       <div class="value">&gt; 3</div>
       <p>LTV / CAC</p>
+    </div>
+  </div>
+
+  <div class="calc-block">
+    <h4>Базовый расчёт оборота одной точки</h4>
+    <div class="calc-row">
+      <span class="label">Средний чек</span>
+      <span class="value">1 200 ₽</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Транзакций в день</span>
+      <span class="value">4</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Дней в месяце</span>
+      <span class="value">30</span>
+    </div>
+    <div class="calc-row result">
+      <span class="label">Оборот одной точки / мес</span>
+      <span class="value">144 000 ₽</span>
+    </div>
+  </div>
+
+  <div class="calc-block">
+    <h4>Целевой расчёт для MVP</h4>
+    <div class="calc-row">
+      <span class="label">Целевой GMV / мес</span>
+      <span class="value">5 000 000 ₽</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Необходимо чеков / мес</span>
+      <span class="value">4 167</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Необходимо чеков / день</span>
+      <span class="value">~139</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Необходимо активных точек</span>
+      <span class="value">~35</span>
+    </div>
+    <div class="calc-row result">
+      <span class="label">Цель по точкам (с запасом)</span>
+      <span class="value">30+</span>
     </div>
   </div>
 
