@@ -70,8 +70,119 @@
   }
 
   /* Header / Hero */
+  /* Fixed top header */
+  .top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: rgba(11, 13, 16, 0.72);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .light .top-header {
+    background: rgba(245, 246, 250, 0.78);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 16px;
+  }
+  .header-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .header-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+  .header-logo .light-logo { display: none; }
+  .light .header-logo .light-logo { display: block; }
+  .light .header-logo .dark-logo { display: none; }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+  }
+  .header-nav a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: 0.2s;
+    white-space: nowrap;
+  }
+  .header-nav a:hover {
+    color: var(--text);
+    background: rgba(128,128,128,0.08);
+  }
+
+  .top-header .theme-toggle {
+    position: static;
+    flex-shrink: 0;
+  }
+
+  body { padding-top: 60px; }
+
+  /* Mobile tab bar */
+  .mobile-tabbar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: rgba(11, 13, 16, 0.82);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-top: 1px solid var(--border);
+    padding: 6px 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .light .mobile-tabbar {
+    background: rgba(245, 246, 250, 0.84);
+  }
+  .mobile-tabbar-inner {
+    display: flex;
+    gap: 4px;
+    min-width: max-content;
+  }
+  .mobile-tabbar a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+    transition: 0.2s;
+    border: 1px solid transparent;
+  }
+  .mobile-tabbar a:active,
+  .mobile-tabbar a.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
   .hero {
-    padding: 80px 24px 60px;
+    padding: 60px 24px 60px;
     max-width: 820px;
     margin: 0 auto;
     text-align: center;
@@ -240,12 +351,6 @@
   .metric .num { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1.1; }
   .metric .label { font-size: 14px; color: var(--text-muted); }
 
-  /* Logo */
-  .hero-logo { max-width: 300px; margin: 0 auto 16px; display: block; }
-  .hero-logo.light-logo { display: none; }
-  .light .hero-logo.light-logo { display: block; }
-  .light .hero-logo.dark-logo { display: none; }
-
   /* Tag */
   .tag {
     display: inline-block;
@@ -300,19 +405,40 @@
     .hero { padding: 48px 16px 32px; }
     section { padding: 40px 0; }
     .card-grid { grid-template-columns: 1fr; }
+    .header-nav { display: none; }
+    .top-header .theme-toggle { display: none; }
+    .mobile-tabbar { display: block; }
+    body { padding-bottom: 56px; }
   }
 </style>
 </head>
 <body>
 
+<header class="top-header">
+  <div class="header-inner">
+    <a href="#" class="header-logo">
+      <img class="dark-logo" src="img/logos/lovii-logo_dark.svg" alt="LOVII">
+      <img class="light-logo" src="img/logos/lovii-logo.svg" alt="LOVII">
+    </a>
+    <nav class="header-nav">
+      <a href="#exec">Резюме</a>
+      <a href="#done">Done</a>
+      <a href="#now">Now</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#architecture">Архит.</a>
+      <a href="#monetization">Монет.</a>
+      <a href="#unit">Юнит</a>
+      <a href="#horizons">Горизонты</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+      <span class="active" data-theme="dark">Dark</span>
+      <span data-theme="light">Light</span>
+    </button>
+  </div>
+</header>
+
 <header class="hero">
-  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-    <span class="active" data-theme="dark">Dark</span>
-    <span data-theme="light">Light</span>
-  </button>
   <div class="hero-badge">White Paper v1.22</div>
-  <img class="hero-logo dark-logo" src="img/logos/lovii-logo_dark.svg" alt="LOVII">
-  <img class="hero-logo light-logo" src="img/logos/lovii-logo.svg" alt="LOVII">
   <h1>LOVII — <span>от района к Федерации</span></h1>
   <p>White-label & SaaS-платформа для создания и масштабирования локальных маркетплейсов для микро- и малого бизнеса в отдельно взятом пространстве, фуд-корте, торговом центре, районе или городе.</p>
   <div class="hero-meta">
@@ -574,6 +700,19 @@
 </section>
 
 </div>
+
+<nav class="mobile-tabbar">
+  <div class="mobile-tabbar-inner">
+    <a href="#exec">Резюме</a>
+    <a href="#done">Done</a>
+    <a href="#now">Now</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#architecture">Архит.</a>
+    <a href="#monetization">Монет.</a>
+    <a href="#unit">Юнит</a>
+    <a href="#horizons">Горизонты</a>
+  </div>
+</nav>
 
 <footer>
   ООО «Аксиома» · ИНН 7842223709 · г. Санкт-Петербург, Думская ул., 4<br>
