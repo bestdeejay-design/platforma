@@ -86,6 +86,7 @@
   .light .top-header {
     background: rgba(245, 246, 250, 0.78);
   }
+  body.menu-open { overflow: hidden; }
   .header-inner {
     max-width: 1100px;
     margin: 0 auto;
@@ -136,50 +137,74 @@
     flex-shrink: 0;
   }
 
-  body { padding-top: 60px; }
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--text);
+    margin-left: auto;
+  }
+  .hamburger svg { display: block; }
 
-  /* Mobile tab bar */
-  .mobile-tabbar {
+  /* Mobile menu */
+  .mobile-menu {
     display: none;
     position: fixed;
-    bottom: 0;
+    top: 60px;
     left: 0;
     right: 0;
-    z-index: 200;
-    background: rgba(11, 13, 16, 0.82);
-    backdrop-filter: blur(14px) saturate(1.4);
-    -webkit-backdrop-filter: blur(14px) saturate(1.4);
-    border-top: 1px solid var(--border);
-    padding: 6px 8px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    transition: background 0.3s, border-color 0.3s;
+    bottom: 0;
+    z-index: 199;
+    background: rgba(11, 13, 16, 0.92);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    padding: 24px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  .light .mobile-tabbar {
-    background: rgba(245, 246, 250, 0.84);
+  .light .mobile-menu {
+    background: rgba(245, 246, 250, 0.94);
   }
-  .mobile-tabbar-inner {
+  .mobile-menu.open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mobile-menu nav {
     display: flex;
+    flex-direction: column;
     gap: 4px;
-    min-width: max-content;
   }
-  .mobile-tabbar a {
-    font-size: 12px;
+  .mobile-menu a {
+    font-size: 17px;
     font-weight: 500;
-    color: var(--text-muted);
+    color: var(--text);
     text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 100px;
-    white-space: nowrap;
+    padding: 14px 16px;
+    border-radius: 12px;
     transition: 0.2s;
-    border: 1px solid transparent;
   }
-  .mobile-tabbar a:active,
-  .mobile-tabbar a.active {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
+  .mobile-menu a:hover,
+  .mobile-menu a:active {
+    background: rgba(128,128,128,0.1);
+    color: var(--accent);
   }
+  .mobile-menu .theme-toggle {
+    position: static;
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  body { padding-top: 60px; }
+
+  /* Mobile tab bar - replaced by hamburger menu */
+  .mobile-tabbar { display: none; }
 
   .hero {
     padding: 60px 24px 60px;
@@ -407,8 +432,7 @@
     .card-grid { grid-template-columns: 1fr; }
     .header-nav { display: none; }
     .top-header .theme-toggle { display: none; }
-    .mobile-tabbar { display: block; }
-    body { padding-bottom: 56px; }
+    .hamburger { display: flex; }
   }
 </style>
 </head>
@@ -434,8 +458,28 @@
       <span class="active" data-theme="dark">Dark</span>
       <span data-theme="light">Light</span>
     </button>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Меню">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+    </button>
   </div>
 </header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="#exec" onclick="closeMenu()">Резюме</a>
+    <a href="#done" onclick="closeMenu()">Что сделано (Done)</a>
+    <a href="#now" onclick="closeMenu()">Текущий статус (Now)</a>
+    <a href="#roadmap" onclick="closeMenu()">Дорожная карта</a>
+    <a href="#architecture" onclick="closeMenu()">Архитектура</a>
+    <a href="#monetization" onclick="closeMenu()">Монетизация</a>
+    <a href="#unit" onclick="closeMenu()">Юнит-экономика</a>
+    <a href="#horizons" onclick="closeMenu()">Дальнейшие горизонты</a>
+  </nav>
+  <button class="theme-toggle" onclick="toggleTheme(); closeMenu()">
+    <span class="active" data-theme="dark">Dark</span>
+    <span data-theme="light">Light</span>
+  </button>
+</div>
 
 <header class="hero">
   <div class="hero-badge">White Paper v1.22</div>
@@ -701,19 +745,6 @@
 
 </div>
 
-<nav class="mobile-tabbar">
-  <div class="mobile-tabbar-inner">
-    <a href="#exec">Резюме</a>
-    <a href="#done">Done</a>
-    <a href="#now">Now</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#architecture">Архит.</a>
-    <a href="#monetization">Монет.</a>
-    <a href="#unit">Юнит</a>
-    <a href="#horizons">Горизонты</a>
-  </div>
-</nav>
-
 <footer>
   ООО «Аксиома» · ИНН 7842223709 · г. Санкт-Петербург, Думская ул., 4<br>
   © 2026 — White Paper v1.22
@@ -732,6 +763,15 @@ const saved = localStorage.getItem('theme');
 if (saved === 'light') {
   document.documentElement.classList.add('light');
   document.querySelectorAll('.theme-toggle span').forEach(el => el.classList.toggle('active', el.dataset.theme === 'light'));
+}
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.classList.remove('menu-open');
 }
 </script>
 </body>
